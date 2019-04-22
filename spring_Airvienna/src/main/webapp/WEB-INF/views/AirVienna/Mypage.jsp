@@ -17,7 +17,7 @@
 	crossorigin="anonymous">
 
 
-<!-- 제이쿼리를 CDN으로 불러옴  -->
+<!-- 제이쿼리를 CDN 으로 불러옴  -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	crossorigin="anonymous"></script>
@@ -29,24 +29,29 @@
 	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
 	crossorigin="anonymous"></script>
 	
-	
 <style>
-/* 이미지 바꾸세요~ */
-body {
-background-image : url("/resources/img/trip.jpg");
-background-size : cover;
-}
-.navvar {
-float: left;
+.container {
+	width: 950px;
+	margin: auto;
+	height: 1000px;
+	background-color: white;
 }
 
+.content {
+	width: 800px;
+	padding: 5%;
+	margin: auto;
+	height: 1000px;
+	float: center;
+	
+}
 </style>
 	
-<title>메인페이지</title>
+	
+<title>마이페이지</title>
 </head>
 <body>
-<!-- 헤더부분,검색창,로고이미지 -->
-	<nav class="navbar navbar-light bg-light">
+<nav class="navbar navbar-light bg-light">
 		<a class="navbar-brand"><img src='/resources/img/sosiji.png'
 			width="100" height="50" onclick="location.href='/airvienna/mainpage'"></a>
 		<form class="form-inline">
@@ -56,6 +61,29 @@ float: left;
 				id=search>검색</button>
 		</form>
 	</nav>
-
+	
+	
+	<div class="container">
+		<div class="content">
+			<form action="">
+				<label for="name">이름</label>
+				<p> <input type="text" id = "name" /></p>
+				<label for="gender">성별</label>
+				<p> <input type="checkbox" name="genger" id="gender" />남자
+				<input type="checkbox" name="genger" id="gender" />여자</p>
+				<label for="email">이메일</label>
+				<p><input type="email" name="email" id="email" /></p>
+				<label for="email">전화번호</label>
+				<p><input type="tel" name ="tel" id="tel" /></p>
+				<input type="submit" value="수정" class ="myButton" />
+				
+				<input type="reset" value="초기화" class ="myButton" />
+				<button class ="myButton" style ="float:right" onclick="location.href='/'">돌아가기</button>
+				
+			</form>
+			
+				
+		</div>
+	</div>
 </body>
 </html>
