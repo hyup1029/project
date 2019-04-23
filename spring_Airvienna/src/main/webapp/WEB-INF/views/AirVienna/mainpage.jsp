@@ -1,3 +1,4 @@
+<!-- 메인페이지 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -45,6 +46,8 @@ float: left;
 <title>메인페이지</title>
 </head>
 <body>
+
+
 <!-- 헤더부분,검색창,로고이미지 -->
 	<nav class="navbar navbar-light bg-light">
 		<a class="navbar-brand"><img src='/resources/img/sosiji.png'
