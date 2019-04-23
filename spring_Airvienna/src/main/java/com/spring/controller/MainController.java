@@ -8,14 +8,13 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@RequestMapping("/airvienna/*")
+@RequestMapping("/AirVienna/*")
 public class MainController {
 	
 	
 	@GetMapping("/mainpage")
-	public String mainpage() {
+	public void mainpage() {
 		log.info("메인페이지 호출...");
-		return "AirVienna/mainpage";
 	}
 	
 	@GetMapping("/mypage")

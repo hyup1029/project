@@ -1,0 +1,74 @@
+html,
+body{
+	hight: 100%;
+}
+section{
+	display:block;
+}
+div{
+	display:block;
+}
+.backimg{
+    z-index: -1 !important;
+    height: 100% !important;
+    width: 100% !important;
+    position: absolute !important;
+    min-height: 100% !important;
+    min-width: 100% !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    opacity: 1 !important;
+    transition: opacity 0.5s ease 0s !important;
+    background-image : url("/resources/img/A.jpg");
+}
+
+.datacover{
+	top:120px;
+	width:100%;
+	bottom:0px;
+	position:relative;
+}
+.covereddata{
+	display:table;
+	position:relative;
+	height:100%;
+	width:100%;
+}
+.coverdata{
+	margin:0 auto;
+	position: relative;
+	padding-left:24px;
+	padding-right: 24px;
+	max-width:1080px;
+}
+
+.datainput{
+  background:#ffffff;
+  border-radius:4px;
+  padding:32px;
+  padding-bottom:24px;
+  width:441px;
+  box-shadow:0 16px 40px;
+}
+.range{
+	text-align: right !important;
+}
+.btn-primary{
+	border-dadius: var(--border-button-border-radius, 4px) !important;
+	font-size: var(--font-button-font-size, 16px)!important;
+	line-height: var(--font-button-line-height, 24px)!important;
+	letter-spacing: var(--font-button-letter-spacing, normal)!important;
+	font-family: var(--font-button-font-family, Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif) !important;
+    text-transform: var(--font-button-text-transform, undefined) !important;
+    padding-top: var(--spacing-button-vertical, 10px) !important;
+    padding-bottom: var(--spacing-button-vertical, 10px) !important;
+    font-weight: var(--font-bold-font-weight, 800) !important;
+    border-width: var(--border-button-border-width, 2px) !important;
+    padding-left: var(--spacing-button-horizontal, 22px) !important;
+    padding-right: var(--spacing-button-horizontal, 22px) !important;
+    box-shadow: var(--shadow-button-level0-box-shadow, none) !important;
+    background: var(--color-buttons-primary-color, #FF5A5F) !important;
+    border-color: var(--color-buttons-primary-border, transparent) !important;
+    color: var(--color-buttons-primary-text, #ffffff) !important;
+}
