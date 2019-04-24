@@ -22,5 +22,10 @@ public class MainController {
 		
 		return "AirVienna/Mypage";
 	}
+	@GetMapping("/home_register")
+	public String home_register() {
+		
+		return "AirVienna/home_register";
+	}
 	
 }
