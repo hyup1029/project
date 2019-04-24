@@ -1,0 +1,30 @@
+.bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      .jjim{
+      	position: absolute !important;
+    	right: 8px !important;
+    	top: 8px !important;
+    	padding: 8px !important;
+      }
+      ._jjim{
+      	cursor: pointer !important;
+    	background-color: transparent !important;
+    	color: buttontext !important;
+    	display: block !important;
+    	border-width: 0px !important;
+    	border-style: initial !important;
+    	border-color: initial !important;
+    	border-image: initial !important;
+      }

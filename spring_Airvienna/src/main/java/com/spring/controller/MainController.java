@@ -28,4 +28,8 @@ public class MainController {
 		return "AirVienna/home_register";
 	}
 	
+	@GetMapping("/accommodationlist")
+	public void listpage(){
+		log.info("리스트페이지 호출...");
+	}
 }

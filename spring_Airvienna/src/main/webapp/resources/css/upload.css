@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+
+.wen {width:200px; height:200px; border-radius:200px;margin-top:50px; margin: 0 auto; overflow:hidden;}
+.wen img {height:auto; width:200px; display:block; margin:0 auto;}
+/* .container{
+	width:950px;
+	margin:auto;
+	height:1000px;
+	hackground-color:white;
+} */
+.form-group{
+	width: 400px;
+	height: 70px;
+	margin:0 auto;
+}
+
+}
