@@ -4,34 +4,257 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="/resources/css/mainpage.css"/>
+<link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
+    <!-- Bootstrap core CSS -->
+<link href="/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <style>
 /* 이미지 바꾸세요~ */
 .navvar {
 float: left;
 }
+.navbar-form {
+    border-color: #101010;
+}
+._cfvh61 {
+    display: inherit !important;
+}
+@media (min-width: 1128px){
+._1wsro53 {
+    left: 80px !important;
+}
+}
+@media (min-width: 744px){
+._1wsro53 {
+    top: 16px !important;
+    transition: width 200ms ease-in !important;
+    width: 460px !important;
+}
+}
+@media (min-width: 744px){
+._shzwii {
+    width: 100% !important;
+    display: table !important;
+}
+}
+@media (min-width: 744px){
+._1fkg0r2 {
+    display: table-cell !important;
+    width: 100% !important;
+    vertical-align: middle !important;
+}
+}
+._1fkg0r2 {
+    background-color: #ffffff !important;
+    transition: box-shadow 200ms ease-in !important;
+    border: 1px solid #EBEBEB !important;
+    border-radius: 4px !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+    height: 48px !important;
+}
+._1wsro53 {
+    display: block !important;
+    position: absolute !important;
+    z-index: 21 !important;
+}
+form {
+    display: block;
+    margin-top: 0em;
+}
+._1blc3lt {
+    width: 100% !important;
+    height: 100% !important;
+    padding-left: 12px !important;
+    padding-right: 4px !important;
+    position: relative !important;
+}
+._1os10fm {
+    display: table !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    table-layout: fixed !important;
+    white-space: nowrap !important;
+    width: 100% !important;
+}
+._1cxn5bx2 {
+    background-color: transparent !important;
+    border: 0px !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    width: 100% !important;
+    text-overflow: ellipsis !important;
+    font-weight: 800 !important;
+    font-size: 17px !important;
+}
+._1m8bb6v {
+    position: absolute !important;
+    display: block !important;
+    border: 0px !important;
+    margin: -1px !important;
+    padding: 0px !important;
+    height: 1px !important;
+    width: 1px !important;
+    clip: rect(0, 0, 0, 0) !important;
+    overflow: hidden !important;
+}
+._1hwe6usi {
+    padding-top: 3px !important;
+    padding-left: 5px !important;
+    padding-right: 10px !important;
+    width: 39px !important;
+    display: table-cell !important;
+    height: 100% !important;
+    vertical-align: middle !important;
+}
+svg:not(:root){
+    overflow: hidden;
+}
+._1u1cgx19 {
+    display: table-cell !important;
+    height: 100% !important;
+    vertical-align: middle !important;
+    width: 100% !important;
+}
+._1w14zmh {
+    overflow: hidden !important;
+    position: relative !important;
+}
+.arrangeheader{
+	display: table !important;
+    height: 64px !important;
+    list-style: none !important;
+    padding: 0px !important;
+    margin: 0px !important;
+}
+._li1{
+	display: table-cell !important;
+}
+div{
+	display: block;
+}
+._div1{
+	display: table-cell !important;
+}
+@media (min-width: 744px){
+	.buttonstyle{
+	    height: 80px !important;
+    	line-height: 80px !important;
+	}
+}
+.buttonstyle{
+    -webkit-appearance: none !important;
+    color: inherit !important;
+    display: inline-block !important;
+    position: relative !important;
+    white-space: nowrap !important;
+    background: transparent !important;
+    border-width: initial !important;
+    border-style: none !important;
+    border-color: initial !important;
+    border-image: initial !important;
+    text-decoration: none !important;
+    margin: 0px !important;
+    padding: 0px 8px !important;
+}
+.buttonline{
+	height: 100% !important;
+    vertical-align: middle !important;
+    box-sizing: border-box !important;
+    border-bottom: 2px solid transparent !important;
+}
+.buttonfont{
+	display: inline-block !important;
+    vertical-align: middle !important;
+    line-height: 1 !important;
+    padding: 8px !important;
+    border-bottom: 2px solid transparent !important;
+}
 
 </style>
-<title>메인페이지</title>
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href="/resources/css/mainpage.css"/>
-<link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
-    <!-- Bootstrap core CSS -->
-<link href="/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<title>에어비엔나</title>
 
 </head>
 <body>
 <!-- 헤더부분,검색창,로고이미지 -->
 	<nav class="navbar navbar-light bg-white">
-		<a class="navbar-brand"><img src='/resources/img/sosiji.png'
-			width="100" height="50" onclick="location.href='/airvienna/mainpage'"></a>
-		<form class="form-inline">
-			<input class="form-control mr-sm-2" type="search"
-				placeholder="당신이 가는 여행지는 어디죠?" aria-label="Search" id=searchif style ="width : 500px">
-			<button class="btn btn-outline-success my-2 my-sm-0" type="submit"
-				id=search>검색</button>
+		<a class="navbar-brand" style="font-size:2em; color:purple" onclick="location.href='/AirVienna/mainpage'">
+		<img src='/resources/img/octopus.png' width="75" height="50">Airvienna</a>
+		<ul class="arrangeheader">
+		<li class="_li1">
+		<div><div class="_cfvh61">
+		<div>
+		<div class="_1wsro53" style="margin-left: 170px; margin-top:4px">
+		<div class="_1xb0vsy"><div class="_shzwii">
+		<div class="_1fkg0r2">
+		<form action="" method="">
+			<div dir="ltr">
+				<div class="_1blc3lt">
+					<label for="Koan-via-HeaderController__input" class="_1os10fm">
+						<span class="_1m8bb6v">검색</span>
+					<div class="_1hwe6usi">
+						<svg viewBox="0 0 16 16" role="presentation" aria-hidden="true" focusable="false" style="height:18px;width:18px;display:block;fill:currentColor">
+							<path d="m2.5 7c0-2.5 2-4.5 4.5-4.5s4.5 2 4.5 4.5-2 4.5-4.5 4.5-4.5-2-4.5-4.5m13.1 6.9-2.8-2.9c.7-1.1 1.2-2.5 1.2-4 0-3.9-3.1-7-7-7s-7 3.1-7 7 3.1 7 7 7c1.5 0 2.9-.5 4-1.2l2.9 2.8c.2.3.5.4.9.4.3 0 .6-.1.8-.4.5-.5.5-1.2 0-1.7">
+							</path>
+						</svg>
+					</div>
+					<div class="_1u1cgx19">
+						<div class="_1w14zmh">
+							<input type="text" class="_1cxn5bx2" aria-autocomplete="list" aria-describedby="Koan-via-HeaderController__description" aria-expanded="false" autocomplete="off" autocorrect="off" spellcheck="false" id="Koan-via-HeaderController__input" name="query" placeholder="어디로 가시나요?" role="combobox" value="">
+						</div>
+					</div>
+					</label>
+				</div>
+			</div>
 		</form>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		</li>
+		<li class="_li1"></li>
+		<li class="_li1">
+			<div>
+				<div class="_div1">
+					<button type="button" class="buttonstyle">
+						<div class="buttonline">
+							<div class="buttonfont">고객센터
+							</div>
+						</div>
+					</button>
+				</div>
+			</div>
+		</li>
+		<li class="_li1">
+			<div>
+				<div class="_div1">
+					<button type="button" class="buttonstyle">
+						<div class="buttonline">
+							<div class="buttonfont">회원가입
+							</div>
+						</div>
+					</button>
+				</div>
+			</div>
+		</li>
+		<li class="_li1">
+			<div>
+				<div class="_div1">
+					<button type="button" class="buttonstyle">
+						<div class="buttonline">
+							<div class="buttonfont">로그인
+							</div>
+						</div>
+					</button>
+				</div>
+			</div>
+		</li>
+		</ul>
 	</nav>
 
