@@ -26,7 +26,7 @@ background-repeat: no-repeat;
   <div class="py-5 text-center">
     <img class="d-block mx-auto mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
     <h1>당신의 집을 등록하세요!</h1>
-    <p class="lead"><b>많은 여행객들이 이용할 수 있도록 자신의 집을 소개하세요!</b></p>
+    <p class="lead"><b>많은 여행객들이 이용할 수 있도록 자신의 집을 소개하세요!!</b></p>
   </div>
 
   <div class="row" style ="margin-top: 5%">
