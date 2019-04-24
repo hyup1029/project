@@ -13,10 +13,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <style>
-/* 이미지 바꾸세요~ */
-.navvar {
-float: left;
-}
+
+
 .navbar-form {
     border-color: #101010;
 }
@@ -234,7 +232,7 @@ div{
 		<li class="_li1">
 			<div>
 				<div class="_div1">
-					<button type="button" class="buttonstyle">
+					<button type="button" class="buttonstyle" onclick="location.href='joinpage'">
 						<div class="buttonline">
 							<div class="buttonfont">회원가입
 							</div>
