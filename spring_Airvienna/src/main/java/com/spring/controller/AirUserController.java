@@ -35,11 +35,11 @@ public class AirUserController {
 		return "redirect:joinpage";
 	}
 	
-	@GetMapping("/mainpage")
+	/*@GetMapping("/mainpage")
 	public void main() {
 		log.info("main page...");
 	}
-	
+	*/
 	@ResponseBody
 	@PostMapping("/checkEmail")
 	public String checkEmail(String email) {
