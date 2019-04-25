@@ -15,21 +15,21 @@
 						</div>
 						<div class="form-group">
 					    	<label for="inputregion">지역</label>
-					   		<input type="text" class="form-control" id="inputregion" placeholder="모든 위치">
+					   		<input type="text" name="region" class="form-control" id="inputregion" placeholder="모든 위치">
 					  	</div>
 					  <div class="form-row">
 					    <div class="form-group col-md-6">
 					      <label for="inputcheckin">체크인</label>
-					      <input type="date" class="form-control" id="inputcheckin" placeholder="년/월/일">
+					      <input type="date" name="checkin" class="form-control" id="inputcheckin" placeholder="년/월/일">
 					    </div>
 					    <div class="form-group col-md-6">
 					      <label for="inputcheckout">체크아웃</label>
-					      <input type="date" class="form-control" id="inputcheckout" placeholder="년/월/일">
+					      <input type="date" name="checkout" class="form-control" id="inputcheckout" placeholder="년/월/일">
 					    </div>
 					  </div>
 					  <div class="form-group">
 					    <label for="inputnumber">인원</label>
-					    <input type="number" class="form-control" id="inputnumber" placeholder="인원">
+					    <input type="number" name="maxperson" class="form-control" id="inputnumber" placeholder="인원">
 					  </div>
 					<div class="range">
 					  <button type="submit" class="btn btn-primary">검색</button>
