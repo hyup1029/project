@@ -17,7 +17,7 @@ border-bottom: solid 1px #cccccc;
 }
 .necessary{
 	border: solid 1px;
-	border-color: skyblue;
+	border-color: #cccccc;
 	width: 70%;
 	margin-top: 5%;
 	height: 1000px;
@@ -28,7 +28,7 @@ border-bottom: solid 1px #cccccc;
 
 .content {
 	border: solid 1px;
-	border-color: skyblue;
+	border-color: #cccccc;
 	width: 70%;
 	margin-top: 5%;
 	height: 500px;
@@ -36,10 +36,10 @@ border-bottom: solid 1px #cccccc;
 }
 
 #menu {
-	width: 200px;
+	width: 300px;
 	background-color: #f6f6f6;
 	float: left;
-	height: 162px;
+	height: 200px;
 	box-shadow: 4px 4px 3px #666;
 	top: 140px;
 	position: absolute;
@@ -47,11 +47,11 @@ border-bottom: solid 1px #cccccc;
 
 .panel-heading {
 	font-size: 10px;
-	background-color: #a5e3e6;
+	background-color: #cccccc;
 }
 .btn-side {
 	border: solid;
-	border-color: #ff4646;
+	border : skyblue;
 	height : 50px;
 	width : 201px;
 }
