@@ -23,3 +23,12 @@ alter table project_accommodation RENAME COLUMN bno to ano;
 alter table project_accommodation add bno number(10);
 alter table project_accommodation add region nvarchar2(100);
 
+create table accommodation_attach(
+	uuid varchar2(100) constraint ad_attach primary key,
+	uploadPath varchar2(200) not null,
+	pictureName varchar2(100) not null,
+	ano number(10,0)
+);
+
+alter table accommodation_attach add constraint fk_accommodation
+foreign key(ano) references project_accommodation(ano);
