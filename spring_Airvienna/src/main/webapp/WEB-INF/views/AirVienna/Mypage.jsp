@@ -158,7 +158,6 @@ border-bottom: solid 1px #cccccc;
 			</form>
 		</div>
 	</div>
-<%@include file="../includes/footer.jsp"%>
 	<script>
 	$(document).ready(function() {
 

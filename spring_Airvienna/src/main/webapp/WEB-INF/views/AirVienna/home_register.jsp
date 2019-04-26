@@ -193,7 +193,6 @@
 			</ul>
 		</footer>
 	</div>
-<%@include file="../includes/footer.jsp"%>
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 
 
