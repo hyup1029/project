@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%-- <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,9 +21,10 @@
 ._cfvh61 {
     display: inherit !important;
 }
-@media (min-width: 1128px){
+@media (min-width: 985px){
 ._1wsro53 {
     left: 80px !important;
+    
 }
 }
 @media (min-width: 744px){
@@ -170,7 +172,26 @@ div{
     padding: 8px !important;
     border-bottom: 2px solid transparent !important;
 }
-
+._lvb55za {
+    display: inline-block !important;
+    vertical-align: middle !important;
+    line-height: 1 !important;
+    padding: 8px !important;
+    border-bottom: 2px solid transparent !important;
+}
+._sftyq0 {
+    background-color: rgb(242, 242, 242) !important;
+    box-shadow: rgb(235, 235, 235) 0px 0px 0px 2px !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 50% !important;
+    overflow: hidden !important;
+}
+._1pa4v1p {
+    vertical-align: top !important;
+}
 </style>
 <title>에어비엔나</title>
 
@@ -180,41 +201,8 @@ div{
 	<nav class="navbar navbar-light bg-white">
 		<a class="navbar-brand" style="font-size:2em; color:purple" onclick="location.href='/AirVienna/mainpage'">
 		<img src='/resources/img/octopus.png' width="75" height="50">Airvienna</a>
+		<!-- <c:if test=""> -->
 		<ul class="arrangeheader">
-		<li class="_li1">
-		<div><div class="_cfvh61">
-		<div>
-		<div class="_1wsro53" style="margin-left: 170px; margin-top:4px">
-		<div class="_1xb0vsy"><div class="_shzwii">
-		<div class="_1fkg0r2">
-		<form action="" method="">
-			<div dir="ltr">
-				<div class="_1blc3lt">
-					<label for="Koan-via-HeaderController__input" class="_1os10fm">
-						<span class="_1m8bb6v">검색</span>
-					<div class="_1hwe6usi">
-						<svg viewBox="0 0 16 16" role="presentation" aria-hidden="true" focusable="false" style="height:18px;width:18px;display:block;fill:currentColor">
-							<path d="m2.5 7c0-2.5 2-4.5 4.5-4.5s4.5 2 4.5 4.5-2 4.5-4.5 4.5-4.5-2-4.5-4.5m13.1 6.9-2.8-2.9c.7-1.1 1.2-2.5 1.2-4 0-3.9-3.1-7-7-7s-7 3.1-7 7 3.1 7 7 7c1.5 0 2.9-.5 4-1.2l2.9 2.8c.2.3.5.4.9.4.3 0 .6-.1.8-.4.5-.5.5-1.2 0-1.7">
-							</path>
-						</svg>
-					</div>
-					<div class="_1u1cgx19">
-						<div class="_1w14zmh">
-							<input type="text" class="_1cxn5bx2" aria-autocomplete="list" aria-describedby="Koan-via-HeaderController__description" aria-expanded="false" autocomplete="off" autocorrect="off" spellcheck="false" id="Koan-via-HeaderController__input" name="query" placeholder="어디로 가시나요?" role="combobox" value="">
-						</div>
-					</div>
-					</label>
-				</div>
-			</div>
-		</form>
-		</div>
-		</div>
-		</div>
-		</div>
-		</div>
-		</div>
-		</div>
-		</li>
 		<li class="_li1"></li>
 		<li class="_li1">
 			<div>
@@ -242,6 +230,41 @@ div{
 		</li>
 		<li class="_li1">
 			<div>
+				<div class="_cfvh61">
+					<div>
+						<div class="_1wsro53" style="margin-left: 170px; margin-top:4px">
+							<div class="_1xb0vsy"><div class="_shzwii">
+								<div class="_1fkg0r2">
+									<form action="" method="">
+										<div dir="ltr">
+											<div class="_1blc3lt">
+												<label for="Koan-via-HeaderController__input" class="_1os10fm">
+													<span class="_1m8bb6v">검색</span>
+												<div class="_1hwe6usi">
+													<svg viewBox="0 0 16 16" role="presentation" aria-hidden="true" focusable="false" style="height:18px;width:18px;display:block;fill:currentColor">
+														<path d="m2.5 7c0-2.5 2-4.5 4.5-4.5s4.5 2 4.5 4.5-2 4.5-4.5 4.5-4.5-2-4.5-4.5m13.1 6.9-2.8-2.9c.7-1.1 1.2-2.5 1.2-4 0-3.9-3.1-7-7-7s-7 3.1-7 7 3.1 7 7 7c1.5 0 2.9-.5 4-1.2l2.9 2.8c.2.3.5.4.9.4.3 0 .6-.1.8-.4.5-.5.5-1.2 0-1.7">
+														</path>
+													</svg>
+												</div>
+												<div class="_1u1cgx19">
+													<div class="_1w14zmh">
+														<input type="text" class="_1cxn5bx2" aria-autocomplete="list" aria-describedby="Koan-via-HeaderController__description" aria-expanded="false" autocomplete="off" autocorrect="off" spellcheck="false" id="Koan-via-HeaderController__input" name="query" placeholder="어디로 가시나요?" role="combobox" value="">
+													</div>
+												</div>
+												</label>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+		<li class="_li1">
+			<div>
 				<div class="_div1">
 					<button type="button" class="buttonstyle">
 						<div class="buttonline">
@@ -253,5 +276,88 @@ div{
 			</div>
 		</li>
 		</ul>
+		<!--</c:if>
+		<c:if test="">
+		<ul class="arrangeheader">
+		<li class="_li1"></li>
+		<li class="_li1">
+			<div>
+				<div class="_div1">
+					<button type="button" class="buttonstyle">
+						<div class="buttonline">
+							<div class="buttonfont">고객센터
+							</div>
+						</div>
+					</button>
+				</div>
+			</div>
+		</li>
+		<li class="_li1">
+			<div>
+				<div class="_div1">
+					<button type="button" class="buttonstyle" onclick="location.href='joinpage'">
+						<div class="buttonline">
+							<div class="buttonfont">찜목록
+							</div>
+						</div>
+					</button>
+				</div>
+			</div>
+		</li>
+		<li class="_li1">
+			<div>
+				<div class="_cfvh61">
+					<div>
+						<div class="_1wsro53" style="margin-left: 170px; margin-top:4px">
+							<div class="_1xb0vsy"><div class="_shzwii">
+								<div class="_1fkg0r2">
+									<form action="" method="">
+										<div dir="ltr">
+											<div class="_1blc3lt">
+												<label for="Koan-via-HeaderController__input" class="_1os10fm">
+													<span class="_1m8bb6v">검색</span>
+												<div class="_1hwe6usi">
+													<svg viewBox="0 0 16 16" role="presentation" aria-hidden="true" focusable="false" style="height:18px;width:18px;display:block;fill:currentColor">
+														<path d="m2.5 7c0-2.5 2-4.5 4.5-4.5s4.5 2 4.5 4.5-2 4.5-4.5 4.5-4.5-2-4.5-4.5m13.1 6.9-2.8-2.9c.7-1.1 1.2-2.5 1.2-4 0-3.9-3.1-7-7-7s-7 3.1-7 7 3.1 7 7 7c1.5 0 2.9-.5 4-1.2l2.9 2.8c.2.3.5.4.9.4.3 0 .6-.1.8-.4.5-.5.5-1.2 0-1.7">
+														</path>
+													</svg>
+												</div>
+												<div class="_1u1cgx19">
+													<div class="_1w14zmh">
+														<input type="text" class="_1cxn5bx2" aria-autocomplete="list" aria-describedby="Koan-via-HeaderController__description" aria-expanded="false" autocomplete="off" autocorrect="off" spellcheck="false" id="Koan-via-HeaderController__input" name="query" placeholder="어디로 가시나요?" role="combobox" value="">
+													</div>
+												</div>
+												</label>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+		<li class="_li1">
+			<div>
+				<div class="_div1">
+					<button type="button" class="buttonstyle">
+						<div class="buttonline">
+							<div class="buttonfont">로그아웃
+							</div>
+						</div>
+					</button>
+				</div>
+			</div>
+		</li>
+		<li class="_li1">
+		<div class="_lvb55za">
+			<div class="_sftyq0">
+				<img alt=" " height="28" src="https://a0.muscache.com/im/pictures/83a01979-3751-4e5b-a3a3-7226275be3c6.jpg?aki_policy=profile_small" width="28" class="_1pa4v1p">
+			</div>
+		</div>
+		</li>
+		</ul>
+		</c:if> -->
 	</nav>
-
