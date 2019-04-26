@@ -3,20 +3,12 @@
 
 .wen {width:200px; height:200px; border-radius:200px;margin-top:50px; margin: 0 auto; overflow:hidden;}
 .wen img {height:auto; width:200px; display:block; margin:0 auto;}
-/* .photo{
-	height:1000px;
-	width:311px;
-} */
-/* .container{
-	width:950px;
-	margin:auto;
-	height:1000px;
-	hackground-color:white;
-} */
+.navbar {border-bottom: solid; 1px; border-color: #cccccc;}
+
+
 .form-group{
 	width: 400px;
 	height: 70px;
 	margin:0 auto;
-}
-
+	margin-top: 18px;
 }

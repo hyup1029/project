@@ -1,13 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<link rel="stylesheet" href="/resources/css/upload.css" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<script src="/resources/js/jquery-3.3.1.js"></script>
-<script src="/resources/js/jquery.validate.js"></script>
+<%@include file="../includes/header.jsp" %>
 <script src="/resources/js/joinform.js"></script><!--form validation script -->
+<link rel="stylesheet" href="/resources/css/upload.css" />
 	<div class="container" style="margin-top:40px">
-	<form class="form-signin" action="" method="post" role="form" enctype="multipart/form-data">
+	<form class="form-signin" action="" method="post" role="form" enctype="multipart/form-data" id="joinpage">
 		<div class="wen" >				
 			<div class="uploadDiv">
 				<img src="/resources/img/vienna.PNG" class="photo" />
@@ -63,6 +60,9 @@
 		</div>
 	</form>
 	</div>
+	
+	<%@include file="../includes/footer.jsp" %> 
+	
 <script>
 $(document).ready(function(){
 	$(".photo").click(function(){
