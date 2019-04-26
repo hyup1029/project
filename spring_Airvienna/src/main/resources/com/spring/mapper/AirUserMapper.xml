@@ -4,8 +4,8 @@
 	<select id="selectByEmail" resultType="com.spring.domain.AirUserVO">
 		select * from airuser where email=#{email}
 	</select>
-	<insert id="insert">
-		insert into airuser(bno,email,password,username,address,tel,birth)
-		values(seq_bno.nextVal,#{email},#{password},#{username},#{address},#{tel},#{birth})
+		<insert id="insert">
+		insert into airuser(bno,email,password,username,address,tel,birth,uuid,uploadPath,fileName,fileType)
+		values(seq_bno.nextVal,#{email},#{password},#{username},#{address},#{tel},#{birth},#{uuid},#{uploadPath},#{fileName},#{fileType})
 	</insert>
 </mapper>

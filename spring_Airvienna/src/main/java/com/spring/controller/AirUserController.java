@@ -1,16 +1,26 @@
 package com.spring.controller;
 
+import java.io.File;
+import java.util.UUID;
+
+import javax.annotation.Resource;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.domain.AirUserVO;
 import com.spring.service.AirUserService;
 
+import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -27,19 +37,24 @@ public class AirUserController {
 	};
 	
 	@PostMapping("/joinpage")
-	public String joinpost(AirUserVO vo) {
+	public String joinpost(AirUserVO vo,RedirectAttributes rttr) {
 		log.info("회원가입 성공"+vo.toString());
-		if(service.insert(vo)) {
-			return "redirect:mainpage";
+		if(vo.getAttachList()!=null) {
+			for(AirUserVO attach:vo.getAttachList()) {
+				log.info(""+attach);
+			}
 		}
-		return "redirect:joinpage";
+		if(service.insert(vo)) {
+				return "redirect:mainpage";
+			}
+		rttr.addFlashAttribute("result",vo.getBno());
+		return "redirect:mainpage";
 	}
 	
-	/*@GetMapping("/mainpage")
-	public void main() {
-		log.info("main page...");
-	}
-	*/
+
+	
+	
+	
 	@ResponseBody
 	@PostMapping("/checkEmail")
 	public String checkEmail(String email) {
@@ -55,4 +70,9 @@ public class AirUserController {
 			return "true";
 		}
 	}
+	
+	
+
+	
 }
+

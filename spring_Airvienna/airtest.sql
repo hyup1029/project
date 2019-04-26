@@ -5,7 +5,11 @@ create table airuser(
     username nvarchar2(10) not null,
     address varchar2(100) not null,
     tel nvarchar2(20) not null,
-	birth date
+	birth date,
+	uuid varchar2(100),
+	uploadPath varchar2(200),
+	fileName varchar2(100),
+	fileType char(1) default 'I'
 );
 
 create sequence seq_bno;
