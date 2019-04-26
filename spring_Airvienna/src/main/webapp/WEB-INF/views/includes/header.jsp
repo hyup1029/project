@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
     <%-- <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
 <!DOCTYPE html>
 <html>
@@ -266,16 +267,24 @@ div{
 		<li class="_li1">
 			<div>
 				<div class="_div1">
-					<button type="button" class="buttonstyle">
+					<%@include file="../AirVienna/login.jsp" %>
+					<button type="button" class="buttonstyle" id="login"  data-toggle="modal" data-target="#myModal" >
 						<div class="buttonline">
-							<div class="buttonfont">로그인
-							</div>
+							<div class="buttonfont">로그인 </div>
 						</div>
 					</button>
 				</div>
 			</div>
 		</li>
 		</ul>
+		
+		<script>
+			$(function(){
+				$(".login").click(function(){
+					$(".modal").modal();
+				})
+			})
+		</script>
 		<!--</c:if>
 		<c:if test="">
 		<ul class="arrangeheader">
