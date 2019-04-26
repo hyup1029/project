@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.mapper.AccommodationMapper">
-
+	<select id="optionE" resultType="com.spring.domain.AccommodationVO">
+		select * from project_accommodation
+	</select>
+	<select id="optionRe" resultType="com.spring.domain.AccommodationVO">
+		select * from project_accommodation
+		where region like '%'||#{region}||'%'
+	</select>
+	<select id="optionM" resultType="com.spring.domain.AccommodationVO">
+		<![CDATA[select * from project_accommodation
+		where maxperson<#{maxperson}]]>
+	</select>
+	<select id="optionT" resultType="com.spring.domain.AccommodationVO">
+		<![CDATA[select * from project_accommodation
+		Minus (select * from project_accommodation where(#{checkin}<checkin and #{checkout}>checkout))]]>
+	</select>
+	<select id="optionRT" resultType="com.spring.domain.AccommodationVO">
+		<![CDATA[select * from project_accommodation where
+		where region like '%'||#{region}||'%'
+		Minus (select * from project_accommodation where(#{checkin}<checkin and #{checkout}>checkout))]]>
+	</select>
+	<select id="optionTM" resultType="com.spring.domain.AccommodationVO">
+		<![CDATA[select * from project_accommodation where
+		where maxperson<#{maxperson}
+		Minus (select * from project_accommodation where(#{checkin}<checkin and #{checkout}>checkout))]]>
+	</select>
+	<select id="optionRM" resultType="com.spring.domain.AccommodationVO">
+		<![CDATA[select * from project_accommodation where
+		where maxperson<#{maxperson} and
+		where region like '%'||#{region}||'%']]>
+	</select>
+	<select id="optionRTM" resultType="com.spring.domain.AccommodationVO">
+		<![CDATA[select * from project_accommodation where
+		where maxperson<#{maxperson} and where region like '%'||#{region}||'%'
+		Minus (select * from project_accommodation where(#{checkin}<checkin and #{checkout}>checkout))]]>
+	</select>
 </mapper>
