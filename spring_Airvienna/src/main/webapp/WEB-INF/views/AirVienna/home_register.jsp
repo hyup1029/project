@@ -341,7 +341,7 @@ $(function(){
 					//폴더 구분의 \를 /로 바꾸는 작업
 					oriPath=oriPath.replace(new RegExp(/\\/g),"/");
 					str+="<span id = 'image_span'>";
-					str+="<img src='/display?fileName="+filePath+"' id ='img_px'></a>";
+					str+="<img src='/homedisplay?fileName="+filePath+"' id ='img_px'></a>";
 					str+="</span>";
 				}
 				
