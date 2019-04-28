@@ -1,13 +1,19 @@
 package com.spring.controller;
 
+import java.util.List;
+
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.domain.AccommodationVO;
 import com.spring.domain.Criteria;
-import com.spring.domain.SearchType;
+import com.spring.service.AccommodationService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,54 +22,71 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/AirVienna/*")
 public class MainController {
 	
-	
+	@Inject
+	private AccommodationService service;
 	
 	@GetMapping("/mainpage")
 	public void mainpage() {
 		log.info("메인페이지 호출...");
 	}
 	@PostMapping("/search")
-	public String accommodationlist(SearchType type,Criteria ct) {
-		log.info("등록하기"+type.getRegion());
-		log.info("등록하기"+type.getCheckin());
-		log.info("등록하기"+type.getCheckout());
-		log.info("등록하기"+type.getMaxperson());
+	public String accommodationlist(Criteria ct, Model model) {
+		log.info("등록하기"+ct.getRegion());
+		log.info("등록하기"+ct.getCheckin());
+		log.info("등록하기"+ct.getCheckout());
+		log.info("등록하기"+ct.getMaxperson());
 		
-		if(!type.getRegion().isEmpty()) {
-			if(type.getCheckin().isEmpty()&&type.getCheckout().isEmpty()&&type.getMaxperson().isEmpty()) {
-				ct.setType("R");
-			}
-		}
-		if(!type.getMaxperson().isEmpty()) {
-			if(type.getCheckin().isEmpty()&&type.getCheckout().isEmpty()&&type.getRegion().isEmpty()) {
-				ct.setType("M");
-			}
-		}
-		if(!type.getCheckin().isEmpty()&&!type.getCheckin().isEmpty()) {
-			if(type.getRegion().isEmpty()&&type.getMaxperson().isEmpty()) {
-				ct.setType("T");
-			}
-		}
-		if(!type.getCheckin().isEmpty()&&!type.getCheckin().isEmpty()&&!type.getRegion().isEmpty()) {
-			if(type.getMaxperson().isEmpty()) {
-				ct.setType("RT");
-			}
-		}
-		if(!type.getCheckin().isEmpty()&&!type.getCheckin().isEmpty()&&!type.getMaxperson().isEmpty()) {
-			if(type.getRegion().isEmpty()) {
-				ct.setType("TM");
-			}
-		}
-		if(!type.getRegion().isEmpty()&&!type.getMaxperson().isEmpty()) {
-			if(type.getCheckin().isEmpty()&&type.getCheckout().isEmpty()) {
-				ct.setType("RM");
-			}
-		}
-		if(!type.getRegion().isEmpty()&&!type.getMaxperson().isEmpty()&&!type.getCheckin().isEmpty()&&!type.getCheckout().isEmpty()) {
-			ct.setType("RTM");
-		}
-		if(type.getRegion().isEmpty()&&type.getMaxperson().isEmpty()&&type.getCheckin().isEmpty()&&type.getCheckout().isEmpty()) {
+		if(ct.getRegion().isEmpty()&&ct.getMaxperson().isEmpty()&&ct.getCheckin().isEmpty()&&ct.getCheckout().isEmpty()) {
 			ct.setType("E");
+			List<AccommodationVO> list=service.optionE(ct);
+			model.addAttribute("vo",list);
+		}
+		else if(!ct.getRegion().isEmpty()) {
+			if(ct.getCheckin().isEmpty()&&ct.getCheckout().isEmpty()&&ct.getMaxperson().isEmpty()) {
+				ct.setType("R");
+				List<AccommodationVO> list=service.optionRe(ct);
+				model.addAttribute("vo",list);
+			}
+		}
+		else if(!ct.getMaxperson().isEmpty()) {
+			if(ct.getCheckin().isEmpty()&&ct.getCheckout().isEmpty()&&ct.getRegion().isEmpty()) {
+				ct.setType("M");
+				List<AccommodationVO> list=service.optionM(ct);
+				model.addAttribute("vo",list);
+			}
+		}
+		else if(!ct.getCheckin().isEmpty()&&!ct.getCheckin().isEmpty()) {
+			if(ct.getRegion().isEmpty()&&ct.getMaxperson().isEmpty()) {
+				ct.setType("T");
+				List<AccommodationVO> list=service.optionT(ct);
+				model.addAttribute("vo",list);
+			}
+		}
+		else if(!ct.getCheckin().isEmpty()&&!ct.getCheckin().isEmpty()&&!ct.getRegion().isEmpty()) {
+			if(ct.getMaxperson().isEmpty()) {
+				ct.setType("RT");
+				List<AccommodationVO> list=service.optionRT(ct);
+				model.addAttribute("vo",list);
+			}
+		}
+		else if(!ct.getCheckin().isEmpty()&&!ct.getCheckin().isEmpty()&&!ct.getMaxperson().isEmpty()) {
+			if(ct.getRegion().isEmpty()) {
+				ct.setType("TM");
+				List<AccommodationVO> list=service.optionTM(ct);
+				model.addAttribute("vo",list);
+			}
+		}
+		else if(!ct.getRegion().isEmpty()&&!ct.getMaxperson().isEmpty()) {
+			if(ct.getCheckin().isEmpty()&&ct.getCheckout().isEmpty()) {
+				ct.setType("RM");
+				List<AccommodationVO> list=service.optionRM(ct);
+				model.addAttribute("vo",list);
+			}
+		}
+		else if(!ct.getRegion().isEmpty()&&!ct.getMaxperson().isEmpty()&&!ct.getCheckin().isEmpty()&&!ct.getCheckout().isEmpty()) {
+			ct.setType("RTM");
+			List<AccommodationVO> list=service.optionRTM(ct);
+			model.addAttribute("vo",list);
 		}
 		
 		log.info("type "+ct.getType());

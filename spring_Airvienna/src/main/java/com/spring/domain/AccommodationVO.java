@@ -10,7 +10,6 @@ public class AccommodationVO {
 	private int ano;
 	private String homename;
 	private int maxperson;
-	private String username;
 	private String birfcontent;
 	private String content;
 	private int price;
