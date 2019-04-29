@@ -1,6 +1,7 @@
 package com.spring.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -9,7 +10,6 @@ public class AccommodationVO {
 	private int ano;
 	private String homename;
 	private int maxperson;
-	private String username;
 	private String birfcontent;
 	private String content;
 	private int price;
@@ -25,4 +25,6 @@ public class AccommodationVO {
 	private int bno;
 	
 	//파일 첨부 목록 추가하기
+	
+	private List<HomeAttachVO> HomeAttach;
 }
