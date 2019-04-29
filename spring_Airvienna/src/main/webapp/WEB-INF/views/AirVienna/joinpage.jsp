@@ -7,7 +7,7 @@
 	<form class="form-signin" action="" method="post" role="form" enctype="multipart/form-data" id="joinpage">
 		<div class="wen" >				
 			<div class="uploadDiv">
-				<img src="/resources/img/vienna2.PNG" class="photo" />
+				<img src="/resources/img/vienna.PNG" class="photo" />
 				<input type="file" name="uploadFile"  class="file" />
 			</div>
 		</div>
