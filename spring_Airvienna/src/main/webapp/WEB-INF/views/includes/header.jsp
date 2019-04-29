@@ -14,8 +14,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
 <style>
-
-
 .navbar-form {
     border-color: #101010;
 }
@@ -193,15 +191,6 @@ div{
 ._1pa4v1p {
     vertical-align: top !important;
 }
-._1dte5pj {
-    position: relative !important;
-    display: table-cell !important;
-    width: 40px !important;
-    vertical-align: top !important;
-    text-align: right !important;
-    padding-right: 24px !important;
-    padding-left: 16px !important;
-}
 </style>
 <title>에어비엔나</title>
 
@@ -212,7 +201,7 @@ div{
 		<a class="navbar-brand" style="font-size:2em; color:purple" onclick="location.href='/AirVienna/mainpage'">
 		<img src='/resources/img/octopus.png' width="75" height="50">Airvienna</a>
 		<c:if test="${empty info}">
-		<!-- <ul class="arrangeheader">
+		<ul class="arrangeheader">
 		<li class="_li1"></li>
 		<li class="_li1">
 			<div>
@@ -285,7 +274,9 @@ div{
 				</div>
 			</div>
 		</li>
-		</ul>-->
+		</ul>
+		</c:if>
+		<c:if test="${!empty info}">
 		<ul class="arrangeheader">
 		<li class="_li1"></li>
 		<li class="_li1">
@@ -303,7 +294,7 @@ div{
 		<li class="_li1">
 			<div>
 				<div class="_div1">
-					<button type="button" class="buttonstyle" data-toggle="modal" data-target="#exampleModalLong">
+					<button type="button" class="buttonstyle" onclick="location.href='joinpage'">
 						<div class="buttonline">
 							<div class="buttonfont">찜목록
 							</div>
@@ -369,30 +360,8 @@ div{
 		</div>
 		</li>
 		</ul>
+		</c:if>
 	</nav>
-	<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">찜 목록 리스트</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="row" style="margin-left: 0px; margin-right: 0px;margin-top: 15px; margin-bottom: 15px;">
-      <div class="col-md-10">
-        ... 
-      	</div>
-      	 <div class="col-md-1" style="margin-left: 20px;">
-        <button type="button" id="_jjim" class="btn pull-right" value="false" style="background-color:white; border:solid 0px;padding: 0px; margin: 0px;"><svg id="svgjjim" viewBox="0 0 32 32" fill="#ffffff" fill-opacity="0.5" stroke="#484848" stroke-width="2.5" focusable="false" aria-label="트립 저장하기" role="img" stroke-linecap="round" stroke-linejoin="round" style="height: 24px; width: 24px; display: block; overflow: visible;"><path d="m23.99 2.75c-.3 0-.6.02-.9.05-1.14.13-2.29.51-3.41 1.14-1.23.68-2.41 1.62-3.69 2.94-1.28-1.32-2.46-2.25-3.69-2.94-1.12-.62-2.27-1-3.41-1.14a7.96 7.96 0 0 0 -.9-.05c-1.88 0-7.26 1.54-7.26 8.38 0 7.86 12.24 16.33 14.69 17.95a1 1 0 0 0 1.11 0c2.45-1.62 14.69-10.09 14.69-17.95 0-6.84-5.37-8.38-7.26-8.38"></path></svg></button>
-	   </div>
-	   </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <script>
 $(function(){
@@ -400,5 +369,4 @@ $(function(){
 		$(".modal").modal();
 	})
 })
-
 </script>
