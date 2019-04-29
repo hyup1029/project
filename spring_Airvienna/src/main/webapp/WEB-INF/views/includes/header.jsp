@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%-- <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -201,7 +200,7 @@ div{
 	<nav class="navbar navbar-light bg-white">
 		<a class="navbar-brand" style="font-size:2em; color:purple" onclick="location.href='/AirVienna/mainpage'">
 		<img src='/resources/img/octopus.png' width="75" height="50">Airvienna</a>
-		<!-- <c:if test=""> -->
+		<!-- jstl 넣는곳 -->
 		<ul class="arrangeheader">
 		<li class="_li1"></li>
 		<li class="_li1">
@@ -235,7 +234,7 @@ div{
 						<div class="_1wsro53" style="margin-left: 170px; margin-top:4px">
 							<div class="_1xb0vsy"><div class="_shzwii">
 								<div class="_1fkg0r2">
-									<form action="" method="">
+									<form action="headsearch" method="post">
 										<div dir="ltr">
 											<div class="_1blc3lt">
 												<label for="Koan-via-HeaderController__input" class="_1os10fm">
@@ -248,7 +247,7 @@ div{
 												</div>
 												<div class="_1u1cgx19">
 													<div class="_1w14zmh">
-														<input type="text" class="_1cxn5bx2" aria-autocomplete="list" aria-describedby="Koan-via-HeaderController__description" aria-expanded="false" autocomplete="off" autocorrect="off" spellcheck="false" id="Koan-via-HeaderController__input" name="query" placeholder="어디로 가시나요?" role="combobox" value="">
+														<input type="text" name="region" class="_1cxn5bx2" placeholder="어디로 가시나요?">
 													</div>
 												</div>
 												</label>
@@ -276,8 +275,7 @@ div{
 			</div>
 		</li>
 		</ul>
-		<!--</c:if>
-		<c:if test="">
+<!-- 
 		<ul class="arrangeheader">
 		<li class="_li1"></li>
 		<li class="_li1">
@@ -359,5 +357,5 @@ div{
 		</div>
 		</li>
 		</ul>
-		</c:if> -->
+					 -->
 	</nav>

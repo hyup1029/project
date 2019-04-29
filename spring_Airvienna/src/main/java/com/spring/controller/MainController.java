@@ -39,57 +39,64 @@ public class MainController {
 		if(ct.getRegion().isEmpty()&&ct.getMaxperson().isEmpty()&&ct.getCheckin().isEmpty()&&ct.getCheckout().isEmpty()) {
 			ct.setType("E");
 			List<AccommodationVO> list=service.optionE(ct);
-			model.addAttribute("vo",list);
+			model.addAttribute("list",list);
 		}
-		else if(!ct.getRegion().isEmpty()) {
+		if(!ct.getRegion().isEmpty()) {
 			if(ct.getCheckin().isEmpty()&&ct.getCheckout().isEmpty()&&ct.getMaxperson().isEmpty()) {
 				ct.setType("R");
-				List<AccommodationVO> list=service.optionRe(ct);
-				model.addAttribute("vo",list);
+				List<AccommodationVO> list=service.optionR(ct);
+				model.addAttribute("list",list);
 			}
 		}
-		else if(!ct.getMaxperson().isEmpty()) {
+		if(!ct.getMaxperson().isEmpty()) {
 			if(ct.getCheckin().isEmpty()&&ct.getCheckout().isEmpty()&&ct.getRegion().isEmpty()) {
 				ct.setType("M");
 				List<AccommodationVO> list=service.optionM(ct);
-				model.addAttribute("vo",list);
+				model.addAttribute("list",list);
 			}
 		}
-		else if(!ct.getCheckin().isEmpty()&&!ct.getCheckin().isEmpty()) {
+		if(!ct.getCheckin().isEmpty()&&!ct.getCheckin().isEmpty()) {
 			if(ct.getRegion().isEmpty()&&ct.getMaxperson().isEmpty()) {
 				ct.setType("T");
 				List<AccommodationVO> list=service.optionT(ct);
-				model.addAttribute("vo",list);
+				model.addAttribute("list",list);
 			}
 		}
-		else if(!ct.getCheckin().isEmpty()&&!ct.getCheckin().isEmpty()&&!ct.getRegion().isEmpty()) {
+		if(!ct.getCheckin().isEmpty()&&!ct.getCheckin().isEmpty()&&!ct.getRegion().isEmpty()) {
 			if(ct.getMaxperson().isEmpty()) {
 				ct.setType("RT");
 				List<AccommodationVO> list=service.optionRT(ct);
-				model.addAttribute("vo",list);
+				model.addAttribute("list",list);
 			}
 		}
-		else if(!ct.getCheckin().isEmpty()&&!ct.getCheckin().isEmpty()&&!ct.getMaxperson().isEmpty()) {
+		if(!ct.getCheckin().isEmpty()&&!ct.getCheckin().isEmpty()&&!ct.getMaxperson().isEmpty()) {
 			if(ct.getRegion().isEmpty()) {
 				ct.setType("TM");
 				List<AccommodationVO> list=service.optionTM(ct);
-				model.addAttribute("vo",list);
+				model.addAttribute("list",list);
 			}
 		}
-		else if(!ct.getRegion().isEmpty()&&!ct.getMaxperson().isEmpty()) {
+		if(!ct.getRegion().isEmpty()&&!ct.getMaxperson().isEmpty()) {
 			if(ct.getCheckin().isEmpty()&&ct.getCheckout().isEmpty()) {
 				ct.setType("RM");
 				List<AccommodationVO> list=service.optionRM(ct);
-				model.addAttribute("vo",list);
+				model.addAttribute("list",list);
 			}
 		}
-		else if(!ct.getRegion().isEmpty()&&!ct.getMaxperson().isEmpty()&&!ct.getCheckin().isEmpty()&&!ct.getCheckout().isEmpty()) {
+		if(!ct.getRegion().isEmpty()&&!ct.getMaxperson().isEmpty()&&!ct.getCheckin().isEmpty()&&!ct.getCheckout().isEmpty()) {
 			ct.setType("RTM");
 			List<AccommodationVO> list=service.optionRTM(ct);
-			model.addAttribute("vo",list);
+			model.addAttribute("list",list);
 		}
 		
 		log.info("type "+ct.getType());
+		
+		return "AirVienna/accommodationlist";
+	}
+	@PostMapping("/headsearch")
+	public String accommodationlisthead(String region, Model model) {
+		List<AccommodationVO> list=service.optionR(region);
+		model.addAttribute("list",list);
 		
 		return "AirVienna/accommodationlist";
 	}
@@ -106,7 +113,10 @@ public class MainController {
 	}
 	
 	@GetMapping("/accommodationlist")
-	public void listpage(){
+	public void listpage(Criteria ct, Model model){
 		log.info("리스트페이지 호출...");
+		ct.setType("E");
+		List<AccommodationVO> list=service.optionE(ct);
+		model.addAttribute("list",list);
 	}
 }
