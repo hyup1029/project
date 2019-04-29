@@ -14,6 +14,12 @@
 		<org.slf4j-version>1.7.24</org.slf4j-version>
 	</properties>
 	<dependencies>
+	<!-- JSTL -->
+		<dependency>
+		   <groupId>jstl</groupId>
+		   <artifactId>jstl</artifactId>
+		   <version>1.2</version>
+		</dependency>
 	<!-- 스케쥴러 : quartz -->
 	<dependency>
 	    <groupId>org.quartz-scheduler</groupId>

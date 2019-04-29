@@ -25,9 +25,9 @@ public class AccommodationServiceImpl implements AccommodationService {
 	}
 
 	@Override
-	public List<AccommodationVO> optionRe(Criteria ct) {
+	public List<AccommodationVO> optionR(Criteria ct) {
 		log.warn("으아아아아ㅏ아앙");
-		return mapper.optionRe(ct);
+		return mapper.optionR(ct);
 	}
 
 	@Override
@@ -58,6 +58,11 @@ public class AccommodationServiceImpl implements AccommodationService {
 	@Override
 	public List<AccommodationVO> optionRTM(Criteria ct) {
 		return mapper.optionRTM(ct);
+	}
+
+	@Override
+	public List<AccommodationVO> optionR(String region) {
+		return mapper.optionR(region);
 	}
 	
 }
