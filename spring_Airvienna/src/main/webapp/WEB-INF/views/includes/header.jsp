@@ -196,6 +196,7 @@ div{
 
 </head>
 <body>
+
 <!-- 헤더부분,검색창,로고이미지 -->
 	<nav class="navbar navbar-light bg-white">
 		<a class="navbar-brand" style="font-size:2em; color:purple" onclick="location.href='/AirVienna/mainpage'">
