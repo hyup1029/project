@@ -15,4 +15,6 @@ public interface AccommodationService {
 	public List<AccommodationVO> optionRM(Criteria ct);
 	public List<AccommodationVO> optionRTM(Criteria ct);
 	public List<AccommodationVO> optionR(String region);
+	
+	public AccommodationVO getPage(int ano);
 }
