@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    <%-- <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -202,7 +202,7 @@ div{
 	<nav class="navbar navbar-light bg-white">
 		<a class="navbar-brand" style="font-size:2em; color:purple" onclick="location.href='/AirVienna/mainpage'">
 		<img src='/resources/img/octopus.png' width="75" height="50">Airvienna</a>
-		<!-- <c:if test=""> -->
+		<c:if test="${empty info}">
 		<ul class="arrangeheader">
 		<li class="_li1"></li>
 		<li class="_li1">
@@ -277,16 +277,8 @@ div{
 			</div>
 		</li>
 		</ul>
-		
-		<script>
-			$(function(){
-				$(".login").click(function(){
-					$(".modal").modal();
-				})
-			})
-		</script>
-		<!--</c:if>
-		<c:if test="">
+		</c:if>
+		<c:if test="${!empty info}">
 		<ul class="arrangeheader">
 		<li class="_li1"></li>
 		<li class="_li1">
@@ -351,7 +343,7 @@ div{
 		<li class="_li1">
 			<div>
 				<div class="_div1">
-					<button type="button" class="buttonstyle">
+					<button type="button" class="buttonstyle" onclick="location.href='/AirVienna/logout'">
 						<div class="buttonline">
 							<div class="buttonfont">로그아웃
 							</div>
@@ -363,10 +355,21 @@ div{
 		<li class="_li1">
 		<div class="_lvb55za">
 			<div class="_sftyq0">
-				<img alt=" " height="28" src="https://a0.muscache.com/im/pictures/83a01979-3751-4e5b-a3a3-7226275be3c6.jpg?aki_policy=profile_small" width="28" class="_1pa4v1p">
+			
+				<img alt=" " height="28" src="" width="28" class="_1pa4v1p">
+				<!-- https://a0.muscache.com/im/pictures/83a01979-3751-4e5b-a3a3-7226275be3c6.jpg?aki_policy=profile_small -->
 			</div>
 		</div>
 		</li>
 		</ul>
-		</c:if> -->
+		</c:if>
 	</nav>
+
+<script>
+$(function(){
+	$(".login").click(function(){
+		$(".modal").modal();
+	})
+})
+
+</script>

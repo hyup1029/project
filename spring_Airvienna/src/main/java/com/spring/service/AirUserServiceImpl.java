@@ -23,4 +23,10 @@ public class AirUserServiceImpl implements AirUserService {
 		return mapper.selectByEmail(email);
 	}
 
+	@Override
+	public AirUserVO login(AirUserVO vo) {
+		return mapper.login(vo);
+	}
+
+
 }

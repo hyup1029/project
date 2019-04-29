@@ -19,7 +19,7 @@
 											<section>
 												<div class="_wpwi48" style = "width : 499px; padding-left : 0px;">
 													<div class="_152qbzi">
-														<button type="button" class="_1rp5252" aria-busy="false" style="padding:0px; margin:0px;">
+														<button type="button" class="_1rp5252" aria-busy="false" data-dismiss="modal" style="padding:0px; margin:0px;">
 															<svg viewBox="0 0 24 24" role="img" aria-label="닫기" focusable="false" style="height: 16px; width: 16px; display: block; fill: rgb(118, 118, 118);">
 															<path d="m23.25 24c-.19 0-.38-.07-.53-.22l-10.72-10.72-10.72 10.72c-.29.29-.77.29-1.06 0s-.29-.77 0-1.06l10.72-10.72-10.72-10.72c-.29-.29-.29-.77 0-1.06s.77-.29 1.06 0l10.72 10.72 10.72-10.72c.29-.29.77-.29 1.06 0s .29.77 0 1.06l-10.72 10.72 10.72 10.72c.29.29.29.77 0 1.06-.15.15-.34.22-.53.22" fill-rule="evenodd"></path>
 															</svg>
@@ -29,7 +29,7 @@
 														<section>
 															<div>
 																<div style="margin-bottom: 8px;">
-																	<form action="/oauth_connect?from=facebook_login&service=facebook" method="post">
+																	<form action="" method="post"> <!-- /oauth_connect?from=facebook_login&service=facebook  -->
 																		<input type="hidden" name="authenticity_token" value="V4$.airbnb.co.kr$oACVpmJE18E$A4EnTj0C_-nzS1fo3bfM3MTy7A2MLAP42_mZKZ1dh2M=" />
 																		<button type="submit" class="_1iwsukp3" aria-busy="false">
 																			<span class="_1cjbe3z7">
@@ -79,8 +79,8 @@
 																					<span class="_1rbmiub1">또는</span>
 																				</span>							
 																		</div>
-																	</div>
-																	<form action="/authenticate" method="POST" novalidate>
+																	</div>	
+																	<form action="/AirVienna/login" method="post" id="input_login"novalidate>	<!-- action에 들어가있던거 /authenticate -->	
 																		<input type="hidden" name="authenticity_token" value=
 																		"V4$.airbnb.co.kr$oACVpmJE18E$A4EnTj0C_-nzS1fo3bfM3MTy7A2MLAP42_mZKZ1dh2M=">
 																		<div>
@@ -191,7 +191,7 @@
 																			<div id="airlock-inline-container"></div>
 																		</div>
 																		<div style="margin-bottom: 16px;">
-																			<button type="submit" class="_1d2e9r9a" aria-busy="false">
+																			<button type="submit" class="_1d2e9r9a" id="login" aria-busy="false">
 																				<span class="_ftj2sg4">로그인</span>
 																			</button>
 																		</div>
@@ -203,13 +203,13 @@
 															</div>
 															<div class="va-container va-container-h">
 																<span class="va-middle text-center">
-																	<span class="_czm8crp">에어비앤비 계정이 없으세요?</span>
+																	<span class="_czm8crp">에어비앤나 계정이 없으세요?</span>
 																	<div class="_36rlri" style="margin-left: 8px; margin-right: 8px;">
 																		<span class="_1p3joamp">
 																			<a href="/AirVienna/joinpage" class="_15da8x1u" aria-busy="false">회원 가입</a>
 																		</span>
 																	</div>
-																	<div style="margin-top: 24px;">
+																	<!-- <div style="margin-top: 24px;">
 																		<div class="_121z06r2">
 																			<button type="button" class="_1dv8bs9v" aria-busy="false">
 																				<div class="_qtix31">
@@ -224,7 +224,7 @@
 																				</div>
 																			</button>
 																		</div>
-																	</div>
+																	</div> -->
 																</span>
 															</div>
 														</section>
@@ -242,3 +242,28 @@
 			</div>
 		</div>
 	</div>
+<script>
+/*$(document).ready(function(){
+	$("#login").click(function(){
+		/* var email = $("#email-login-email").val();
+		var password = $("#email-login-password").val();
+		var formData = $("#lnput_login").serialize();
+		$.ajax({
+			url : "/login",
+			type : "post",
+			dataType : "json",
+			data : formData,
+			success : function(data){
+				console.log(data);
+			}
+		});
+	});
+}); */
+/* $(document).ready(function(){
+	$("._ni9axh").click(function(){
+		location.href="/facebook";
+	})
+}) */
+</script>
+
+
