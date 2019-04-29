@@ -1,5 +1,5 @@
 create table project_accommodation(
-	bno number(10,0) constraint pk_accommodation primary key, 
+	bno number(10,0) constraint pk_accommodation primary key, <!-- bno -> ano로 수정 -->
 	homename nvarchar2(200) not null,
 	maxperson number(5,0)not null,
 	username nvarchar2(10)not null,
@@ -24,6 +24,10 @@ alter table project_accommodation RENAME COLUMN bno to ano;
 
 alter table project_accommodation add bno number(10);
 alter table project_accommodation add region nvarchar2(100);
+alter table project_accommodation add region2 nvarchar2(100);
+alter table project_accommodation add region3 nvarchar2(100);
+alter table project_accommodation add region4 nvarchar2(100);
+alter table project_accommodation add region5 nvarchar2(100);
 
 create table accommodation_attach(
 	uuid varchar2(100) constraint ad_attach primary key,
@@ -32,9 +36,5 @@ create table accommodation_attach(
 	ano number(10,0)
 );
 
-insert into PROJECT_ACCOMMODATION(ANO,HOMENAME,MAXPERSON,username,BIRFCONTENT,CONTENT,PRICE,BEDCOUNT,CHECKIN,
-CHECKOUT,REPLYCNT,BNO,REGION) values(seq_accommodation.nextVal,'수원수원',5,'ddd','날짜 저장','아늑하고 편한한 집입니다',20000,2,sysdate,sysdate+3,0,1,'수원 안강읍');
 alter table accommodation_attach add constraint fk_accommodation
 foreign key(ano) references project_accommodation(ano);
-
-select * from project_accommodation;

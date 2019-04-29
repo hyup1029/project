@@ -61,8 +61,7 @@
 		<div class="row" style="margin-top: 5%">
 			<div class="col-md-4 order-md-2 mb-4">
 				<h4 class="d-flex justify-content-between align-items-center mb-3">
-					<span class="text-muted"> 정보</span> <span
-						class="badge badge-secondary badge-pill">3</span>
+					<span class="text-muted">정보</span>
 				</h4>
 				<ul class="list-group mb-3">
 					<li class="list-group-item d-flex justify-content-between lh-condensed">
@@ -110,12 +109,12 @@
 							<h6 class="my-0">주차장</h6>
 							<small class="text-muted">건물에 주차장이 있나요?</small>
 							<div class="custom-control custom-radio" style ="margin-top : 5px;">
-								<input id="parking_ok" name="parking" type="radio"
+								<input id="parking_ok" name="parkingarea" type="radio"
 								class="custom-control-input" checked="" required="">
 								 <label class="custom-control-label" for="parking_ok">주차장 있음</label>
 						</div>
 						<div class="custom-control custom-radio">
-							<input id="parking_not" name="parking" type="radio"
+							<input id="parking_not" name="parkingarea" type="radio"
 								class="custom-control-input" required="">
 								 <label class="custom-control-label" for="parking_not">주차장 없음</label>
 						</div>
@@ -157,31 +156,30 @@
 					<hr class="mb-4">
 						<div class="col-md-6 mb-3">
 							<label for="firstName">숙소 이름</label> <input type="text"
-								class="form-control" id="homeName" placeholder="" value="" required="">
+								class="form-control" id="homeName" name ="homename" value="">
 						</div>
 						<div class="col-md-6 mb-3">
 							<label for="lastName">등록자 성명</label> <input type="text"
-								class="form-control" id="userName" placeholder="" value="" required="">
+								class="form-control" id="userName" name ="username" value="" >
 						</div>
 					</div>
 					<div class="mb-3">
 						<label for="sample4_postcode">집 주소</label> 
-							<input type="text" id="sample4_postcode" class="form-control" placeholder="우편번호" style ="width: 100px;" />
+							<input type="text" id="region" name ="region" class="form-control" placeholder="우편번호" style ="width: 100px;" />
 						<div style ="margin-top: 10px;">
-							<input type="text" id="sample4_roadAddress" class="form-control" style ="width: 250px; float:left; margin-right:5px;" placeholder="도로명주소">
-							<input type="text" id="sample4_jibunAddress" class="form-control" style ="width: 300px;" placeholder="지번주소">
-							<span id="guide" style="color:#999;display:none"></span>
+							<input type="text" id="region2" name ="region" class="form-control" style ="width: 250px; float:left; margin-right:5px;" placeholder="도로명주소">
+							<input type="text" id="region3" name ="region" class="form-control" style ="width: 300px;" placeholder="지번주소">
 						</div>
 						<div style ="margin-top: 5px;">
-							<input type="text" id="sample4_detailAddress" class="form-control" style ="width: 400px; float:left; margin-right:5px;" placeholder="상세주소">
-							<input type="text" id="sample4_extraAddress" class="form-control" style ="width: 150px;" placeholder="참고항목">
+							<input type="text" id="region4" name ="region" class="form-control" style ="width: 400px; float:left; margin-right:5px;" placeholder="상세주소">
+							<input type="text" id="region5" name ="region" class="form-control" style ="width: 150px;" placeholder="참고항목">
 						</div>
 					</div>
 					
 					<div class="row">
 						<div class="col-md-5 mb-3">
 							<label for="price">가격</label> 
-							<input type="text" id="price" class="form-control" style ="width: 150px;" placeholder="">
+							<input type="text" id="price" name="price" class="form-control" style ="width: 150px;" placeholder="">
 						</div>
 					</div>
 					<hr class="mb-4">
@@ -252,6 +250,13 @@ $(function(){
 	// 처음 상태를 복제
 	// var cloneObj=$(".uploadDiv").clone();
 	var formObj=$("form[role='form']");
+/* 	var region = $('#region').val();
+	var region2 = $('#region2').val();
+	var region3 = $('#region3').val();
+	var region4 = $('#region4').val();
+	var region5 = $('#region5').val();
+	alert(region+region2+region3+region4+region5); 주소한번 합쳐봄 */
+	var num = 0;
 
 	$("button[type='submit']").click(function(e){
 		// submit 버튼이 눌러지면 폼 전송 막기
@@ -273,8 +278,15 @@ $(function(){
 	});
 		
 		// uploadBtn을 입력하면 uploadFile에 있는 정보 가져오기
+		
 		$("#uploadIMG").click(function(){
 			console.log("등록하기 버튼 클릭");
+			num++;
+			
+			if(num === 3) {
+				$("#uploadIMG").off('click');
+				alert("이미지는 3개까지 업로드 가능합니다. ");
+			}
 			
 			// multipart/form-data 형태의 폼을 한꺼번에 처리하기
 			var formData = new FormData();
@@ -319,7 +331,7 @@ $(function(){
 				alert("파일 사이즈 초과");
 				return false;
 			}
-			if(regex.test(fileName)){	
+			if(regex.test(fileName)){
 				alert("해당 파일은 업로드 할 수 없습니다.");
 				return false;
 			}
@@ -341,7 +353,7 @@ $(function(){
 					//폴더 구분의 \를 /로 바꾸는 작업
 					oriPath=oriPath.replace(new RegExp(/\\/g),"/");
 					str+="<span id = 'image_span'>";
-					str+="<img src='/homedisplay?fileName="+filePath+"' id ='img_px'></a>";
+					str+="<img src='/homedisplay?fileName="+filePath+"' id ='img_px'></a>"; // 고정이미지값을 줄려고 id를 넣음
 					str+="</span>";
 				}
 				
@@ -350,7 +362,8 @@ $(function(){
 			console.log("span갯수 : " + span_length);
 			
 			if(span_length === 3) {
-				alert("이미지는 3개까지 업로드 가능합니다. ")
+				
+				
 				return;
 		}
  			uploadResult.append(str);
@@ -451,9 +464,9 @@ $(function(){
 <script>
 //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
 $(function(){
-	$("#sample4_postcode").focus(function(){
+	$("#region").focus(function(){
 		sample4_execDaumPostcode();
-		 $('#sample4_postcode').blur();
+		 $('#region').blur();
 	  });
 });
 	function sample4_execDaumPostcode() {
@@ -481,15 +494,15 @@ $(function(){
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('sample4_postcode').value = data.zonecode;
-                document.getElementById("sample4_roadAddress").value = roadAddr;
-                document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+                document.getElementById('region').value = data.zonecode;
+                document.getElementById("region2").value = roadAddr;
+                document.getElementById("region3").value = data.jibunAddress;
                 
                 // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
                 if(roadAddr !== ''){
-                    document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+                    document.getElementById("region5").value = extraRoadAddr;
                 } else {
-                    document.getElementById("sample4_extraAddress").value = '';
+                    document.getElementById("region5").value = '';
                 }
 
                 var guideTextBox = document.getElementById("guide");

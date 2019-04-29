@@ -174,6 +174,18 @@ border-bottom: solid 1px #cccccc;
 			
 		</div>
 	</div>
+	
+	
+	<!-- 프로필 사진을 클릭했을때 이미지 업로드 -->
+	<script>
+	$(document).ready(function(){
+		$(".photo").click(function(){
+			$(".file").click() ;
+			
+			})			
+		})
+	</script>	
+		
 		
 	<script>
 	$(document).ready(function() {

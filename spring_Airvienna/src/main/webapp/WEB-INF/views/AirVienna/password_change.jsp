@@ -21,7 +21,7 @@ border-bottom: solid 1px #cccccc;
 	border-color: #cccccc;
 	width: 800px;
 	margin-top: 5%;
-	height: 400px;
+	height: 430px;
 	float: right;	
 
 }
