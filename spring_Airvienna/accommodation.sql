@@ -17,12 +17,6 @@ create table project_accommodation(
 ); <!-- bno 와 region 추가 -->
 
 create sequence seq_accommodation;
-
-select * from project_accommodation;
-alter table project_accommodation drop column username;
-alter table project_accommodation modify region nvarchar2(100) not null;
-alter table project_accommodation modify bno number(10) not null;
-
 alter table project_accommodation modify breakfast char(1) default '0';
 alter table project_accommodation modify parkingarea char(1) default '0';
 alter table project_accommodation modify wifi char(1) default '0';

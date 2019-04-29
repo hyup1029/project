@@ -65,5 +65,4 @@ public class AccommodationServiceImpl implements AccommodationService {
 		return mapper.optionR(region);
 	}
 	
-	
 }

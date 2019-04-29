@@ -26,10 +26,26 @@
 	position: relative;
 	bottom: 10px;
 }
+
+
+#home_img {
+	width: 220px;
+	height: 145px;  
+}
+
+#image_span {
+	margin-right : 10px;
+
+}
+
+#img_px {
+	width: 220px;
+	height: 145px;  
+}
 </style>
 </head>
 
-
+<!-- 점보트론 부분 -->
 <body class="bg-light">
 	<div class="container">
 		<div class="py-5 text-center">
@@ -38,7 +54,10 @@
 				<b>많은 여행객들이 이용할 수 있도록 자신의 집을 소개하세요!!</b>
 			</p>
 		</div>
+<!-- 점보트론 부분 끝 -->
 
+
+<!-- 사이드 옵션 부분 시작 -->
 		<div class="row" style="margin-top: 5%">
 			<div class="col-md-4 order-md-2 mb-4">
 				<h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -120,24 +139,29 @@
 						</div>
 					</li>
 				</ul>
+					<!-- 코리아 it 광고판 -->
+						<div>
+						<a href="http://sinchon.koreaisacademy.com"><img src="/resources/img/koreaitadd.jpg" alt="" /></a>
+						</div>
+					<!-- 광고 부분 끝 -->
 			</div>
+			
+<!-- 사이드 옵션 부분 끝  -->
+
+
+<!-- 숙보정보 부분 시작  -->
 			<div class="col-md-8 order-md-1">
-				<h4 class="mb-3">집 주소</h4>
+				<h3 class="mb-3">숙소 정보</h3>
 				<form class="needs-validation" novalidate="">
 					<div class="row">
+					<hr class="mb-4">
 						<div class="col-md-6 mb-3">
 							<label for="firstName">숙소 이름</label> <input type="text"
-								class="form-control" id="firstName" placeholder="" value=""
-								required="">
-							<div class="invalid-feedback">Valid first name is required.
-							</div>
+								class="form-control" id="homeName" placeholder="" value="" required="">
 						</div>
 						<div class="col-md-6 mb-3">
 							<label for="lastName">등록자 성명</label> <input type="text"
-								class="form-control" id="lastName" placeholder="" value=""
-								required="">
-							<div class="invalid-feedback">Valid last name is required.
-							</div>
+								class="form-control" id="userName" placeholder="" value="" required="">
 						</div>
 					</div>
 					<div class="mb-3">
@@ -152,19 +176,44 @@
 							<input type="text" id="sample4_detailAddress" class="form-control" style ="width: 400px; float:left; margin-right:5px;" placeholder="상세주소">
 							<input type="text" id="sample4_extraAddress" class="form-control" style ="width: 150px;" placeholder="참고항목">
 						</div>
-						
-						<div class="invalid-feedback">Please enter your shipping address.</div>
 					</div>
 					
 					<div class="row">
 						<div class="col-md-5 mb-3">
 							<label for="price">가격</label> 
 							<input type="text" id="price" class="form-control" style ="width: 150px;" placeholder="">
-							<div class="invalid-feedback">Please select a validcountry.</div>
 						</div>
 					</div>
 					<hr class="mb-4">
+
+					<h3 class="text-info">당신의 집은 어떻게 생겼나요?</h3>
+					<p class="text-muted"> 멋진 사진들로 손님들에게 자신의 집을 알리세요!</p>
+					<!--이미지 업로드 구간 시작-->
+					<div class="box">
+						<!-- 파일업로드 썸네일 부분  -->
+							<div class="uploadResult">
+							
+					<!-- 								
+					<span id = "image_span">
+									<img class="home_thumbnail" alt="No image" src="/resources/img/noimage.png" id ="home_img">
+								</span> -->
+							</div>
+						<!-- 파일 추가 부분 -->
+						<div class="row" style="margin-top:10px;">
+							<div class="col-sm-10" style ="border : 1px solid #cccccc; background-color: white; border-radius: 5px; left:10px;">
+								<span class="control-fileupload">
+								<input type="file" name="uploadFile" multiple="multiple" style="margin:3px; right : 12px; position: relative;">
+								</span>
+							</div>
+							<div class="col-sm-2">
+								<button type="button" class="btn btn-primary btn-block" id = "uploadIMG">
+									<i class="icon-upload icon-white"></i> 사진등록 </button>
+							</div>
+						</div>
+					</div>
 					
+					<hr>
+
 					<div class="mb-3">
 						<label for="simple_intro"> 간단한 소개 </label>
 						 <input type="text" class="form-control" id="simple_intro" placeholder="자신의 집을 간단하게 소개해보세요!">
@@ -173,7 +222,6 @@
 					<label for="home_intro">상세 설명 </label>
 				 <textarea class="form-control" id="home_intro" rows="7" style = "margin-bottom: 5%" placeholder ="(편의시설,방 갯수,구조,집의 상태 등등)"></textarea>
 					<hr class="mb-4">
-					
 					<div class="custom-control custom-checkbox">
 						<input type="checkbox" class="custom-control-input"
 							id="same-address"> <label class="custom-control-label"
@@ -193,7 +241,149 @@
 			</ul>
 		</footer>
 	</div>
+	
+<!-- 숙소 정보 입력폼 끝 -->	
+	
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+
+<!-- 파일 업로드 부분 시작 -->
+<script>
+$(function(){
+	// 처음 상태를 복제
+	// var cloneObj=$(".uploadDiv").clone();
+	var formObj=$("form[role='form']");
+
+	$("button[type='submit']").click(function(e){
+		// submit 버튼이 눌러지면 폼 전송 막기
+		// 막는 이유는 첨부파일 내용을 가지고 같이가야 하기 떄문이다.
+		e.preventDefault();
+		
+		// 첨부파일내용 : uuid, uploadPath, fileType, fileName
+		//=> uploadResult ul li가 가지고 있기 때문에 그 영역에 있는 값 수집하기
+		var str="";
+		$(".uploadResult span").each(function(i,obj){
+			var job=$(obj);
+			
+			str+="<input type='hidden' name='attachList["+i+"].uuid' value='"+job.data("uuid")+"'>";
+			str+="<input type='hidden' name='attachList["+i+"].uploadPath' value='"+job.data("path")+"'>";
+			str+="<input type='hidden' name='attachList["+i+"].fileName' value='"+job.data("filename")+"'>";
+			str+="<input type='hidden' name='attachList["+i+"].fileType' value='"+job.data("type")+"'>";
+		});
+		formObj.append(str).submit();
+	});
+		
+		// uploadBtn을 입력하면 uploadFile에 있는 정보 가져오기
+		$("#uploadIMG").click(function(){
+			console.log("등록하기 버튼 클릭");
+			
+			// multipart/form-data 형태의 폼을 한꺼번에 처리하기
+			var formData = new FormData();
+			// file안에 들어있는 여러개의 첨부된 파일 가져오기
+			var inputFile=$("input[name='uploadFile']");
+			var files=inputFile[0].files;
+			
+			for(var i=0; i<files.length;i++){
+				
+				if(!checkExtension(files[i].name, files[i].size)){
+					return false;
+				} 
+				else if(files.length > 3) {
+					alert("이미지는 3개까지 등록 가능합니다.");
+					return false;
+				}
+				formData.append("uploadFile",files[i]);
+			}
+			
+			// formData를 ajax 기술로 서버로 전송하기 
+			$.ajax({
+				url : "/homeAjax",	// 가야할 컨트롤러 주소
+				data : formData,		// 전송할 데이터
+				processData : false,	// formData를 쓸때 무조건 필요함(데이터를 어떤방식으로 변환할 것인지 결정)
+				contentType : false,	// formData를 쓸때 무조건 필요함(formData가 기본적으로  application/x-www-form-urlencoded인 상황이라 false로 지정)
+				type :"post",
+				dataType : "json",		// 되돌아오는 데이터 타입 (전송이 잘 되면 success라는 문자열을 전송받을 예쩡)
+				success:function(result) {
+					console.log(result);	// 브라우저에 찍힌 파일내용
+					showUploadedFile(result);
+					//$(".uploadDiv").html(cloneObj.html());
+				}
+			});
+		});  //#uploadBtn 종료
+		
+		// 첨부파일의 크기와 확장자 제한
+		function checkExtension(fileName, fileSize){
+			var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$"); // 정규식 패턴 // 확장자 막음
+			var maxSize = 5242880; // 5MB
+			
+			if(fileSize > maxSize){
+				alert("파일 사이즈 초과");
+				return false;
+			}
+			if(regex.test(fileName)){	
+				alert("해당 파일은 업로드 할 수 없습니다.");
+				return false;
+			}
+			return true;
+		} // checkExtension 종료
+		
+		//서버에서 result를 받은 후 result 보여주기
+		function showUploadedFile(uploadResultArr){
+			//결과를 보여줄 영역 가져오기
+			var uploadResult = $(".uploadResult");
+			console.log(uploadResultArr);
+			var str="";						
+			$(uploadResultArr).each(function(i,obj){	
+				if(obj.fileType){//true이면 이미지
+					//썸네일 이미지 경로
+					var filePath=encodeURIComponent(obj.uploadPath+"\\s_"+obj.uuid+"_"+obj.fileName);
+ 					//원본 파일 이미지 경로
+					var oriPath=obj.uploadPath+"\\"+obj.uuid+"_"+obj.fileName;
+					//폴더 구분의 \를 /로 바꾸는 작업
+					oriPath=oriPath.replace(new RegExp(/\\/g),"/");
+					str+="<span id = 'image_span'>";
+					str+="<img src='/homedisplay?fileName="+filePath+"' id ='img_px'></a>";
+					str+="</span>";
+				}
+				
+			});
+			var span_length=$(".uploadResult span").length;
+			console.log("span갯수 : " + span_length);
+			
+			if(span_length === 3) {
+				alert("이미지는 3개까지 업로드 가능합니다. ")
+				return;
+		}
+ 			uploadResult.append(str);
+		}
+		
+		// X를 클릭하면 첨부된 파일 삭제하기
+		$(".uploadResult").on("click","button",function(){
+			var targetFile=$(this).data("file");
+			var type=$(this).data("type");
+		
+			// 첨부목록 삭제
+			var targetLi=$(this).closest("li");
+			
+			
+			// 가져온 데이터 서버로 전송
+			$.ajax({
+				url : '/deleteHomeFile',
+				dataType : 'text',
+				data:{
+					fileName:targetFile,
+					type:type
+				},
+				type:'post',
+				success:function(result){
+					console.log(result);
+					targetLi.remove();
+				}
+			});
+		});
+	})
+
+</script>
+<!-- 파일 업로드 끝 -->
 
 
 <!-- 침대 갯수 증감  스크립트 -->
