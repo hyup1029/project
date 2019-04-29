@@ -109,4 +109,9 @@ public class MainController {
 	public void listpage(){
 		log.info("리스트페이지 호출...");
 	}
+	
+	@GetMapping("/profile")
+	public void profilePage(){
+		log.info("프로필페이지 호출...");
+	}	
 }
