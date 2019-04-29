@@ -994,7 +994,7 @@
 
  
 
-       <div class = "com-md-2" id="box1" style="width:230px;height:200px; border: 1px solid;"><img class = "bed" width="100" height="100" src="resources/img/bed.png" style = "margin-top:30px; margin-left:64px;"></img>
+       <div class = "com-md-2" id="box1" style="width:230px;height:200px; border: 1px solid;"><img class = "bed" width="100" height="100" src="../resources/img/bed.png" style = "margin-top:30px; margin-left:64px;"></img>
 
 
        <p style="margin-top:15px; text-align:center">
@@ -1045,7 +1045,7 @@
 
  
 
-        <div class = "com-md-2" id="box2" style="width:230px;height:200px; border: 1px solid;"><img class = "bed" width="100" height="100" src="resources/img/breakfast.png" style = "margin-top:30px; margin-left:64px;"></img>
+        <div class = "com-md-2" id="box2" style="width:230px;height:200px; border: 1px solid;"><img class = "bed" width="100" height="100" src="../resources/img/breakfast.png" style = "margin-top:30px; margin-left:64px;"></img>
 
  
 
@@ -1101,7 +1101,7 @@
 
  
 
-         <div class = "com-md-2" id="box3" style="width:230px;height:200px; border: 1px solid;"><img class = "bed" width="100" height="100" src="resources/img/parking.png" style = "margin-top:30px; margin-left:64px;"></img>
+         <div class = "com-md-2" id="box3" style="width:230px;height:200px; border: 1px solid;"><img class = "bed" width="100" height="100" src="../resources/img/parking.png" style = "margin-top:30px; margin-left:64px;"></img>
 
  
 
@@ -1157,7 +1157,7 @@
 
  
 
-           <div class = "com-md-2" id="box5" style="width:230px;height:200px; border: 1px solid;"><img class = "bed" width="100" height="100" src="resources/img/wifi.png" style = "margin-top:30px; margin-left:64px;"></img>
+           <div class = "com-md-2" id="box5" style="width:230px;height:200px; border: 1px solid;"><img class = "bed" width="100" height="100" src="../resources/img/wifi.png" style = "margin-top:30px; margin-left:64px;"></img>
 
  
 
