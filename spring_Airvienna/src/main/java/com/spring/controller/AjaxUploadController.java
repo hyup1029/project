@@ -121,36 +121,7 @@ public class AjaxUploadController {
 		return result;
 		
 	}
-	@GetMapping(value="/download",produces=MediaType.APPLICATION_OCTET_STREAM_VALUE)
-	@ResponseBody
-	public ResponseEntity<Resource> download(String fileName,@RequestHeader("User-Agent")String userAgent){
-		log.info("download 요청 : " + fileName);
-		
-		Resource resource = new FileSystemResource("d:\\upload\\"+fileName);
-		
-		//uuid값_파일명
-		String resourceName = resource.getFilename();
-		//uuid값과_잘라내기
-		resourceName=resourceName.substring(resourceName.indexOf("_")+1);
-		
-		HttpHeaders headers = new HttpHeaders();
 
-		try {
-			String downloadName=null;
-			//Trident : explorer 11
-			if(userAgent.contains("Trident") || userAgent.contains("Edge")) {
-				//URLEncoder.encode()을 할 때 공백이 있으면 + 로 변환을 시킴
-				downloadName=URLEncoder.encode(resourceName,"UTF-8").replaceAll("\\+"," ");
-			}else {
-				downloadName=new String(resourceName.getBytes("utf-8"),"ISO-8859-1");
-			}
-			
-			headers.add("Content-Disposition","attachment;fileName="+downloadName);
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		return new ResponseEntity<>(resource,headers,HttpStatus.OK);
-	}
 	
 	//첨부파일 삭제
 	@PostMapping("/deleteFile")

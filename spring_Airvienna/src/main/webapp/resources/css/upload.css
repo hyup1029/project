@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
 
-.wen {width:200px; height:200px; border-radius:200px;margin-top:50px; margin: 0 auto; overflow:hidden;}
-.wen img {height:auto; width:200px; display:block; margin:0 auto;}
+.wen {width:200px; height:200px; border-radius:200px;margin-top:50px; margin: 0 auto; overflow:hidden; border:solid 2px #cccccc;}
+.photo {height:200px; width:200px; display:block; margin:0 auto;}
 .navbar {border-bottom: solid; 1px; border-color: #cccccc;}
 
 
