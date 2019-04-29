@@ -14,7 +14,8 @@ create table airuser(
 
 create sequence seq_bno;
 
-drop table airuser;
 drop sequence seq_bno;
 
 select * from airuser;
+
+drop table airuser;

@@ -123,4 +123,8 @@ public class MainController {
 	public void profilePage(){
 		log.info("프로필페이지 호출...");
 	}	
+	@GetMapping("/password_change")
+	public void passwordPage(){
+		log.info("프로필페이지 호출...");
+	}	
 }
