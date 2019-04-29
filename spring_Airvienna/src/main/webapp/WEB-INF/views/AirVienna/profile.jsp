@@ -31,7 +31,7 @@
 
 			</div>
 			<br>
-			<h5 style ="text-align: center;">~~ 님</h5>
+			<h5 style ="text-align: center;">~ 님</h5>
 			<ul class="list-group">
 				
 				<li class="list-group-item text-muted">Activity <i
