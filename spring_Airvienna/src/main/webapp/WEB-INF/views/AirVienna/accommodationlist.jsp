@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../includes/header.jsp" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <main role="main">
 
@@ -32,7 +31,7 @@
                 </div>
                 <small class="text-muted">등록 시간 : <fmt:formatDate pattern="yyyy-MM-dd" value="${vo.registDate}"></fmt:formatDate></small>
                 <div class="jjim">
-                	<button type="button" id="_jjim" class="_jjim" value="false" style="background-color:white; border:solid 0px;padding: 0px; margin: 0px;"><svg id="svgjjim" viewBox="0 0 32 32" fill="#ffffff" fill-opacity="0.5" stroke="#484848" stroke-width="2.5" focusable="false" aria-label="트립 저장하기" role="img" stroke-linecap="round" stroke-linejoin="round" style="height: 24px; width: 24px; display: block; overflow: visible;"><path d="m23.99 2.75c-.3 0-.6.02-.9.05-1.14.13-2.29.51-3.41 1.14-1.23.68-2.41 1.62-3.69 2.94-1.28-1.32-2.46-2.25-3.69-2.94-1.12-.62-2.27-1-3.41-1.14a7.96 7.96 0 0 0 -.9-.05c-1.88 0-7.26 1.54-7.26 8.38 0 7.86 12.24 16.33 14.69 17.95a1 1 0 0 0 1.11 0c2.45-1.62 14.69-10.09 14.69-17.95 0-6.84-5.37-8.38-7.26-8.38"></path></svg></button>
+                	<button type="button" id="_jjim" class="_jjim" name="select" style="background-color:white; border:solid 0px;padding: 0px; margin: 0px;"><svg class="sv"viewBox="0 0 32 32" fill="#ffffff" fill-opacity="0.5" stroke="#484848" stroke-width="2.5" focusable="false" aria-label="트립 저장하기" role="img" stroke-linecap="round" stroke-linejoin="round" style="height: 24px; width: 24px; display: block; overflow: visible;"><path d="m23.99 2.75c-.3 0-.6.02-.9.05-1.14.13-2.29.51-3.41 1.14-1.23.68-2.41 1.62-3.69 2.94-1.28-1.32-2.46-2.25-3.69-2.94-1.12-.62-2.27-1-3.41-1.14a7.96 7.96 0 0 0 -.9-.05c-1.88 0-7.26 1.54-7.26 8.38 0 7.86 12.24 16.33 14.69 17.95a1 1 0 0 0 1.11 0c2.45-1.62 14.69-10.09 14.69-17.95 0-6.84-5.37-8.38-7.26-8.38"></path></svg></button>
                 </div>
               </div>
             </div>
@@ -43,6 +42,29 @@
     </div>
   </div>
 </main>
+<script>
+	$(function(){
+		var res="false"
+		$('._jjim').click(function(){
+			/* var res = $('._jjim').val();	
+			alert(res); */
+			if(res=="false"){
+				$(this).find('.sv').attr("fill", "#FF5A5F");
+				$(this).find('.sv').attr("fill-opacity", "1");
+				$(this).find('.sv').attr("stroke", "#FF5A5F");
+				res="true";
+				
+			}else{
+				$(this).find('.sv').attr("fill","#ffffff");
+				$(this).find('.sv').attr("fill-opacity", "0.5");
+				$(this).find('.sv').attr("stroke","#484848");
+				res="false";
+			}
+			
+			})
+			
+	})
+</script>
 <footer class="text-muted">
   <div class="container">
     <p class="float-right">
@@ -53,4 +75,3 @@
   </div>
 </footer>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
