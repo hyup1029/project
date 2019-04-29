@@ -123,15 +123,8 @@ public class MainController {
 	public void profilePage(){
 		log.info("프로필페이지 호출...");
 	}	
-	
-	@GetMapping("/Readpage")
-	public void readpage(AccommodationVO vo, Model model) {
-		vo = service.getPage(5);
-		log.info("리드 페이지 호출");
-		log.info("vo는 오는지" + vo);
-		model.addAttribute("vo",vo);
-	}
-	
-	
-
+	@GetMapping("/password_change")
+	public void passwordPage(){
+		log.info("프로필페이지 호출...");
+	}	
 }
