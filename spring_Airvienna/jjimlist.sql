@@ -3,7 +3,7 @@ create table jjimlist(
 	ano number(10,0)constraint pk_jjimlist primary key,
 	homename nvarchar2(200) not null,
 	jjimselect char(1) default '0'
-);
+); <!-- 찜 디비 가격추가 -->
 alter table jjimlist add constraint fk_jjimlist
 foreign key(bno) references airuser(bno);
 alter table jjimlist add constraint fk_jjimlist_home
