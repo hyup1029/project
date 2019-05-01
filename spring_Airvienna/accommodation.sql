@@ -48,3 +48,7 @@ select * from accommodation_attach;
 select * from project_accommodation;
 
 alter table project_accommodation drop column username;
+
+delete from project_accommodation where ano = 42;
+insert into project_accommodation (ano, homename, maxperson, username, birfcontent, content, price, bedcount, breakfast, parkingarea, wifi, checkin, checkout,ReplyCnt, region)
+values (seq_accommodation.nextVal, '경주집',4,'콘냥', '좋은 집', '정말로 좋아요', 20000,4, 1, 1, 1, '2019-05-01','2019-05-31',1,'경기도 수원시 권선구 권선동 1165-14');

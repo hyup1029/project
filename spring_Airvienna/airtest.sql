@@ -19,3 +19,6 @@ drop sequence seq_bno;
 select * from airuser;
 
 drop table airuser;
+
+ALTER TABLE airuser DROP PRIMARY KEY; 
+alter table airuser modify bno number(10) constraint user_pk primary key;

@@ -39,9 +39,7 @@
 
       /* .d-block w-100{
 
-
 		width : 70px;
-
 
 		height : 100px;      
 
@@ -58,165 +56,45 @@
 
     </style>
 
-   <!-- Custom styles for this template -->
-
+ <!-- Custom styles for this template -->
 
     <link href="/resources/css/carousel.css" rel="stylesheet">
 
- 
-
- 
-
- 
-
-  </head>
+ </head>
 
 
   <body style = "padding-top: 0px;">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    
 <main role="main">
 
 
+ <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+ <ol class="carousel-indicators">
 
- 
-
- 
-
- 
-
-    <ol class="carousel-indicators">
-
- 
-
- 
-
- 
-
-      <li data-target="#myCarousel" data-slide-to="0" class=""></li>
-
- 
-
- 
-
- 
-
+	  <li data-target="#myCarousel" data-slide-to="0" class=""></li>
       <li data-target="#myCarousel" data-slide-to="1" class=""></li>
-
       <li data-target="#myCarousel" data-slide-to="2" class="active"></li>
 
-    </ol>
+ </ol>
 
- 
-
- 
-
- 
-
-    <div class="carousel-inner">
-
-
-      <div class="carousel-item">
-
- 
-
- 
-
- 
-
-      <img src="resources/img/home1.jpg" width = "80px" height = "100%" class="d-block w-100" alt="First Slide">
-
- 
-
- 
-
- 
-
-            
-
- 
-
- 
-
- 
-
+	<div class="carousel-inner">
+ 		<div class="carousel-item">
+ 			<img src="resources/img/home1.jpg" width = "80px" height = "100%" class="d-block w-100" alt="First Slide">
+				 <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"></rect></svg>
+					<div class="container">
+    					<div class="carousel-caption text-left">
+<p></p>
+					    </div>
+				    </div>
+		 </div>
+  						<div class="carousel-item">
         <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"></rect></svg>
-
- 
-
- 
-
- 
-
-        
-
- 
-
- 
-
- 
-
         <div class="container">
-
- 
-
- 
-
- 
-
-          <div class="carousel-caption text-left">
-
- 
-
- 
-
- 
-
-           <p></p>
-
- 
-
- 
-
- 
-
-          </div>
-
- 
-
- 
-
- 
-
-        </div>
-
- 
-
- 
-
- 
-
-      </div>
-
- 
-
- 
-
- 
-
-      <div class="carousel-item">
-
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"></rect></svg>
-
-        <div class="container">
-
           <div class="carousel-caption">
-
             <h1>Another example headline.</h1>
-
             <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-
     	 	</div>
      	</div>
    	</div>
@@ -226,30 +104,9 @@
    <div class="carousel-caption text-right">
      <h1>One more for good measure.</h1>
  	  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-
- 
-
- 
-
- 
-
-            <p></p>
-
- 
-
- 
-
- 
-
-          </div>
-
- 
-
- 
-
- 
-
-        </div>
+		  <p></p>
+  	</div>
+	</div>
 
  
 
@@ -493,12 +350,7 @@
 
         <p style = "text-align:center;">${vo.ano}</p>
 
-
- 
-
- 
-
-      </div>
+   </div>
 
  
 
@@ -564,11 +416,6 @@
 
 <div class="datainput">
 
- 
-
- 
-
- 
 
    <div>
 
@@ -579,12 +426,6 @@
  
 
       <h1>편안하고 아늑한</h1>
-
- 
-
- 
-
- 
 
       <h1>숙소를 예약하세요.</h1>
 
@@ -768,7 +609,7 @@
 
  
 
-  <button type = "submit" class="btn btn-primary" style = "background-color:red; board-color:pink;">예약하기</button>
+  <button type = "submit" class="btn btn-primary reserve" style = "background-color:red; board-color:pink;">예약하기</button>
 
  
 
@@ -1005,22 +846,9 @@
 
  
 
-       		침대 : <input type = "number" style = "text-align:right; width:30px; background-clip:padding-box; border:1px solid #ced4da; border-radius:.25rem" name = "num" placeholder = "0" readonly="readonly" />
+       		침대 : <input type = "number" style = "text-align:right; width:30px; background-clip:padding-box; border:1px solid #ced4da; border-radius:.25rem" name = "num" placeholder = "${vo.bedcount}" readonly="readonly" />
 
  
-
- 
-
- 
-
-      </p>
-
- 
-
- 
-
- 
-
        </div>
 
  
@@ -1351,41 +1179,20 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 
 var map = new daum.maps.Map(mapContainer, mapOption); 
 
- 
 
- 
-
- 
 
 // 주소-좌표 변환 객체를 생성합니다
 
- 
 
 var geocoder = new daum.maps.services.Geocoder();
 
- 
-
- 
-
- 
-
 // 주소로 좌표를 검색합니다
 
- 
+geocoder.addressSearch("${vo.region}", function(result, status) {
 
-geocoder.addressSearch('경기도 수원시 권선구 권선동 1165-14', function(result, status) {
+// 정상적으로 검색이 완료됐으면 
 
- 
-
- 
-
- 
-
-    // 정상적으로 검색이 완료됐으면 
-
- 
-
-     if (status === daum.maps.services.Status.OK) {
+if (status === daum.maps.services.Status.OK) {
 
  
 
@@ -1494,232 +1301,97 @@ geocoder.addressSearch('경기도 수원시 권선구 권선동 1165-14', functi
 }); 
 
 
+
+
 </script>
-
-	<div class = "container marketing" style = "text-align : center;">
-
-        <button onclick = "location='review';" class="btn btn-primary btn-xs pull-right" style = "background-color:red; width : 200px; border-color : pink; margin-top:95px;" id="addReplyBtn">숙소에 대한 후기</button>
-
-	</div>
-
-  
 
     </div>
        <hr class="featurette-divider" />
-   <!-- 댓글 영역 -->
-<div class="container marketing">
-	<div class="col-lg-12">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-			
-			</div>
-			<div class="panel-body">
-				<ul class="chat">
-					<li class="left clearfix" data-rno="12">
-						<div>
-							<div class="header">
-								<strong class="primary-font">user000</strong>
-								<small class="pull-right text-muted">2019-04-12 00:00</small>
-							</div>
-							<p>Good Job!!!</p>
-						</div>
-					</li>
-				</ul>
-			</div>
-			<div class="panel-footer"><!-- 댓글 페이지 영역 -->			
-			</div>
-		</div>
-	</div>
-</div>
+       
+       <div class="container marketing">
+        <label for="content">comment</label>
+        <form name="commentInsertForm" action = "insert" method = "get">
+            <div class="input-group">               
+                <input type="hidden" name="writer" value='${vo.ano}' id="writer">
+               <input type="text" class="form-control" style = "margin-bottom:30px;" id="content" name="content" placeholder="내용을 입력하세요.">
+               <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" name="commentInsertBtn">등록</button>
+               </span>
+              </div>
+        </form>
+    </div>
+    
+    <div class="container marketing">
+   
+        <div class="commentList"></div>
+    </div>
+    
+    
+<script>
+var ano = 43;
+
+$('button[name=commentInsertBtn]').click(function(){ //댓글 등록 버튼 클릭시 
+	
+	var reply={
+			content: $("#content").val(),
+			ano:ano
+	};
+	$.ajax({
+		type:'post',
+		url:'/comment/insert',
+		data : JSON.stringify(reply), //자바스크립트 객체를 json타입으로 만드는 작업
+		contentType:'application/json;charset=utf-8',
+		success:function(result){
+			if(result==='success'){
+				//댓글리스트 불러오는 함수 호출
+				commentList();
+			}
+		
+		}
+	});
+}
+);
+	function commentList(){
+	       $.ajax({
+	           url : '/comment/list',
+	           type : 'get',
+	           data : {'ano':ano},
+	           dataType: "JSON",
+	           success : function(data){
+	               var a =''; 
+	               console.log(data);
+	               
+	               $(data).each(function(i, obj){ 
+	                  
+	                  
+	                   a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
+	                   a += "<div class='commentInfo'>"+obj.ano;
+	                   a += '<a onclick="commentUpdate('+obj.ano+',\''+obj.content+'\');"> </a>';
+	                   a += '<a onclick="commentDelete('+obj.ano+');"> </a> </div>';
+	                   a += '<div class="commentContent'+obj.ano+'"> <p>'+obj.content +'</p>'; 
+	                   a += '</div></div>';
+	               });
+	               
+	               $(".commentList").html(a);
+	           }
+	       });
+	   }
+		
+	$(document).ready(function(){
+	    commentList(); //페이지 로딩시 댓글 목록 출력 
+	});
+
+
+</script>
 <!-- 댓글 영역 종료 -->
 <!-- 댓글 모달 -->
 
-<div class="modal fade" id="myModal">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Reply Modal</h4>
-			</div>
-			<div class="modal-body">
-				<div class="form-group">
-					<label for="">Reply</label>
-					<input value="New Reply" name="reply" class="form-control" />				
-				</div>
-				<div class="form-group">
-					<label for="">Replyer</label>
-					<input class="form-control" name="replyer" value="replyer"/>
-		
-		
-				</div>
-				<div class="form-group">
-					<label for="">Reply Date</label>
-					<input class="form-control" name="replyDate" value=""/>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button class="btn btn-warning" id="modalModBtn" type="button">Modify</button>
-				<button class="btn btn-danger" id="modalRemoveBtn" type="button">Remove</button>
-				<button class="btn btn-primary" id="modalRegisterBtn" type="button">Register</button>
-				<button class="btn btn-success" id="modalCloseBtn" type="button">Close</button>
-			</div>
-		</div>
-	</div>
-</div>
+
 <form id="operForm" action="/board/modify">
 	<input type="hidden" name="ano" value="${vo.ano}"/>
 </form>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="/resources/js/reply.js"></script> 
 <script>
-	//댓글 작업용 스크립트
-	$(function(){
-		//현재 글 번호 가져오기
-		var anoVal=${vo.ano};
-		
-		//댓글리스트를 보여줄 영역 가져오기
-		var replyUL=$(".chat");
-		showList(1);  //현재 글의 페이지에 해당하는 댓글 가져오기 호출
-		
 	
-		$("#modalRegisterBtn").on("click",function(){
-			var reply={
-					reply:modalInputReply.val(),
-					replyer:modalInputReplyer.val(),
-					ano:anoVal
-			};			
-			
-			replyService.add(reply,function(result){
-				//alert(result);
-				modal.find("input").val("");
-				modal.modal("hide");
-				//댓글갱신
-				showList(-1);
-			});
-		});	
-		
-	
-		//댓글 페이지 번호 누르면 이동하기
-	/* 	replyPageFooter.on("click","li a",function(e){
-			e.preventDefault();    //페이지 번호를 누르면 a 태그가 가지고 있는 이벤트는 막기
-			
-			pageNum=$(this).attr("href");
-			
-			showList(pageNum);
-		}); */
-		
-		
-		
-		
-		function showList(){		
-			replyService.getList({ano:anoVal},
-					function(list){
-				console.log(list);
-				//페이지 수 계산
-			/* 	if(page==-1){
-					pageNum=Math.ceil(replyCnt/10.0);
-					showList(pageNum);
-					return;
-				} */
-				
-				
-				var str="";
-				if(list == null || list.length==0){
-					replyUL.html("");
-					return;
-				}
-				
-				//리스트가 있는 경우 
-				for(var i=0;i<list.length;i++){
-					str+="<li class='left clearfix' data-rno='"+list[i].rno+"'>";
-					str+="<div>";
-					str+="<div class='header'>";
-					str+="<strong class='primary-font'>"+list[i].replyer+"</strong>";
-					str+="</div>";
-					str+="<p>"+list[i].reply+"</p>";
-					str+="</div>";
-					str+="</li>";
-				}
-				replyUL.html(str);
-			/* 	showReplyPage(replyCnt); */
-			});		
-		}
-		
-		
-		//댓글의 리스트가 존재하는 것이 아니라 나중에 추가되는 형태이기 때문에
-		//현재 존재하는 요소처럼 이벤트를 지정할 수 없음 => 따라서 이미 존재하는
-		//요소에 이벤트를 걸고 나중에 변경을 하는 방식 사용(이벤트 위임)
-		$(".chat").on("click","li",function(){
-			var rno=$(this).data("rno");
-			
-			replyService.get(rno,function(data){
-				console.log(data);
-				
-				//넘어온 데이터를 모달창에 넣어서 보여주기
-				modalInputReply.val(data.reply);
-				modalInputReplyer.val(data.replyer).attr("readonly","readonly");
-				modalInputReplyDate.val(replyService.displayTime(data.replyDate))
-												.attr("readonly","readonly");
-				modal.data("rno",data.rno);
-				
-				modal.find("button[id!='modalCloseBtn']").hide();
-				modalModBtn.show();
-				modalRemoveBtn.show();
-				modal.modal("show");
-			});
-		});		
-		
-		//댓글 모달 창
-		var modal=$(".modal");
-		var modalInputReply = modal.find("input[name='reply']");
-		var modalInputReplyer = modal.find("input[name='replyer']");
-		var modalInputReplyDate = modal.find("input[name='replyDate']");
-		
-		var modalModBtn=$("#modalModBtn");
-		var modalRemoveBtn=$("#modalRemoveBtn");
-		var modalRegisterBtn=$("#modalRegisterBtn");
-		
-		//등록버튼 누르면
-		$("#addReplyBtn").on("click",function(){
-			modal.find("input").val("");
-			//날짜 부분 안보이게 설정
-			modalInputReplyDate.closest("div").hide();
-			//close버튼만 제외하고 다른 버튼 모두 안보이게 설정
-			modal.find("button[id!='modalCloseBtn']").hide();
-			//등록 버튼만 다시 보이게 설정
-			modalRegisterBtn.show();
-			//modify를 수행하고 오면 작성자를 수정못하게 막은 상태이기 때문에
-			//다시 해제하는 코드 필요
-			modalInputReplyer.attr("readonly",false);
-			modal.modal("show");
-		});
-		
-		//모달 창 close
-		$("#modalCloseBtn").on("click",function(){
-			modal.modal("hide");
-		});
-		
-		//모달 창 Remove 버튼 클릭
-		$("#modalRemoveBtn").on("click",function(){
-			replyService.remove(modal.data("rno"),function(result){
-				//alert(result);
-				modal.modal("hide");
-			/* 	showList(pageNum);
-			 */}); 
-		});	
-		
-		//모달 Modify버튼 클릭시
-		$("#modalModBtn").on("click",function(){
-			var reply={
-					reply:modalInputReply.val(),					
-					rno:modal.data("rno")
-			};	
-			replyService.update(reply,function(result){
-				//alert(result);
-				modal.modal("hide");
-			/* 	showList(pageNum); */
-			});		
-		}); 
 
 
 </script>
@@ -1822,8 +1494,19 @@ var price = ${vo.price};
 		} 
 		if(re > 0){			
 		resultp.val(price*people*resultd);
+		
 		}
 	});
-	})
+	
+	/* $(".reserve").click(function() {
+		
+		var result = $(".result").val();
+		
+		
+	} */
+});
+
+
+	
 </script>
 </html>
