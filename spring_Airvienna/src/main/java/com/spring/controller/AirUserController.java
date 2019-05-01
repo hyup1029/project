@@ -1,28 +1,38 @@
 package com.spring.controller;
 
 import java.io.File;
+import java.sql.Connection;
 import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.spring.domain.AirUserVO;
+import com.spring.domain.KakaoUserVO;
 import com.spring.service.AirUserService;
 
 import lombok.extern.java.Log;
@@ -85,10 +95,35 @@ public class AirUserController {
 		return "redirect:mainpage";
 	}
 	
+	@PostMapping("/kakaoLogin")	
+	public ResponseEntity<String> kakaoLogin(@RequestBody KakaoUserVO vo, Model model) {
+		log.info("kakao..."+vo.toString());
+		if(vo!=null) {
+			model.addAttribute("info",vo);			
+		}
+		log.info("session..."+vo.toString());
+		return new ResponseEntity<>("success",HttpStatus.OK);
+	}
+	
 
+	@PostMapping(value="/googleLogin",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<String> googleLogin(@RequestBody KakaoUserVO vo, Model model) {
+		log.info("google..."+vo.toString());
+		if(vo!=null) {
+			model.addAttribute("info",vo);			
+		}
+		log.info("session..."+vo.toString());
+		return new ResponseEntity<>("success",HttpStatus.OK);
+	}
 	
-	
-	
+/*	@PostMapping(value="/googleLogin", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public String googleLogin(@RequestBody KakaoUserVO vo, Model model) {
+		log.info("google..."+vo.toString());
+		model.addAttribute("info",vo);
+		log.info("session..."+vo.toString());
+		return "redirect:mainpage";
+	}
+*/
 	@ResponseBody
 	@PostMapping("/checkEmail")
 	public String checkEmail(String email) {

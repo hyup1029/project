@@ -3,7 +3,49 @@
 <link rel="stylesheet" href="/resources/css/login.css" />
 <!DOCTYPE html>
 <head>
+<meta name="google-signin-scope" content="profile email">
+<meta name="google-signin-client_id" content="818462422761-r4scl8o5ncm7upoh5vh6o9nvh0fpcp9k.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <meta charset="UTF-8">
+<script>
+function onSignIn(googleUser) {
+    // Useful data for your client-side scripts:
+    var profile = googleUser.getBasicProfile();
+    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+    console.log('Full Name: ' + profile.getName());
+    console.log('Given Name: ' + profile.getGivenName());
+    console.log('Family Name: ' + profile.getFamilyName());
+    console.log("Image URL: " + profile.getImageUrl());
+    console.log("Email: " + profile.getEmail()); 
+ // The ID token you need to pass to your backend:
+    var id_token = googleUser.getAuthResponse().id_token;
+    console.log("ID Token: " + id_token);
+    $.ajax({
+    	type:"post",
+    	url:"/AirVienna/googleLogin",
+    	headers:{
+    		"Accept":"application/json",
+    		"Content-Type":"application/json"
+    	},
+    	data:JSON.stringify({
+    		kakaoid : profile.getId(),
+    		kakaoemail : profile.getEmail(),
+    		kakaonickname : profile.getName(),
+    		kakaoimage : profile.getImageUrl()
+    	}),
+    	dataType:"text",
+    	success:function(result){
+    		$(".modal").modal("hide");
+    		if(result==='success'){
+    			location.href='mainpage';
+    		}
+    	}
+    })
+}
+
+
+</script>
 </head>
 <div class="modal fade" id="myModal">
 	<div class="modal-dialog">
@@ -28,50 +70,80 @@
 													<section>
 														<section>
 															<div>
-																<div style="margin-bottom: 8px;">
-																	<form action="" method="post"> <!-- /oauth_connect?from=facebook_login&service=facebook  -->
-																		<input type="hidden" name="authenticity_token" value="V4$.airbnb.co.kr$oACVpmJE18E$A4EnTj0C_-nzS1fo3bfM3MTy7A2MLAP42_mZKZ1dh2M=" />
-																		<button type="submit" class="_1iwsukp3" aria-busy="false">
-																			<span class="_1cjbe3z7">
-																				<div class="_qtix31" style="margin: 0px auto;">
-																					<div class="_ni9axhe">
-																						<div style="margin-right: 12px;">
-																							<svg viewBox="0 0 32 32" role="presentation" aria-hidden="true" focusable="false" style="height: 18px; width: 18px; display: block; fill: currentcolor;">
-																								<path d="m8 14.41v-4.17c0-.42.35-.81.77-.81h2.52v-2.08c0-4.84 2.48-7.31 7.42-7.35 1.65 0 3.22.21 4.69.64.46.14.63.42.6.88l-.56 4.06c-.04.18-.14.35-.32.53-.21.11-.42.18-.63.14-.88-.25-1.78-.35-2.8-.35-1.4 0-1.61.28-1.61 1.73v1.8h4.52c.42 0 .81.42.81.88l-.35 4.17c0 .42-.35.71-.77.71h-4.21v16c0 .42-.35.81-.77.81h-5.21c-.42 0-.8-.39-.8-.81v-16h-2.52a.78.78 0 0 1 -.78-.78" fill-rule="evenodd"></path>
-																							</svg>
-																						</div>
-																						</div>
-																						<div class="_ni9axh">페이스북 계정으로 로그인</div>
-																					</div>
-																				</span>
-																			</button>
-																		</form>
+																
+																	<div style="margin-bottom: 8px;">
+																		<div class="g-signin2" data-onsuccess="onSignIn" data-width="420" data-height="50" data-longtitle="true" ></div>
 																	</div>
-																		<form action="/oauth_connect?from=google_login&service=google" method="post">
-																			<input type="hidden" name="authenticity_token" value="V4$.airbnb.co.kr$oACVpmJE18E$A4EnTj0C_-nzS1fo3bfM3MTy7A2MLAP42_mZKZ1dh2M="/>
-																			<button type="submit" class="_60obhnd" aria-busy="false">
-																				<span class="_1cjbe3z7">
-																					<div class="_qtix31" style="margin: 0px auto;">
-																						<div class="_ni9axhe">
-																							<div style="margin-right: 12px;">
-																								<svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" style="height: 18px; width: 18px; display: block;">
-																									<g fill="none" fill-rule="evenodd">
-																										<path d="M9 3.48c1.69 0 2.83.73 3.48 1.34l2.54-2.48C13.46.89 11.43 0 9 0 5.48 0 2.44 2.02.96 4.96l2.91
-																										 2.26C4.6 5.05 6.62 3.48 9 3.48z" fill="#EA4335"></path>
-																										 <path d="M17.64 9.2c0-.74-.06-1.28-.19-1.84H9v3.34h4.96c-.1.83-.64 2.08-1.84 2.92l2.84 2.2c1.7-1.57 2.68-3.88 2.68-6.62z" fill="#4285F4"></path>
-																										 <path d="M3.88 10.78A5.54 5.54 0 0 1 3.58 9c0-.62.11-1.22.29-1.78L.96 4.96A9.008 9.008 0 0 0 0 9c0 1.45.35 2.82.96 4.04l2.92-2.26z" fill="#FBBC05"></path>
-																										 <path d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.84-2.2c-.76.53-1.78.9-3.12.9-2.38 0-4.4-1.57-5.12-3.74L.97 13.04C2.45 15.98 5.48 18 9 18z" fill="#34A853"></path>
-																										 <path d="M0 0h18v18H0V0z"></path>
-																									</g>
-																								</svg>
-																							</div>
-																						</div>
-																						<div class="_ni9axh">구글 계정으로 로그인</div>
-																					</div>
-																				</span>
-																			</button>
-																		</form>
-																	</div>
+																	<div div style="margin-bottom: 8px;">
+																		<a id="kakao-login-btn"></a>
+																		<!-- <a id="custom-login-btn" width="300px"></a> -->
+																		<a href="http://developers.kakao.com/logout"></a>
+																	
+																		<script>
+																		$(document).ready(function(){
+																			//<![CDATA[
+																			// 사용할 앱의 JavaScript 키를 설정해 주세요.
+																			Kakao.init('40b247566ba3a9ad80eb5d6ab5c35e74');
+																			//여기서 아까 발급받은 키 중 javascript키를 사용해준다.
+																			// 카카오 로그인 버튼을 생성합니다.
+																			Kakao.Auth.createLoginButton({
+																				container: '#kakao-login-btn',
+																				success: function(authObj) {
+																					//alert(JSON.stringify(authObj));
+																					Kakao.API.request({
+																			          url: '/v2/user/me',
+																			          success: function(res) {
+															           			 		 $(".modal").modal("hide");
+																			        	
+																			            //alert(JSON.stringify(res));
+																				            alert(res.properties.nickname+'님 환영합니다.');
+																			           		login(res);
+																					  },
+																					  fail: function(error) {
+																					            alert(JSON.stringify(error));
+																					   }
+																			        }); //Kakao.API.request 종료
+																			      },
+																				 fail: function(err) {
+																					alert(JSON.stringify(err));
+																				}
+																			});
+																			
+		
+																		});
+																		//]]>
+																		function login(res){
+																			$.ajax({
+															           			type:"post",
+															           			url:"/AirVienna/kakaoLogin",
+															           			headers : {
+															           				"Accept" : "application/json",
+															           				"Content-Type" : "application/json"
+															           			}, 
+															           			//dataType: "json",
+															           			data:JSON.stringify({
+															           				kakaoid : res.id,
+															           				kakaoemail : res.kaccount_email,
+															           				kakaonickname : res.properties.nickname,
+															           				kakaoimage : res.properties.thumbnail_image
+															           			}),
+															           			dataType:"text",
+															           			success: function(result){
+															           				console.log(result);
+															           				if(result==='success'){
+															           					location.href='mainpage';
+															           				}
+															           			}
+															           		})
+																		}	
+																			
+																			
+																		</script>
+																	</div>	
+																</div>
+																	
+																		
+															
 																	<div>
 																		<div style="margin-top : 16px; margin-bottom: 16px;">
 																			<div class="_12j61cy">
@@ -145,7 +217,7 @@
 																				</div>
 																			</div>
 																		</div>
-																		<div style="margin-bottom: 16px;">
+																		<!-- <div style="margin-bottom: 16px;">
 																			<div class="_hgs47m">
 																				<div class="_tswrdl1">
 																					<div>
@@ -175,8 +247,8 @@
 																					</div>
 																				</div>
 																			</div>
-																		</div>
-																		<div style="margin-bottom: 16px;">
+																		</div> -->
+																		<!-- <div style="margin-bottom: 16px;">
 																			<div style="margin-top: 8px;">
 																				<div class="_121z06r2">
 																					<button type="button" class="_1dv8bs9v" aria-busy="false">전화번호로 로그인</button>
@@ -186,7 +258,7 @@
 																					<a href="/forgot_password" class="_15da8x1u" aria-busy="false">비밀번호가 생각나지 않으세요?</a>
 																				</div>
 																			</div>
-																		</div>
+																		</div> -->
 																		<div style="margin-bottom: 16px;">
 																			<div id="airlock-inline-container"></div>
 																		</div>
@@ -259,11 +331,7 @@
 		});
 	});
 }); */
-/* $(document).ready(function(){
-	$("._ni9axh").click(function(){
-		location.href="/facebook";
-	})
-}) */
+
 </script>
 
 

@@ -203,6 +203,9 @@ div{
 		<a class="navbar-brand" style="font-size:2em; color:purple" onclick="location.href='/AirVienna/mainpage'">
 		<img src='/resources/img/octopus.png' width="75" height="50">Airvienna</a>
 		<c:if test="${empty info}">
+		<%-- <c:if test="${empty kakao}"> --%>
+		
+		<%-- <c:if test="${empty kakaoInfo}"> --%>
 		<ul class="arrangeheader">
 		<li class="_li1"></li>
 		<li class="_li1">
@@ -278,7 +281,9 @@ div{
 		</li>
 		</ul>
 		</c:if>
+		<%-- </c:if> --%> 
 		<c:if test="${!empty info}">
+		<%-- <c:if test="${!empty kakao}"> --%>
 		<ul class="arrangeheader">
 		<li class="_li1"></li>
 		<li class="_li1">
@@ -363,6 +368,7 @@ div{
 		</li>
 		</ul>
 		</c:if>
+		<%-- </c:if> --%>
 	</nav>
 
 <script>
