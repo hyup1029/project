@@ -81,8 +81,8 @@ public class AirUserController {
 			return "redirect:mainpage";
 		}else {
 			//log.info("로그인정보..."+vo.toString());
-			log.info("정보 : "+info.getEmail()+info.getUsername());
 			model.addAttribute("info",info);
+			log.info("정보 : "+info.getEmail()+info.getUploadPath());
 			return "redirect:mainpage";
 		}
 	}

@@ -360,7 +360,7 @@ div{
 			<div class="_sftyq0">
 			
 				<img alt=" " height="28" src="" width="28" class="_1pa4v1p">
-				<!-- https://a0.muscache.com/im/pictures/83a01979-3751-4e5b-a3a3-7226275be3c6.jpg?aki_policy=profile_small -->
+		
 			</div>
 		</div>
 		</li>
