@@ -3,6 +3,8 @@ package com.spring.domain;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Data;
 
 @Data
@@ -18,7 +20,9 @@ public class AccommodationVO {
 	private boolean parkingarea;
 	private boolean wifi;
 	private Date registDate;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date checkin;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date checkout;
 	private int ReplyCnt;
 	private String region;

@@ -382,210 +382,58 @@
 
  
 
-<form action = "pay">
-
- 
-
- 
-
- 
+<form action = "Readpage" method = "post">
 
 <div class="datacover">
 
- 
-
- 
-
- 
-
 <div class="covereddata">
 
- 
-
- 
-
- 
-
 <div class="coverdata" style="background-color:transparant">
-
- 
-
- 
-
- 
 
 <div class="datainput">
 
 
    <div>
 
- 
-
- 
-
- 
-
       <h1>편안하고 아늑한</h1>
 
       <h1>숙소를 예약하세요.</h1>
 
-   </div>
-
-  <!--  <div class="form-group">
-
-       <label for="inputregion">지역</label>
-
- 
-
- 
-
- 
-
-         <input type="text" class="form-control" id="inputregion" placeholder="모든 위치">
-
- 
-
- 
-
- 
-
-     </div> -->
-
- 
-
- 
-
- 
-
+</div>
   <div class="form-row">
 
- 
-
- 
-
- 
-
     <div class="form-group col-md-6">
-
- 
-
- 
-
- 
 
       <label for="inputcheckin">체크인</label>
 
- 
-
- 
-
- 
-
-      <input type="date" class="form-control checkin" id="inputcheckin" placeholder="년/월/일">
-
- 
-
- 
-
- 
+      <input type="date" class="form-control checkin" name = "checkin" id="inputcheckin" placeholder="년/월/일">
 
     </div>
 
- 
-
- 
-
- 
-
-    <div class="form-group col-md-6">
-
- 
-
- 
-
- 
+   <div class="form-group col-md-6">
 
       <label for="inputcheckout">체크아웃</label>
 
- 
-
- 
-
- 
-
-      <input type="date" class="form-control checkout" id="inputcheckout" placeholder="년/월/일">
-
- 
-
- 
-
- 
+      <input type="date" class="form-control checkout" name = "checkout" id="inputcheckout" placeholder="년/월/일">
 
     </div>
 
- 
-
- 
-
- 
-
   </div>
-
- 
-
- 
-
- 
 
   <div class="form-group">
 
- 
-
- 
-
- 
 
     <label for="inputnumber">인원</label>
 
- 
-
- 
-
- 
-
-    <input type="number" class="form-control people" id="people" placeholder="인원">
-
- 
-
- 
-
- 
+    <input type="number" class="form-control people" name = "people" id="people" placeholder="인원">
 
   </div>
 
- 
-
- 
-
- 
-
   <div class="form-group">
 
- 
+  <label>가격</label>
 
- 
-
- 
-
-  	<label>가격</label>
-
- 
-
- 
-
- 
-
-  	<input type = "number" class = "form-control result" id = "result" readonly = "readonly">
+  <input type = "number" class = "form-control result" name = "result" id = "result" readonly = "readonly">
 
  
 
