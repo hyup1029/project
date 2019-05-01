@@ -1,6 +1,7 @@
 package com.spring.controller;
 
 import java.io.File;
+import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,7 +24,11 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.spring.domain.AccommodationVO;
 import com.spring.domain.AirUserVO;
+import com.spring.domain.Criteria;
+import com.spring.domain.jjimVO;
+import com.spring.service.AccommodationService;
 import com.spring.service.AirUserService;
 
 import lombok.extern.java.Log;
@@ -31,11 +37,13 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("/AirVienna/*")
 @Slf4j
-@SessionAttributes("info")
+@SessionAttributes({"info","jjimlist"})
 public class AirUserController {
 	
 	@Inject
 	private AirUserService service;
+	@Inject
+	private AccommodationService homeservice;
 	
 	@GetMapping("/joinpage")
 	public void join() {
@@ -73,6 +81,9 @@ public class AirUserController {
 			//log.info("로그인정보..."+vo.toString());
 			log.info("정보 : "+info.getEmail()+info.getUsername());
 			model.addAttribute("info",info);
+			int bno=info.getBno();
+			List<jjimVO> jjimlist=homeservice.jjimlist(bno);
+			model.addAttribute("jjimlist",jjimlist);
 			return "redirect:mainpage";
 		}
 	}
@@ -104,9 +115,162 @@ public class AirUserController {
 			return "true";
 		}
 	}
-	
-	
-
-	
+	@GetMapping("/mainpage")
+	public void mainpage() {
+		log.info("메인페이지 호출...");
+	}
+	@PostMapping("/search")
+	public String accommodationlist(Criteria ct, Model model) {
+		log.info("등록하기"+ct.getRegion());
+		log.info("등록하기"+ct.getCheckin());
+		log.info("등록하기"+ct.getCheckout());
+		log.info("등록하기"+ct.getMaxperson());
+		
+		if(ct.getRegion().isEmpty()&&ct.getMaxperson().isEmpty()&&ct.getCheckin().isEmpty()&&ct.getCheckout().isEmpty()) {
+			ct.setType("E");
+			List<AccommodationVO> list=homeservice.optionE(ct);
+			model.addAttribute("ct",ct);
+			model.addAttribute("list",list);
+		}
+		if(!ct.getRegion().isEmpty()) {
+			if(ct.getCheckin().isEmpty()&&ct.getCheckout().isEmpty()&&ct.getMaxperson().isEmpty()) {
+				ct.setType("R");
+				List<AccommodationVO> list=homeservice.optionR(ct);
+				model.addAttribute("ct",ct);
+				model.addAttribute("list",list);
+			}
+		}
+		if(!ct.getMaxperson().isEmpty()) {
+			if(ct.getCheckin().isEmpty()&&ct.getCheckout().isEmpty()&&ct.getRegion().isEmpty()) {
+				ct.setType("M");
+				List<AccommodationVO> list=homeservice.optionM(ct);
+				model.addAttribute("ct",ct);
+				model.addAttribute("list",list);
+			}
+		}
+		if(!ct.getCheckin().isEmpty()&&!ct.getCheckin().isEmpty()) {
+			if(ct.getRegion().isEmpty()&&ct.getMaxperson().isEmpty()) {
+				ct.setType("T");
+				List<AccommodationVO> list=homeservice.optionT(ct);
+				model.addAttribute("ct",ct);
+				model.addAttribute("list",list);
+			}
+		}
+		if(!ct.getCheckin().isEmpty()&&!ct.getCheckin().isEmpty()&&!ct.getRegion().isEmpty()) {
+			if(ct.getMaxperson().isEmpty()) {
+				ct.setType("RT");
+				List<AccommodationVO> list=homeservice.optionRT(ct);
+				model.addAttribute("ct",ct);
+				model.addAttribute("list",list);
+			}
+		}
+		if(!ct.getCheckin().isEmpty()&&!ct.getCheckin().isEmpty()&&!ct.getMaxperson().isEmpty()) {
+			if(ct.getRegion().isEmpty()) {
+				ct.setType("TM");
+				List<AccommodationVO> list=homeservice.optionTM(ct);
+				model.addAttribute("ct",ct);
+				model.addAttribute("list",list);
+			}
+		}
+		if(!ct.getRegion().isEmpty()&&!ct.getMaxperson().isEmpty()) {
+			if(ct.getCheckin().isEmpty()&&ct.getCheckout().isEmpty()) {
+				ct.setType("RM");
+				List<AccommodationVO> list=homeservice.optionRM(ct);
+				model.addAttribute("ct",ct);
+				model.addAttribute("list",list);
+			}
+		}
+		if(!ct.getRegion().isEmpty()&&!ct.getMaxperson().isEmpty()&&!ct.getCheckin().isEmpty()&&!ct.getCheckout().isEmpty()) {
+			ct.setType("RTM");
+			List<AccommodationVO> list=homeservice.optionRTM(ct);
+			model.addAttribute("ct",ct);
+			model.addAttribute("list",list);
+		}
+		
+		log.info("type "+ct.getType());
+		
+		return "AirVienna/accommodationlist";
+	}
+	@GetMapping("/search")
+	public String accommodationlist1(Criteria ct, Model model) {
+		log.info("등록하기"+ct.getRegion());
+		log.info("등록하기"+ct.getCheckin());
+		log.info("등록하기"+ct.getCheckout());
+		log.info("등록하기"+ct.getMaxperson());
+		
+			List<AccommodationVO> list=homeservice.optionE(ct);
+			model.addAttribute("ct",ct);
+			model.addAttribute("list",list);
+		
+		
+		return "AirVienna/accommodationlist";
+	}
+	@PostMapping("/headsearch")
+	public String accommodationlisthead(String region, Model model) {
+		List<AccommodationVO> list=homeservice.optionR(region);
+		model.addAttribute("region",region);
+		model.addAttribute("list",list);
+		
+		return "AirVienna/accommodationlist";
+	}
+	@GetMapping("/accommodationlist")
+	public void listpage(Criteria ct, Model model){
+		log.info("리스트페이지 호출...");
+		ct.setType("E");
+		List<AccommodationVO> list=homeservice.optionE(ct);
+		model.addAttribute("list",list);
+	}
+	@PostMapping("/jjimregist")
+	public String jjimregost(jjimVO vo,Model model,RedirectAttributes rttr) {
+		log.info("bno확인"+vo.getBno());
+		log.info("ano확인"+vo.getAno());
+		log.info("homename확인"+vo.getHomename());
+		log.info("select 확인"+vo.isJjimselect());
+		log.info("price 확인"+vo.getPrice());
+		int result = homeservice.jjiminsert(vo);
+		
+		if(result>0) {
+			rttr.addFlashAttribute("insert","success");
+		}else {
+			rttr.addFlashAttribute("insert","fail");
+		}	
+		List<jjimVO> list=homeservice.jjimlist(vo.getBno());
+		model.addAttribute("jjimlist",list);
+		return "redirect:accommodationlist";
+	}
+	@GetMapping("/jjimlist")
+	public String jjimlist(@ModelAttribute("info")AirUserVO info,Model model) {
+		int bno=info.getBno();
+		List<jjimVO> list=homeservice.jjimlist(bno);
+		model.addAttribute("jjimlist",list);
+		
+		return "AirVienna/jjimpage";
+	}
+	@GetMapping("/jjimpage")
+	public void jjimpage() {
+		
+	}
+	@PostMapping("/jjimremove")
+	public String jjimremove(int ano,RedirectAttributes rttr) {
+		log.info("ano 확인"+ano);
+		int result = homeservice.jjimremove(ano);
+		if(result>0) {
+			rttr.addFlashAttribute("insert","success");
+		}else {
+			rttr.addFlashAttribute("insert","fail");
+		}
+		return "redirect:jjimlist";
+	}
+	@PostMapping("/jjimremovelist")
+	public String jjimremovelist(int ano,RedirectAttributes rttr) {
+		log.info("ano 확인"+ano);
+		int result = homeservice.jjimremove(ano);
+		if(result>0) {
+			rttr.addFlashAttribute("insert","success");
+		}else {
+			rttr.addFlashAttribute("insert","fail");
+		}
+		return "redirect:accommodationlist";
+	}
 }
 

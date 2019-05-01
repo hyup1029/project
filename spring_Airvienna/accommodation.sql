@@ -38,3 +38,5 @@ alter table accommodation_attach add constraint fk_accommodation
 foreign key(ano) references project_accommodation(ano);
 
 select * from project_accommodation;
+
+delete from project_accommodation where ano=5;
