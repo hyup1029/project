@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.domain.AccommodationVO;
 import com.spring.domain.Criteria;
+import com.spring.domain.jjimVO;
 import com.spring.mapper.AccommodationMapper;
 
 import lombok.extern.slf4j.Slf4j;
@@ -70,5 +71,21 @@ public class AccommodationServiceImpl implements AccommodationService {
 		// TODO Auto-generated method stub
 		return mapper.getPage(ano);
 	}
+
+	@Override
+	public int jjiminsert(jjimVO vo) {
+		return mapper.jjiminsert(vo);
+	}
+
+	@Override
+	public List<jjimVO> jjimlist(int bno) {
+		return mapper.jjimlist(bno);
+	}
+
+	@Override
+	public int jjimremove(int ano) {
+		return mapper.jjimremove(ano);
+	}
+
 	
 }

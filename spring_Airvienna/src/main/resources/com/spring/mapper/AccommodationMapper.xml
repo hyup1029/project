@@ -36,7 +36,17 @@
 		#{maxperson}<=maxperson and region like '%'||#{region}||'%'
 		Minus (select * from project_accommodation where(checkin<=#{checkin} and #{checkin}<checkout) or (checkin<#{checkout} and #{checkout}<=checkout))]]>
 	</select>
+	<insert id="jjiminsert">
+		insert into jjimlist(bno,ano,homename,price,jjimselect) values(#{bno},#{ano},#{homename},#{price},#{jjimselect})
+	</insert>
+	<select id="jjimlist" resultType="com.spring.domain.jjimVO">
+		select * from jjimlist where bno=#{bno}
+	</select>
 	<select id="getPage" resultType="com.spring.domain.AccommodationVO">
 		select * from PROJECT_ACCOMMODATION where ano = #{ano}
 	</select>
+	<delete id="jjimremove">
+		delete from jjimlist where ano=#{ano}
+	</delete>
+	
 </mapper>

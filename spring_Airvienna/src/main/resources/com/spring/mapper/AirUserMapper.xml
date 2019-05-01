@@ -9,6 +9,6 @@
 		values(seq_bno.nextVal,#{email},#{password},#{username},#{address},#{tel},#{birth},#{uuid},#{uploadPath},#{fileName},#{fileType})
 	</insert>
 	<select id="login" resultType="com.spring.domain.AirUserVO">
-		select email,password from airuser where email=#{email} and password=#{password}
+		select bno,email,password,username from airuser where email=#{email} and password=#{password}
 	</select>
 </mapper>
