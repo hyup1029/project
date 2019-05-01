@@ -16,14 +16,20 @@ create table project_accommodation(
 	ReplyCnt number(3,0)not null
 ); <!-- bno 와 region 추가 -->
 
+
 create sequence seq_accommodation;
+
 alter table project_accommodation modify breakfast char(1) default '0';
 alter table project_accommodation modify parkingarea char(1) default '0';
-alter table project_accommodation modify wifi char(1) default '0';
+alter table project_accommodation modify wifi char(1) default 
 alter table project_accommodation RENAME COLUMN bno to ano;
 
 alter table project_accommodation add bno number(10);
 alter table project_accommodation add region nvarchar2(100);
+alter table project_accommodation add region2 nvarchar2(100);
+alter table project_accommodation add region3 nvarchar2(100);
+alter table project_accommodation add region4 nvarchar2(100);
+alter table project_accommodation add region5 nvarchar2(100);
 
 create table accommodation_attach(
 	uuid varchar2(100) constraint ad_attach primary key,
@@ -34,3 +40,11 @@ create table accommodation_attach(
 
 alter table accommodation_attach add constraint fk_accommodation
 foreign key(ano) references project_accommodation(ano);
+
+
+
+select * from accommodation_attach;
+
+select * from project_accommodation;
+
+alter table project_accommodation drop column username;

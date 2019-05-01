@@ -36,4 +36,7 @@
 		#{maxperson}<=maxperson and region like '%'||#{region}||'%'
 		Minus (select * from project_accommodation where(checkin<=#{checkin} and #{checkin}<checkout) or (checkin<#{checkout} and #{checkout}<=checkout))]]>
 	</select>
+	<select id="getPage" resultType="com.spring.domain.AccommodationVO">
+		select * from PROJECT_ACCOMMODATION where ano = #{ano}
+	</select>
 </mapper>

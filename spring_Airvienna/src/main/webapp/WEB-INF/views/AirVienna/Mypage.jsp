@@ -13,7 +13,7 @@ border-bottom: solid 1px #cccccc;
 
 .container {
 	width: 80%;
-	height: 2000px;
+	height: 1000px;
 	background-color: white;
 }
 .necessary{
@@ -21,7 +21,7 @@ border-bottom: solid 1px #cccccc;
 	border-color: #cccccc;
 	width: 800px;
 	margin-top: 5%;
-	height: 1000px;
+	height: 700px;
 	float: right;	
 
 }
@@ -75,6 +75,13 @@ border-bottom: solid 1px #cccccc;
 	font-size: 18px;
 	
 }
+
+
+.wen {width:200px; height:200px; border-radius:200px;margin-top:50px; margin: 0 auto; overflow:hidden; border: solid 2px #cccccc;}
+.wen img {height:200px; width:200px; display:block; margin:0 auto;}
+.navbar {border-bottom: solid 1px #cccccc;}
+
+
 </style>
 
 
@@ -119,48 +126,43 @@ border-bottom: solid 1px #cccccc;
 			<input type="text" class="form-control" name="birth" id="birth" placeholder="ex)yymmdd" style ="width : 346px;" />
 			<small id="birth" class="text-info"></small>
 		</div>
-			
+		
+			<button type="submit" class="btn btn-primary" style ="margin-top: 10px;">수정완료</button>
+			<button type="reset" class="btn btn-danger" style ="margin-top: 10px; margin-left: 5px" >취소</button>
 			
 			</form>
+			
+			
 			<div class="panel-heading">
 				<h5 class="panel-title">프로필 사진</h5>
 			</div>
-			
-			
-			<div class="panel-body photos-section">
+
+
+
+<div class="panel-body photos-section">
     <div class="row">
-      <div class="col-lg-4 text-center">
-        <div class="profile_pic_container picture-main space-sm-2 space-md-2" data-picture-id="733626316">
-          <div class="media-photo profile-pic-background">
-            <img alt="진구" height="225" src="https://a0.muscache.com/im/pictures/user/a90870f4-0134-4d79-911e-4d96973d8fef.jpg?aki_policy=profile_x_medium" title="진구" width="225">
-          </div>
-          <div class="media-photo media-round" aria-hidden="true">
-            <img alt="진구" height="225" src="https://a0.muscache.com/im/pictures/user/a90870f4-0134-4d79-911e-4d96973d8fef.jpg?aki_policy=profile_x_medium" title="진구" width="225">
-          </div>
-          <button class="picture-tile-delete overlay-btn" aria-label="삭제">
-            <i class="icon icon-trash"></i>
-          </button>
+      <div class="col-lg-4 text-center" style = "margin-top : 10px;">
+ 			<div class="wen">
+				<div>
+					<img src="/resources/img/vienna.PNG" class="photo"/> <input
+						type="file" name="uploadFile" class="file" />
+				</div>
+
         </div>
+
       </div>
-      <div class="col-lg-8">
+      <div class="col-lg-8" style ="padding-right : 55px;">
         <ul class="list-layout picture-tiles clearfix ui-sortable"></ul>
-
+        <h3 style = "margin-top : 10px;">프로필사진을 변경 할 수 있습니다.</h3>
+        
+		<hr />
         <p>
-          호스트와 게스트가 서로를 알 수 있도록 선명하게 나온 얼굴 정면 사진을 사용하는 것이 중요합니다. 풍경 사진을 올리면 호스트가 알아보기 힘들겠죠?
-          회원님의 얼굴이 선명하게 보이며 호스트나 게스트에게 공개하고 싶지 않은 개인 정보나 민감한 정보가 나타나지 않은 사진을 사용하세요.
+      	    호스트와 게스트가 서로를 알 수 있도록 선명하게 나온 얼굴 정면 사진을 사용하는 것이 중요합니다. 풍경 사진을 올리면 호스트가 알아보기 힘들겠죠?
+      	    회원님의 얼굴이 선명하게 보이며 호스트나 게스트에게 공개하고 싶지 않은 개인 정보나 민감한 정보가 나타나지 않은 사진을 사용하세요.
         </p>
-
         <div class="row row-condensed">
           <div class="">
             <span class="file-input-container">
-              <form accept-charset="UTF-8" action="https://www.airbnb.co.kr/users/ajax_image_upload" enctype="multipart/form-data" id="ajax_upload_form" method="post" name="ajax_upload_form" target="upload_frame"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="V4$.airbnb.co.kr$XmW_6Esd7k0$_AQvK5dPT6Ss-YHo5gedmeFyw0Bvc1VfJO8rPD4zQEM="></div>
-                <input id="user_id" name="user_id" type="hidden" value="257293482">
-                <input id="callback" name="callback" type="hidden" value="EditProfile">
-                <button type="button" class="btn btn-block btn-large" id="profile_pic_upload">
-               		   파일 업로드하기
-                </button>
-                <input name="user_profile_pic" accept="image/*" type="file" id="user_profile_pic" hidden="">
-			</form>
               <iframe id="upload_frame" name="upload_frame" style="display:none;"></iframe>
             </span>
           </div>
@@ -172,6 +174,18 @@ border-bottom: solid 1px #cccccc;
 			
 		</div>
 	</div>
+	
+	
+	<!-- 프로필 사진을 클릭했을때 이미지 업로드 -->
+	<script>
+	$(document).ready(function(){
+		$(".photo").click(function(){
+			$(".file").click() ;
+			
+			})			
+		})
+	</script>	
+		
 		
 	<script>
 	$(document).ready(function() {

@@ -64,5 +64,11 @@ public class AccommodationServiceImpl implements AccommodationService {
 	public List<AccommodationVO> optionR(String region) {
 		return mapper.optionR(region);
 	}
+
+	@Override
+	public AccommodationVO getPage(int ano) {
+		// TODO Auto-generated method stub
+		return mapper.getPage(ano);
+	}
 	
 }
