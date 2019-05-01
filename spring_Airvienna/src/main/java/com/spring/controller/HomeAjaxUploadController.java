@@ -32,6 +32,7 @@ import net.coobird.thumbnailator.Thumbnailator;
 @Slf4j
 @Controller
 public class HomeAjaxUploadController {
+	int number = 1;
 
 	@GetMapping("/homeAjax")
 	public void homeAjax() {
@@ -42,11 +43,12 @@ public class HomeAjaxUploadController {
 	@ResponseBody
 	public ResponseEntity<List<HomeAttachVO>> homeAjaxPost(MultipartFile[] uploadFile,HomeAttachVO vo){
 		log.info("ajax 파일 업로드 요청");
+		
 		String uploadFolder="d:\\upload\\house";
 		//년/월/일 폴더 형태로 가져오기
 		String uploadFolderPath=getFolder();
 		File uploadPath = new File(uploadFolder,uploadFolderPath);
-		
+		boolean bool = true;
 		//폴더가 없으면 새로 생성하기
 		if(!uploadPath.exists()) {
 			uploadPath.mkdirs();
@@ -54,17 +56,37 @@ public class HomeAjaxUploadController {
 		
 		List<HomeAttachVO> attList=new ArrayList<HomeAttachVO>();
 		String uploadFileName="";
+		String uploadFileName2="";
 		
 		for(MultipartFile f:uploadFile) {
+			bool = true;
 			log.info("file Name : "+f.getOriginalFilename());
 			log.info("file Size : "+f.getSize());
 			
 			uploadFileName=f.getOriginalFilename();
+			uploadFileName2=f.getOriginalFilename();
 			
 			//uuid 값 생성 후 파일명과 함게 저장하기
 			UUID uuid=UUID.randomUUID();
-			uploadFileName=uuid.toString()+"_"+uploadFileName;
+			
+			while(bool) {
+				
+			uploadFileName=number+"_"+uuid.toString()+"_"+uploadFileName;
+			
+				/*
+				 * if(number == 4) { bool = false; }
+				 */
+			if(number < 3) {
+				number++;
+			} else if(number == 3) {
+				number = 1;
+			}
+			
+			
+			bool = false;
+			}
 			File saveFile = new File(uploadPath,uploadFileName);
+			uploadFileName2=uuid.toString()+"_"+uploadFileName2;
 			log.info("upload file name  "+uploadFileName);
 			//현재 파일의 저장경로와 파일명, 이미지 여부, uuid값을 담는 객체 생성
 			HomeAttachVO attach = new HomeAttachVO();
@@ -76,7 +98,7 @@ public class HomeAjaxUploadController {
 				attach.setFileType(true);
 				//썸네일 작업하기
 				try {
-					FileOutputStream thumbnail= new FileOutputStream(new File(uploadPath,"s_"+uploadFileName));
+					FileOutputStream thumbnail= new FileOutputStream(new File(uploadPath,"s_"+uploadFileName2));
 					Thumbnailator.createThumbnail(f.getInputStream(),thumbnail,100,100);
 					thumbnail.close();
 				} catch (FileNotFoundException e) {

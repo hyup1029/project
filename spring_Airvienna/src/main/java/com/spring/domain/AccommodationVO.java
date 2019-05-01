@@ -22,6 +22,10 @@ public class AccommodationVO {
 	private Date checkout;
 	private int ReplyCnt;
 	private String region;
+	private String region2;
+	private String region3;
+	private String region4;
+	private String region5;
 	private int bno;
 	
 	//파일 첨부 목록 추가하기

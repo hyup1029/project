@@ -58,11 +58,12 @@
 
 
 <!-- 사이드 옵션 부분 시작 -->
+
 		<div class="row" style="margin-top: 5%">
 			<div class="col-md-4 order-md-2 mb-4">
+			
 				<h4 class="d-flex justify-content-between align-items-center mb-3">
-					<span class="text-muted"> 정보</span> <span
-						class="badge badge-secondary badge-pill">3</span>
+					<span class="text-muted">정보</span>
 				</h4>
 				<ul class="list-group mb-3">
 					<li class="list-group-item d-flex justify-content-between lh-condensed">
@@ -93,29 +94,30 @@
 							<h6 class="my-0">조식 제공</h6>
 							<small class="text-muted">아침에 조식을 제공하나요?</small>
 							<div class="custom-control custom-radio" style ="margin-top : 5px;">
-								<input id="offer" name="breakfast" type="radio"
-								class="custom-control-input" checked="" required="">
+								<input id="offer" name="bfast" type="radio" value ="1"
+								class="custom-control-input" >
 								 <label class="custom-control-label" for="offer">제공</label>
 						</div>
 						<div class="custom-control custom-radio">
-							<input id="offer_not" name="breakfast" type="radio"
-								class="custom-control-input" required="">
+							<input id="offer_not" name="bfast" type="radio" value ="0"
+								class="custom-control-input">
 								 <label class="custom-control-label" for="offer_not">제공 안함</label>
 						</div>
 						</div>
 					</li>
+
 					
 					<li class="list-group-item d-flex justify-content-between lh-condensed">
 						<div>
 							<h6 class="my-0">주차장</h6>
 							<small class="text-muted">건물에 주차장이 있나요?</small>
 							<div class="custom-control custom-radio" style ="margin-top : 5px;">
-								<input id="parking_ok" name="parking" type="radio"
-								class="custom-control-input" checked="" required="">
+								<input id="parking_ok" name="parking" type="radio" value ="1"
+								class="custom-control-input"  required="">
 								 <label class="custom-control-label" for="parking_ok">주차장 있음</label>
 						</div>
 						<div class="custom-control custom-radio">
-							<input id="parking_not" name="parking" type="radio"
+							<input id="parking_not" name="parking" type="radio" value ="0"
 								class="custom-control-input" required="">
 								 <label class="custom-control-label" for="parking_not">주차장 없음</label>
 						</div>
@@ -127,12 +129,12 @@
 							<h6 class="my-0">와이파이</h6>
 							<small class="text-muted">와이파이가 설치돼있나요?</small>
 							<div class="custom-control custom-radio" style ="margin-top : 5px;">
-								<input id="wifi_ok" name="wifi" type="radio"
-								class="custom-control-input" checked="" required="">
+								<input id="wifi_ok" name="wf" type="radio" value ="1"
+								class="custom-control-input" required="">
 								 <label class="custom-control-label" for="wifi_ok">와이파이 있음</label>
 						</div>
 						<div class="custom-control custom-radio">
-							<input id="wifi_not" name="wifi" type="radio"
+							<input id="wifi_not" name="wf" type="radio" value ="0"
 								class="custom-control-input" required="">
 								 <label class="custom-control-label" for="wifi_not">와이파이 없음</label>
 						</div>
@@ -152,36 +154,36 @@
 <!-- 숙보정보 부분 시작  -->
 			<div class="col-md-8 order-md-1">
 				<h3 class="mb-3">숙소 정보</h3>
-				<form class="needs-validation" novalidate="">
+				<form action="" method="post" class="home_info" role="form">
 					<div class="row">
 					<hr class="mb-4">
 						<div class="col-md-6 mb-3">
 							<label for="firstName">숙소 이름</label> <input type="text"
-								class="form-control" id="homeName" placeholder="" value="" required="">
+								class="form-control" id="homename" name ="homename" value="">
 						</div>
 						<div class="col-md-6 mb-3">
 							<label for="lastName">등록자 성명</label> <input type="text"
-								class="form-control" id="userName" placeholder="" value="" required="">
+								class="form-control" id="username" name ="username" value="" readonly="readonly">
 						</div>
 					</div>
 					<div class="mb-3">
 						<label for="sample4_postcode">집 주소</label> 
-							<input type="text" id="sample4_postcode" class="form-control" placeholder="우편번호" style ="width: 100px;" />
+							<input type="text" id="region" name ="region" class="form-control" placeholder="우편번호" style ="width: 100px;" />
 						<div style ="margin-top: 10px;">
-							<input type="text" id="sample4_roadAddress" class="form-control" style ="width: 250px; float:left; margin-right:5px;" placeholder="도로명주소">
-							<input type="text" id="sample4_jibunAddress" class="form-control" style ="width: 300px;" placeholder="지번주소">
+							<input type="text" id="region2" name ="region2" class="form-control" style ="width: 250px; float:left; margin-right:5px;" placeholder="도로명주소">
+							<input type="text" id="region3" name ="region3" class="form-control" style ="width: 300px;" placeholder="지번주소">
 							<span id="guide" style="color:#999;display:none"></span>
 						</div>
 						<div style ="margin-top: 5px;">
-							<input type="text" id="sample4_detailAddress" class="form-control" style ="width: 400px; float:left; margin-right:5px;" placeholder="상세주소">
-							<input type="text" id="sample4_extraAddress" class="form-control" style ="width: 150px;" placeholder="참고항목">
+							<input type="text" id="region4" name ="region4" class="form-control" style ="width: 400px; float:left; margin-right:5px;" placeholder="상세주소">
+							<input type="text" id="region5" name ="region5" class="form-control" style ="width: 150px;" placeholder="참고항목">
 						</div>
 					</div>
 					
 					<div class="row">
 						<div class="col-md-5 mb-3">
 							<label for="price">가격</label> 
-							<input type="text" id="price" class="form-control" style ="width: 150px;" placeholder="">
+							<input type="text" id="price" name="price" class="form-control" style ="width: 150px;" placeholder="">
 						</div>
 					</div>
 					<hr class="mb-4">
@@ -192,11 +194,7 @@
 					<div class="box">
 						<!-- 파일업로드 썸네일 부분  -->
 							<div class="uploadResult">
-							
-					<!-- 								
-					<span id = "image_span">
-									<img class="home_thumbnail" alt="No image" src="/resources/img/noimage.png" id ="home_img">
-								</span> -->
+						
 							</div>
 						<!-- 파일 추가 부분 -->
 						<div class="row" style="margin-top:10px;">
@@ -216,11 +214,11 @@
 
 					<div class="mb-3">
 						<label for="simple_intro"> 간단한 소개 </label>
-						 <input type="text" class="form-control" id="simple_intro" placeholder="자신의 집을 간단하게 소개해보세요!">
+						 <input type="text" class="form-control" id="birfcontent" name="birfcontent" placeholder="자신의 집을 간단하게 소개해보세요!">
 					</div>
 					
 					<label for="home_intro">상세 설명 </label>
-				 <textarea class="form-control" id="home_intro" rows="7" style = "margin-bottom: 5%" placeholder ="(편의시설,방 갯수,구조,집의 상태 등등)"></textarea>
+				 <textarea class="form-control" id="content" name ="content" rows="7" style = "margin-bottom: 5%" placeholder ="(편의시설,방 갯수,구조,집의 상태 등등)"></textarea>
 					<hr class="mb-4">
 					<div class="custom-control custom-checkbox">
 						<input type="checkbox" class="custom-control-input"
@@ -228,10 +226,18 @@
 							for="same-address">숙소의 상세내용과 개인정보를 공개하는데 동의하시겠습니까?</label>
 					</div>
 					<hr class="mb-4">
-					<button class="btn btn-primary btn-lg btn-block" type="submit">등록하기</button>
+					
+					<input type="hidden" name="maxperson" id = "maxperson" value="" />
+					<input type="hidden" name="bedcount" id = "bedcount" value=""/>
+					<input type="hidden" name="breakfast" id = "breakfast" value =""/>
+					<input type="hidden" name="parkingarea" id = "parkingarea" value ="" />
+					<input type="hidden" name="wifi" id ="wifi" value =""/>
+					
+				<button class="btn btn-primary btn-lg btn-block" type="submit" id = "register_btn" >등록하기</button>
+				
 				</form>
-			</div>
 		</div>
+	</div>
 		<footer class="my-5 pt-5 text-muted text-center text-small">
 			<p class="mb-1">©2019 AirVienna</p>
 			<ul class="list-inline">
@@ -246,12 +252,39 @@
 	
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 
+<!-- 히든태그에 값보내주기 -->
+<script>
+$(function(){
+	
+	$("input[name='bfast']").click(function(){
+		$("#breakfast").val($("input[name='bfast']:checked").val()); 
+	});
+	
+	$("input[name='parking']").click(function(){
+		$("#parkingarea").val($("input[name='parking']:checked").val()); 
+	});
+	
+	$("input[name='wf']").click(function(){
+		$("#wifi").val($("input[name='wf']:checked").val()); 
+	});
+	
+});
+
+</script>
+
+
 <!-- 파일 업로드 부분 시작 -->
 <script>
 $(function(){
 	// 처음 상태를 복제
 	// var cloneObj=$(".uploadDiv").clone();
 	var formObj=$("form[role='form']");
+/* 	var region = $('#region').val();
+	var region2 = $('#region2').val();
+	var region3 = $('#region3').val();
+	var region4 = $('#region4').val();
+	var region5 = $('#region5').val();
+	alert(region+region2+region3+region4+region5); 주소한번 합쳐봄 */
 
 	$("button[type='submit']").click(function(e){
 		// submit 버튼이 눌러지면 폼 전송 막기
@@ -264,15 +297,18 @@ $(function(){
 		$(".uploadResult span").each(function(i,obj){
 			var job=$(obj);
 			
-			str+="<input type='hidden' name='attachList["+i+"].uuid' value='"+job.data("uuid")+"'>";
-			str+="<input type='hidden' name='attachList["+i+"].uploadPath' value='"+job.data("path")+"'>";
-			str+="<input type='hidden' name='attachList["+i+"].fileName' value='"+job.data("filename")+"'>";
-			str+="<input type='hidden' name='attachList["+i+"].fileType' value='"+job.data("type")+"'>";
+			str+="<input type='hidden' name='HomeAttach["+i+"].uuid' value='"+job.data("uuid")+"'>";
+			str+="<input type='hidden' name='HomeAttach["+i+"].uploadPath' value='"+job.data("path")+"'>";
+			str+="<input type='hidden' name='HomeAttach["+i+"].fileName' value='"+job.data("filename")+"'>";
+			str+="<input type='hidden' name='HomeAttach["+i+"].fileType' value='"+job.data("type")+"'>";
 		});
-		formObj.append(str).submit();
+		console.log(str);
+		formObj.append(str);
+		formObj.submit();
 	});
 		
 		// uploadBtn을 입력하면 uploadFile에 있는 정보 가져오기
+		
 		$("#uploadIMG").click(function(){
 			console.log("등록하기 버튼 클릭");
 			
@@ -319,8 +355,8 @@ $(function(){
 				alert("파일 사이즈 초과");
 				return false;
 			}
-			if(regex.test(fileName)){	
-				alert("해당 파일은 업로드 할 수 없습니다.");
+			if(regex.test(fileName)){
+				alert("이미지만 업로드할 수 있습니다.");
 				return false;
 			}
 			return true;
@@ -338,10 +374,13 @@ $(function(){
 					var filePath=encodeURIComponent(obj.uploadPath+"\\s_"+obj.uuid+"_"+obj.fileName);
  					//원본 파일 이미지 경로
 					var oriPath=obj.uploadPath+"\\"+obj.uuid+"_"+obj.fileName;
+ 					
+ 					
 					//폴더 구분의 \를 /로 바꾸는 작업
 					oriPath=oriPath.replace(new RegExp(/\\/g),"/");
-					str+="<span id = 'image_span'>";
-					str+="<img src='/homedisplay?fileName="+filePath+"' id ='img_px'></a>";
+					str+="<span id = 'image_span' data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"'";
+					str+=" data-filename='"+obj.fileName+"' data-type='"+obj.fileType+"'>";
+					str+="<img src='/homedisplay?fileName="+filePath+"' id ='img_px'></a>"; // 고정이미지값을 줄려고 id를 넣음
 					str+="</span>";
 				}
 				
@@ -350,7 +389,9 @@ $(function(){
 			console.log("span갯수 : " + span_length);
 			
 			if(span_length === 3) {
-				alert("이미지는 3개까지 업로드 가능합니다. ")
+				alert("이미지는 3개까지 업로드 가능합니다. ");
+				$("#uploadIMG").off('click');
+				
 				return;
 		}
  			uploadResult.append(str);
@@ -400,6 +441,8 @@ $(function(){
 				num = 1;
 			}
 			$('#BedUpDown').text(num);
+			$("#bedcount").val(num);
+			
 		});
 		$('#BedincreaseQuantity').click(function(e) {
 			e.preventDefault();
@@ -412,14 +455,16 @@ $(function(){
 				num = 5;
 			}
 			$('#BedUpDown').text(num);
+			$("#bedcount").val(num);
 		});
 	});
 </script>
 
 <!-- 최대인원수 증감  스크립트 -->
+
 <script>
 
-	$(function() {
+$(function() {
 		$('#decreaseQuantity').click(function(e) {
 			e.preventDefault();
 			var stat = $('#numberUpDown').text();
@@ -430,6 +475,7 @@ $(function(){
 				num = 1;
 			}
 			$('#numberUpDown').text(num);
+			$("#maxperson").val(num);
 		});
 		$('#increaseQuantity').click(function(e) {
 			e.preventDefault();
@@ -438,10 +484,11 @@ $(function(){
 			num++;
 
 			if (num > 20) {
-				alert('설마 20명이상이 오겠어?');
+				alert('설마 20명이상이 오겠어?' + stat);
 				num = 5;
 			}
 			$('#numberUpDown').text(num);
+			$("#maxperson").val(num);
 		});
 	});
 </script>
@@ -451,9 +498,9 @@ $(function(){
 <script>
 //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
 $(function(){
-	$("#sample4_postcode").focus(function(){
+	$("#region").focus(function(){
 		sample4_execDaumPostcode();
-		 $('#sample4_postcode').blur();
+		 $('#region').blur();
 	  });
 });
 	function sample4_execDaumPostcode() {
@@ -481,15 +528,15 @@ $(function(){
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('sample4_postcode').value = data.zonecode;
-                document.getElementById("sample4_roadAddress").value = roadAddr;
-                document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+                document.getElementById('region').value = data.zonecode;
+                document.getElementById("region2").value = roadAddr;
+                document.getElementById("region3").value = data.jibunAddress;
                 
                 // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
                 if(roadAddr !== ''){
-                    document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+                    document.getElementById("region5").value = extraRoadAddr;
                 } else {
-                    document.getElementById("sample4_extraAddress").value = '';
+                    document.getElementById("region5").value = '';
                 }
 
                 var guideTextBox = document.getElementById("guide");
@@ -512,7 +559,6 @@ $(function(){
       }
 
 </script>
-
 
 </body>
 </html>
