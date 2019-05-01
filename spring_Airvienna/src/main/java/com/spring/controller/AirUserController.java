@@ -22,6 +22,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.spring.domain.AccommodationVO;
 import com.spring.domain.AirUserVO;
 import com.spring.service.AirUserService;
 
@@ -104,6 +105,8 @@ public class AirUserController {
 			return "true";
 		}
 	}
+	
+
 	
 	
 
