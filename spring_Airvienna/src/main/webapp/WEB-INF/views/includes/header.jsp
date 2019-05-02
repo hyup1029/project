@@ -366,7 +366,7 @@ div{
 				<c:if test="${!empty info}">
 					<c:choose>
 						<c:when test="${empty info.uploadPath}">
-							<img alt=" " height="28" src="/resources/img/vienna.PNG" width="28" class="_1pa4v1p">
+							<img alt=" " height="28" src="/resources/img/vienna.PNG" width="28" class="_1pa4v1p" onclick="location.href='/AirVienna/profile'">
 						</c:when>
 						<c:when test="${!empty info.uploadPath }">
 							<%
@@ -376,7 +376,7 @@ div{
 								filePath = filePath.replaceAll("\\\\", "/");
 								System.out.print("filePath"+filePath);
 							%>
-							<img alt=" " height="28" src="/display?fileName=<%=filePath%>" width="28" class="_1pa4v1p">
+							<img alt=" " height="28" src="/display?fileName=<%=filePath%>" width="28" class="_1pa4v1p" onclick="location.href='/AirVienna/profile'">
 						</c:when>
 					</c:choose>
 				</c:if>
