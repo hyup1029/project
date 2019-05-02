@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <%@include file="../includes/header.jsp"%>
 <html>
@@ -42,13 +43,20 @@
 
 			<div class="wen">
 				<div>
-					<img src="/resources/img/vienna.PNG" class="photo" /> <input
+					<%
+								String filePath = null;
+								AirUserVO vo = (AirUserVO)request.getAttribute("info");
+								filePath= vo.getUploadPath()+"\\"+vo.getUuid()+"_"+vo.getFileName();
+								filePath = filePath.replaceAll("\\\\", "/");
+								System.out.print("filePath"+filePath);
+					%>
+					<img src="/display?fileName=<%=filePath%>" class="photo" /> <input
 						type="file" name="uploadFile" class="file" />
 				</div>
 
 			</div>
 			<br>
-			<h5 style="text-align: center;">~ 님</h5>
+			<h5 style="text-align: center;">${info.username}님</h5>
 			<ul class="list-group">
 
 				<li class="list-group-item text-muted">Activity <i
@@ -83,31 +91,24 @@
 						<h4 class="mb-3">프로필 정보</h4>
 						<div class="form-group">
 							<div class="col-xs-6">
-								<label for="phone">이름</label>
-
+								<label for="name">이름&nbsp;</label>${info.username}
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="col-xs-6">
-								<label for="mobile">전화번호</label>
-
+								<label for="tel">전화번호 &nbsp;</label>${info.tel}
 							</div>
-
-
-
 						</div>
 						<div class="form-group">
-
 							<div class="col-xs-6">
-								<label for="email">이메일</label>
-
+								<label for="email">이메일&nbsp;</label>${info.email}
 							</div>
 						</div>
 						<div class="form-group">
 
 							<div class="col-xs-6">
-								<label for="email">주소</label>
+								<label for="address">주소&nbsp;</label>${info.address}
 							</div>
 						</div>
 					</form>

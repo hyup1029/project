@@ -47,6 +47,13 @@ function onSignIn(googleUser) {
 
 </script>
 </head>
+<style>
+#kakao-login-btn {
+ width:434px;
+ height:50px;
+}
+
+</style> 
 <div class="modal fade" id="myModal">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -70,120 +77,118 @@ function onSignIn(googleUser) {
 													<section>
 														<section>
 															<div>
-																	<div style="margin-bottom: 8px;">
-																		<div class="g-signin2" data-onsuccess="onSignIn" data-width="222" data-height="49" data-longtitle="true" ></div>
-																	</div>
-																	<div style="margin-bottom: 8px;" >
-																		<a id="kakao-login-btn"></a>
-																		<a href="http://developers.kakao.com/logout"></a>
-																	
-																		<script>
-																		$(document).ready(function(){
-																			//<![CDATA[
-																			// 사용할 앱의 JavaScript 키를 설정해 주세요.
-																			Kakao.init('40b247566ba3a9ad80eb5d6ab5c35e74');
-																			//여기서 아까 발급받은 키 중 javascript키를 사용해준다.
-																			// 카카오 로그인 버튼을 생성합니다.
-																			Kakao.Auth.createLoginButton({
-																				container: '#kakao-login-btn',
-																				success: function(authObj) {
-																					//alert(JSON.stringify(authObj));
-																					Kakao.API.request({
-																			          url: '/v2/user/me',
-																			          success: function(res) {
-															           			 		 $(".modal").modal("hide");
-																			        	
-																			            //alert(JSON.stringify(res));
-																				            alert(res.properties.nickname+'님 환영합니다.');
-																			           		login(res);
-																					  },
-																					  fail: function(error) {
-																					            alert(JSON.stringify(error));
-																					   }
-																			        }); //Kakao.API.request 종료
-																			      },
-																				 fail: function(err) {
-																					alert(JSON.stringify(err));
-																				}
-																			});
-																			
-		
-																		});
-																		//]]>
-																		function login(res){
-																			$.ajax({
-															           			type:"post",
-															           			url:"/AirVienna/kakaoLogin",
-															           			headers : {
-															           				"Accept" : "application/json",
-															           				"Content-Type" : "application/json"
-															           			}, 
-															           			//dataType: "json",
-															           			data:JSON.stringify({
-															           				snsid : res.id,
-															           				snsemail : res.kaccount_email,
-															           				snsnickname : res.properties.nickname,
-															           				snsimage : res.properties.thumbnail_image
-															           			}),
-															           			dataType:"text",
-															           			success: function(result){
-															           				console.log(result);
-															           				if(result==='success'){
-															           					location.href='mainpage';
-															           				}
-															           			}
-															           		})
-																		}	
-																			
-																			
-																		</script>
-																	</div>	
+																<div style="margin-bottom: 8px;">
+																	<div class="g-signin2" data-onsuccess="onSignIn" data-width="434" data-height="50" data-longtitle="true" ></div>
 																</div>
+																<div style="margin-bottom: 8px;" >
+																	<a id="kakao-login-btn"></a>
+																	<a href="http://developers.kakao.com/logout"></a>
+																
+																	<script>
+																	$(document).ready(function(){
+																		//<![CDATA[
+																		// 사용할 앱의 JavaScript 키를 설정해 주세요.
+																		Kakao.init('40b247566ba3a9ad80eb5d6ab5c35e74');
+																		//여기서 아까 발급받은 키 중 javascript키를 사용해준다.
+																		// 카카오 로그인 버튼을 생성합니다.
+																		Kakao.Auth.createLoginButton({
+																			container: '#kakao-login-btn',
+																			success: function(authObj) {
+																				//alert(JSON.stringify(authObj));
+																				Kakao.API.request({
+																		          url: '/v2/user/me',
+																		          success: function(res) {
+														           			 		 $(".modal").modal("hide");
+																		        	
+																		            //alert(JSON.stringify(res));
+																			            alert(res.properties.nickname+'님 환영합니다.');
+																		           		login(res);
+																				  },
+																				  fail: function(error) {
+																				            alert(JSON.stringify(error));
+																				   }
+																		        }); //Kakao.API.request 종료
+																		      },
+																			 fail: function(err) {
+																				alert(JSON.stringify(err));
+																			}
+																		});
+																	});
+																	//]]>
+																	function login(res){
+																		$.ajax({
+														           			type:"post",
+														           			url:"/AirVienna/kakaoLogin",
+														           			headers : {
+														           				"Accept" : "application/json",
+														           				"Content-Type" : "application/json"
+														           			}, 
+														           			//dataType: "json",
+														           			data:JSON.stringify({
+														           				snsid : res.id,
+														           				snsemail : res.kaccount_email,
+														           				snsnickname : res.properties.nickname,
+														           				snsimage : res.properties.thumbnail_image
+														           			}),
+														           			dataType:"text",
+														           			success: function(result){
+														           				console.log(result);
+														           				if(result==='success'){
+														           					location.href='mainpage';
+														           				}
+														           			}
+														           		})
+																	}
+																		
+																		
+																	</script>
+																</div>	
+															</div>
+															<div>
+																<div style="margin-top : 16px; margin-bottom: 16px;">
+																	<div class="_12j61cy">
+																		<span class="_1ish1khj">
+																			<span class="_1rbmiub1">또는</span>
+																		</span>							
+																	</div>
+																</div>	
+																<form action="/AirVienna/login" method="post" id="input_login"novalidate>	<!-- action에 들어가있던거 /authenticate -->	
+																	<input type="hidden" name="authenticity_token" value=
+																	"V4$.airbnb.co.kr$oACVpmJE18E$A4EnTj0C_-nzS1fo3bfM3MTy7A2MLAP42_mZKZ1dh2M=">
 																	<div>
-																		<div style="margin-top : 16px; margin-bottom: 16px;">
-																			<div class="_12j61cy">
-																				<span class="_1ish1khj">
-																					<span class="_1rbmiub1">또는</span>
-																				</span>							
+																		<div style="margin-bottom: 16px;">
+																			<input type="hidden" name="from" value="email_login">
 																		</div>
-																	</div>	
-																	<form action="/AirVienna/login" method="post" id="input_login"novalidate>	<!-- action에 들어가있던거 /authenticate -->	
-																		<input type="hidden" name="authenticity_token" value=
-																		"V4$.airbnb.co.kr$oACVpmJE18E$A4EnTj0C_-nzS1fo3bfM3MTy7A2MLAP42_mZKZ1dh2M=">
-																		<div>
-																			<div style="margin-bottom: 16px;">
-																				<input type="hidden" name="from" value="email_login">
-																			</div>
-																			<div style="margin-bottom: 16px;">
-																				<input type="hidden" name="airlock_id" value>
-																			</div>
-																			<div style="margin-bottom: 16px;">
-																				<div class="inspectletIgnore">
-																					<div class="_9hxttoo">
-																						<label class="_1m8bb6v" for="email-login-email">이메일 주소</label>
-																						<div dir="ltr" style="direction: ltr; unicode-bidi: isolate;">
-																							<div class="_1wcr140x">
-																								<div class="_107ja4p">
-																									<div class="_1lmb7hx" style="visibility: visible; height: 46px;">
-																										<div class="_nncr1bm">
-																											<div class="_ni9axhe">
-																												<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" 
-																												focusable="false" style="height: 1em; width: 1em; display: block; fill: currentcolor;">
-																												<path d="m22.5 4h-21c-.83 0-1.5.67-1.5 1.51v12.99c0 .83.67 1.5 1.5 1.5h20.99a1.5 1.5 0 0 0 1.51-1.51v-12.98c0-.84-.67-1.51-1.5-1.51zm.5 14.2-6.14-7.91 6.14-4.66v12.58zm-.83-13.2-9.69
-																												 7.36c-.26.2-.72.2-.98 0l-9.67-7.36h20.35zm-21.17.63 6.14 4.67-6.14 7.88zm.63 13.37 6.3-8.1 2.97 2.26c.62.47 1.57.47 2.19 0l2.97-2.26 6.29 8.1z" fill-rule="evenodd"></path>
-																												 </svg>
-																											</div>
+																		<div style="margin-bottom: 16px;">
+																			<input type="hidden" name="airlock_id" value>
+																		</div>
+																		<div style="margin-bottom: 16px;">
+																			<div class="inspectletIgnore">
+																				<div class="_9hxttoo">
+																					<label class="_1m8bb6v" for="email-login-email">이메일 주소</label>
+																					<div dir="ltr" style="direction: ltr; unicode-bidi: isolate;">
+																						<div class="_1wcr140x">
+																							<div class="_107ja4p">
+																								<div class="_1lmb7hx" style="visibility: visible; height: 46px;">
+																									<div class="_nncr1bm">
+																										<div class="_ni9axhe">
+																											<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" 
+																											focusable="false" style="height: 1em; width: 1em; display: block; fill: currentcolor;">
+																											<path d="m22.5 4h-21c-.83 0-1.5.67-1.5 1.51v12.99c0 .83.67 1.5 1.5 1.5h20.99a1.5 1.5 0 0 0 1.51-1.51v-12.98c0-.84-.67-1.51-1.5-1.51zm.5 14.2-6.14-7.91 6.14-4.66v12.58zm-.83-13.2-9.69
+																											 7.36c-.26.2-.72.2-.98 0l-9.67-7.36h20.35zm-21.17.63 6.14 4.67-6.14 7.88zm.63 13.37 6.3-8.1 2.97 2.26c.62.47 1.57.47 2.19 0l2.97-2.26 6.29 8.1z" fill-rule="evenodd"></path>
+																											 </svg>
 																										</div>
 																									</div>
 																								</div>
-																								<div class="_178faes">
-																									<input type="email" autocomplete="username" class="_14fdu48d" id="email-login-email" name="email" placeholder="이메일 주소" value="">
-																								</div>
+																							</div>
+																							<div class="_178faes">
+																								<input type="email" autocomplete="username" class="_14fdu48d" id="email-login-email" name="email" placeholder="이메일 주소" value="">
 																							</div>
 																						</div>
 																					</div>
 																				</div>
 																			</div>
+																		</div>
 																			<div style="margin-bottom: 16px;">
 																				<div>
 																					<div class="_9hxttoo">
@@ -241,7 +246,6 @@ function onSignIn(googleUser) {
 												</div>
 											</section>
 										</div>
-										</div>
 									</div>
 								</div>
 							</div>
@@ -251,5 +255,6 @@ function onSignIn(googleUser) {
 			</div>
 		</div>
 	</div>
+</div>
 
 
