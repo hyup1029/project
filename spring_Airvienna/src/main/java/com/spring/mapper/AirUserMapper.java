@@ -9,6 +9,6 @@ public interface AirUserMapper {
 	public int insert(AirUserVO vo);
 	public AirUserVO login(AirUserVO vo);
 	public AirUserVO selectByEmail(String email);
-	
+	public AirUserVO profile(int bno);
 	
 }

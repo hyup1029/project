@@ -29,6 +29,11 @@ public class AirUserServiceImpl implements AirUserService {
 		return mapper.login(vo);
 	}
 
+	@Override
+	public AirUserVO profile(int bno) {
+		return mapper.profile(bno);
+	}
+
 
 
 }

@@ -16,10 +16,12 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.domain.AccommodationVO;
+import com.spring.domain.AirUserVO;
 import com.spring.domain.Criteria;
 import com.spring.domain.ReserveVO;
 import com.spring.domain.jjimVO;
 import com.spring.service.AccommodationService;
+import com.spring.service.AirUserService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,7 +31,8 @@ import lombok.extern.slf4j.Slf4j;
 public class MainController {
 	@Inject
 	private AccommodationService service;
-	
+	@Inject
+	private AirUserService Airservice;
 	
 	
 	@GetMapping("/mypage")
@@ -44,8 +47,11 @@ public class MainController {
 	}
 	
 	@GetMapping("/profile")
-	public void profilePage(){
+	public void profilePage(int bno,Model model){
 		log.info("프로필페이지 호출...");
+		AirUserVO vo = Airservice.profile(bno);
+		model.addAttribute("vo"+vo);
+		
 	}	
 	@GetMapping("/password_change")
 	public void passwordPage(){

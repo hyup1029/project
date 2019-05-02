@@ -1,3 +1,7 @@
+<%@page import="java.io.Console"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.spring.domain.AirUserVO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -200,7 +204,8 @@ div{
 	<nav class="navbar navbar-light bg-white">
 		<a class="navbar-brand" style="font-size:2em; color:purple" onclick="location.href='/AirVienna/mainpage'">
 		<img src='/resources/img/octopus.png' width="75" height="50">Airvienna</a>
-		<c:if test="${empty info}">
+		<c:if test="${empty info && empty sns}">
+		<%-- <c:if test="${empty sns}"> --%>
 		<ul class="arrangeheader">
 		<li class="_li1"></li>
 		<li class="_li1">
@@ -276,7 +281,9 @@ div{
 		</li>
 		</ul>
 		</c:if>
-		<c:if test="${!empty info}">
+		<%-- </c:if> --%>
+		<c:if test="${!empty info || !empty sns }">
+		<%-- <c:if test="${!empty sns}"> --%>
 		<ul class="arrangeheader">
 		<li class="_li1"></li>
 		<li class="_li1">
@@ -353,14 +360,32 @@ div{
 		<li class="_li1">
 		<div class="_lvb55za">
 			<div class="_sftyq0">
-			
-				<img alt=" " height="28" src="" width="28" class="_1pa4v1p">
-				<!-- https://a0.muscache.com/im/pictures/83a01979-3751-4e5b-a3a3-7226275be3c6.jpg?aki_policy=profile_small -->
+				<c:if test="${!empty info}">
+					<c:choose>
+						<c:when test="${empty info.uploadPath}">
+							<img alt=" " height="28" src="/resources/img/vienna.PNG" width="28" class="_1pa4v1p">
+						</c:when>
+						<c:when test="${!empty info.uploadPath }">
+							<%
+								String filePath = null;
+								AirUserVO vo = (AirUserVO)request.getAttribute("info");
+								filePath= vo.getUploadPath()+"\\"+vo.getUuid()+"_"+vo.getFileName();
+								filePath = filePath.replaceAll("\\\\", "/");
+								System.out.print("filePath"+filePath);
+							%>
+							<img alt=" " height="28" src="/display?fileName=<%=filePath%>" width="28" class="_1pa4v1p">
+						</c:when>
+					</c:choose>
+				</c:if>
+				<c:if test="${!empty sns}">
+				<img alt=" " height="28" src="${sns.snsimage}" width="28" class="_1pa4v1p">
+				</c:if>
 			</div>
 		</div>
 		</li>
 		</ul>
 		</c:if>
+		<%-- </c:if> --%>
 	</nav>
 <script>
 $(function(){

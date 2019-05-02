@@ -1,6 +1,6 @@
 create table airuser(
-    bno number(10),
-    email varchar2(50) primary key,
+    bno number(10) primary key,
+    email varchar2(50) not null,
     password varchar2(20) not null,
     username nvarchar2(10) not null,
     address varchar2(100) not null,
