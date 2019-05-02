@@ -33,7 +33,7 @@ public class ReplyController {
 		
 		log.info("cccc");
 		
-		return service.replyList(43);
+		return service.replyList(ano);
 		
 	}
 	

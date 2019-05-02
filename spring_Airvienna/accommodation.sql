@@ -41,7 +41,8 @@ create table accommodation_attach(
 alter table accommodation_attach add constraint fk_accommodation
 foreign key(ano) references project_accommodation(ano);
 
-
+alter table accommodation_attach
+rename column pictureName to fileName;
 
 select * from accommodation_attach;
 

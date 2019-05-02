@@ -68,7 +68,7 @@
           
           <form class="jjimlist" action="jjimregist" method="post">
             <div class="card-body">
-              <p class="card-text"><%=vo.getHomename()%></p>
+              <p class="card-text"><a href = "Readpage?ano=<%=vo.getAno()%>" class = "move"><%=vo.getHomename()%></a></p>
               <h4 class="card-text"><%=vo.getBirfcontent()%></h4> 
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
@@ -191,6 +191,8 @@
 			formObj.append(str);
 			formObj.submit();
 		})
+		
+		
 			
 	});
 </script>
