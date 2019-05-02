@@ -25,36 +25,9 @@ import com.spring.service.AirUserService;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
-@Controller
-@RequestMapping("/AirVienna/*")
 public class MainController {
-	@Inject
-	private AccommodationService service;
-
 
 	
-	@GetMapping("/Readpage")
-	public void readpage(AccommodationVO vo, Model model) {
-		vo = service.getPage(43);
-		log.info("리드 페이지 호출");
-		log.info("vo는 오는지" + vo);
-		model.addAttribute("vo",vo);
-	}
-	
-	@PostMapping(value = "/Readpage")
-	public String toPay(Model model,ReserveVO vo, AccommodationVO product)  {
-	
-		log.info("예약 : "+vo);
-		product = service.getPage(1);
-		model.addAttribute("vo",product);
-		model.addAttribute("resev",vo);
-		return "AirVienna/pay";
-	}
-	
-	@GetMapping("/completePay")
-	public void completePay() {
-		log.info("Complete buy");
-	}
+
 
 }

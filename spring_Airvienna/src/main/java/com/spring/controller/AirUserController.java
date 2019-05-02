@@ -33,6 +33,7 @@ import com.spring.domain.AccommodationVO;
 import com.spring.domain.AirUserVO;
 import com.spring.domain.Criteria;
 import com.spring.domain.HomeAttachVO;
+import com.spring.domain.ReserveVO;
 import com.spring.domain.SnsUserVO;
 import com.spring.domain.jjimVO;
 import com.spring.service.AccommodationService;
@@ -47,7 +48,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @SessionAttributes({"info","jjimlist","sns"})
 public class AirUserController {
-	
+	 
 	@Inject
 	private AirUserService service;
 	@Inject
@@ -440,4 +441,29 @@ public class AirUserController {
 		
 	}
 	//고객센터 종료
+
+	@GetMapping("/Readpage")
+	public void readpage(AccommodationVO vo, Model model, int ano) {
+		vo = homeservice.getPage(ano);
+		log.info("리드 페이지 호출");
+		log.info("vo는 오는지" + vo);
+		model.addAttribute("vo",vo);
+	}
+	
+	@PostMapping(value = "/Readpage")
+	public String toPay(Model model,ReserveVO vo, AccommodationVO product, int ano)  {
+	
+		log.info("예약 : "+vo);
+		product = homeservice.getPage(ano);
+		model.addAttribute("vo",product);
+		model.addAttribute("resev",vo);
+		return "AirVienna/pay";
+	}
+	
+	@GetMapping("/completePay")
+	public void completePay() {
+		log.info("Complete buy");
+	}
+	
+	
 }
