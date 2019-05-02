@@ -144,8 +144,23 @@ border-bottom: solid 1px #cccccc;
       <div class="col-lg-4 text-center" style = "margin-top : 10px;">
  			<div class="wen">
 				<div>
-					<img src="/resources/img/vienna.PNG" class="photo"/> <input
-						type="file" name="uploadFile" class="file" />
+					<c:choose>
+						<c:when test="${empty info.uploadPath}">
+							<img alt=" " height="28" src="/resources/img/vienna.PNG" width="28" class="photo" onclick="location.href='/AirVienna/mypage'">
+						</c:when>
+						<c:when test="${!empty info.uploadPath }">
+							<%
+								String filePath = null;
+								AirUserVO vo = (AirUserVO)request.getAttribute("info");
+								filePath= vo.getUploadPath()+"\\"+vo.getUuid()+"_"+vo.getFileName();
+								filePath = filePath.replaceAll("\\\\", "/");
+								System.out.print("filePath"+filePath);
+							%>
+							<img alt=" " height="28" src="/display?fileName=<%=filePath%>" width="28" class="photo" onclick="location.href='/AirVienna/mypage'">
+						</c:when>
+					</c:choose>
+					 	<input	type="file" name="uploadFile" class="file" /> 
+					<!-- <img src="/resources/img/vienna.PNG" class="photo"/>-->
 				</div>
 
         </div>

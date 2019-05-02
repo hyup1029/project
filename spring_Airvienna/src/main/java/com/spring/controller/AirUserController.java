@@ -99,14 +99,14 @@ public class AirUserController {
 
 	@PostMapping("/login")
 	public String loginPost(AirUserVO vo,Model model)  {
-		log.info("로그인..."+vo.toString());
+		log.info("로그인...");
 		AirUserVO info = service.login(vo);
 		if(info == null) {
 			log.info("틀렸음");
 			return "redirect:mainpage";
 		}else {
 			//log.info("로그인정보..."+vo.toString());
-			log.info("정보 : "+info.getEmail());
+			log.info("정보 : "+info.toString());
 			model.addAttribute("info",info);
 			int bno=info.getBno();
 			List<jjimVO> jjimlist=homeservice.jjimlist(bno);
@@ -173,7 +173,17 @@ public class AirUserController {
 	}
 
 	
+	@GetMapping("/profile")
+	public void profile(@ModelAttribute("info")AirUserVO vo) {
+		log.info("profile");
+	}
 	
+	@GetMapping("/mypage")
+	public String mypage(@ModelAttribute("info")AirUserVO vo) {
+		log.info("mypage");
+		return "AirVienna/Mypage";
+	}
+
 	
 	@ResponseBody
 	@PostMapping("/checkEmail")
@@ -360,4 +370,37 @@ public class AirUserController {
 		}
 		return "redirect:accommodationlist";
 	}
+	
+	//고객센터
+	@GetMapping("/question")
+	public String question(Model model) {
+		boolean question=true;
+		
+		model.addAttribute("question",question);
+		log.info("확인"+model);
+		log.info("확인"+question);
+		return"AirVienna/costomercenter";
+	}
+	@GetMapping("/costomersound")
+	public String costomersound(Model model) {
+		boolean costomersound=true;
+		
+		model.addAttribute("costomersound",costomersound);
+		log.info("확인"+model);
+		log.info("확인"+costomersound);
+		return"AirVienna/costomercenter";
+	}
+	@GetMapping("/inform")
+	public String inform(Model model) {
+		boolean inform=true;
+		
+		model.addAttribute("inform",inform);
+		log.info("확인"+inform);
+		return"AirVienna/costomercenter";
+	}
+	@GetMapping("/costomercenter")
+	public void costomercenter() {
+		
+	}
+	//고객센터 종료
 }

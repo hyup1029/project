@@ -208,7 +208,6 @@ div{
 		<a class="navbar-brand" style="font-size:2em; color:purple" onclick="location.href='/AirVienna/mainpage'">
 		<img src='/resources/img/octopus.png' width="75" height="50">Airvienna</a>
 		<c:if test="${empty info && empty sns}">
-		<%-- <c:if test="${empty sns}"> --%>
 		<ul class="arrangeheader">
 		<li class="_li1"></li>
 		<li class="_li1">
@@ -284,9 +283,7 @@ div{
 		</li>
 		</ul>
 		</c:if>
-		<%-- </c:if> --%>
 		<c:if test="${!empty info || !empty sns }">
-		<%-- <c:if test="${!empty sns}"> --%>
 		<ul class="arrangeheader">
 		<li class="_li1"></li>
 		<li class="_li1">
@@ -381,14 +378,13 @@ div{
 					</c:choose>
 				</c:if>
 				<c:if test="${!empty sns}">
-				<img alt=" " height="28" src="${sns.snsimage}" width="28" class="_1pa4v1p">
+					<img alt=" " height="28" src="${sns.snsimage}" width="28" class="_1pa4v1p">
 				</c:if>
 			</div>
 		</div>
 		</li>
 		</ul>
 		</c:if>
-		<%-- </c:if> --%>
 	</nav>
 <script>
 $(function(){
