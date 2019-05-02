@@ -35,7 +35,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.spring.domain.AccommodationVO;
 import com.spring.domain.AirUserVO;
 import com.spring.domain.Criteria;
-import com.spring.domain.KakaoUserVO;
+import com.spring.domain.SnsUserVO;
 import com.spring.domain.jjimVO;
 import com.spring.service.AccommodationService;
 import com.spring.service.AirUserService;
@@ -46,7 +46,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("/AirVienna/*")
 @Slf4j
-@SessionAttributes({"info","jjimlist"})
+@SessionAttributes({"info","jjimlist","sns"})
 public class AirUserController {
 	
 	@Inject
@@ -89,7 +89,7 @@ public class AirUserController {
 		}else {
 			//log.info("로그인정보..."+vo.toString());
 			model.addAttribute("info",info);
-			log.info("정보 : "+info.getEmail()+info.getUploadPath());
+			log.info("정보 : "+info.getEmail()+info.getUuid()+info.getUploadPath()+info.getFileName());
 			return "redirect:mainpage";
 		}
 	}
@@ -103,10 +103,10 @@ public class AirUserController {
 	}
 	
 	@PostMapping("/kakaoLogin")	
-	public ResponseEntity<String> kakaoLogin(@RequestBody KakaoUserVO vo, Model model) {
+	public ResponseEntity<String> kakaoLogin(@RequestBody SnsUserVO vo, Model model) {
 		log.info("kakao..."+vo.toString());
 		if(vo!=null) {
-			model.addAttribute("info",vo);			
+			model.addAttribute("sns",vo);			
 		}
 		log.info("session..."+vo.toString());
 		return new ResponseEntity<>("success",HttpStatus.OK);
@@ -114,10 +114,10 @@ public class AirUserController {
 	
 
 	@PostMapping(value="/googleLogin",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<String> googleLogin(@RequestBody KakaoUserVO vo, Model model) {
+	public ResponseEntity<String> googleLogin(@RequestBody SnsUserVO vo, Model model) {
 		log.info("google..."+vo.toString());
 		if(vo!=null) {
-			model.addAttribute("info",vo);			
+			model.addAttribute("sns",vo);			
 		}
 		log.info("session..."+vo.toString());
 		return new ResponseEntity<>("success",HttpStatus.OK);

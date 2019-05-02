@@ -29,10 +29,10 @@ function onSignIn(googleUser) {
     		"Content-Type":"application/json"
     	},
     	data:JSON.stringify({
-    		kakaoid : profile.getId(),
-    		kakaoemail : profile.getEmail(),
-    		kakaonickname : profile.getName(),
-    		kakaoimage : profile.getImageUrl()
+    		snsid : profile.getId(),
+    		snsemail : profile.getEmail(),
+    		snsnickname : profile.getName(),
+    		snsimage : profile.getImageUrl()
     	}),
     	dataType:"text",
     	success:function(result){
@@ -70,13 +70,11 @@ function onSignIn(googleUser) {
 													<section>
 														<section>
 															<div>
-																
 																	<div style="margin-bottom: 8px;">
-																		<div class="g-signin2" data-onsuccess="onSignIn" data-width="420" data-height="50" data-longtitle="true" ></div>
+																		<div class="g-signin2" data-onsuccess="onSignIn" data-width="222" data-height="49" data-longtitle="true" ></div>
 																	</div>
-																	<div div style="margin-bottom: 8px;">
+																	<div style="margin-bottom: 8px;" >
 																		<a id="kakao-login-btn"></a>
-																		<!-- <a id="custom-login-btn" width="300px"></a> -->
 																		<a href="http://developers.kakao.com/logout"></a>
 																	
 																		<script>
@@ -122,10 +120,10 @@ function onSignIn(googleUser) {
 															           			}, 
 															           			//dataType: "json",
 															           			data:JSON.stringify({
-															           				kakaoid : res.id,
-															           				kakaoemail : res.kaccount_email,
-															           				kakaonickname : res.properties.nickname,
-															           				kakaoimage : res.properties.thumbnail_image
+															           				snsid : res.id,
+															           				snsemail : res.kaccount_email,
+															           				snsnickname : res.properties.nickname,
+															           				snsimage : res.properties.thumbnail_image
 															           			}),
 															           			dataType:"text",
 															           			success: function(result){
@@ -141,9 +139,6 @@ function onSignIn(googleUser) {
 																		</script>
 																	</div>	
 																</div>
-																	
-																		
-															
 																	<div>
 																		<div style="margin-top : 16px; margin-bottom: 16px;">
 																			<div class="_12j61cy">
@@ -217,48 +212,6 @@ function onSignIn(googleUser) {
 																				</div>
 																			</div>
 																		</div>
-																		<!-- <div style="margin-bottom: 16px;">
-																			<div class="_hgs47m">
-																				<div class="_tswrdl1">
-																					<div>
-																						<label class="_rin72m" for="email-login-remember-me-checkbox">
-																							<div class="_hgs47m">
-																								<div class="_1thk0tsb">
-																									<div class="_aaxh23">
-																										<span class="_foa2bi">
-																											<input type="checkbox" class="_iddnf3" aria-invalid="false" id="email-login-remember-me-checkbox" name="remember_me" value="1">
-																											<span data-fake-checkbox="true" data-style-select="false" data-style-default="true" class="_fhj4ui"></span>
-																										</span>
-																									</div>
-																								</div>
-																								<div class="_n5lh69r">
-																									<div class="_1rqlddm">
-																										<span class="_be8n6e">비밀번호 저장</span>
-																									</div>
-																								</div>
-																							</div>
-																						</label>
-																					</div>
-																				</div>
-																				<div class="_10ejfg4u"></div>
-																				<div class="_tswrdl1">
-																					<div>
-																						<button type="button" class="_1dv8bs9v" aria-busy="false">비밀번호 보기</button>
-																					</div>
-																				</div>
-																			</div>
-																		</div> -->
-																		<!-- <div style="margin-bottom: 16px;">
-																			<div style="margin-top: 8px;">
-																				<div class="_121z06r2">
-																					<button type="button" class="_1dv8bs9v" aria-busy="false">전화번호로 로그인</button>
-																					<div class="_36rlri" style="margin-left: 8px; margin-right: 8px;">
-																						<div class="_18ilrswp">·</div>
-																					</div>
-																					<a href="/forgot_password" class="_15da8x1u" aria-busy="false">비밀번호가 생각나지 않으세요?</a>
-																				</div>
-																			</div>
-																		</div> -->
 																		<div style="margin-bottom: 16px;">
 																			<div id="airlock-inline-container"></div>
 																		</div>
@@ -281,22 +234,6 @@ function onSignIn(googleUser) {
 																			<a href="/AirVienna/joinpage" class="_15da8x1u" aria-busy="false">회원 가입</a>
 																		</span>
 																	</div>
-																	<!-- <div style="margin-top: 24px;">
-																		<div class="_121z06r2">
-																			<button type="button" class="_1dv8bs9v" aria-busy="false">
-																				<div class="_qtix31">
-																					<div class="_ni9axhe">
-																						<div style="margin-right: 8px;">
-																							<svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" style="height: 1em; width: 1em; display: block; fill: currentcolor;">
-																								<path d="m13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z" fill-rule="evenodd"></path>
-																							</svg>
-																						</div>
-																					</div>
-																					<div class="_ni9axhe">뒤로</div>
-																				</div>
-																			</button>
-																		</div>
-																	</div> -->
 																</span>
 															</div>
 														</section>
@@ -314,24 +251,5 @@ function onSignIn(googleUser) {
 			</div>
 		</div>
 	</div>
-<script>
-/*$(document).ready(function(){
-	$("#login").click(function(){
-		/* var email = $("#email-login-email").val();
-		var password = $("#email-login-password").val();
-		var formData = $("#lnput_login").serialize();
-		$.ajax({
-			url : "/login",
-			type : "post",
-			dataType : "json",
-			data : formData,
-			success : function(data){
-				console.log(data);
-			}
-		});
-	});
-}); */
-
-</script>
 
 
