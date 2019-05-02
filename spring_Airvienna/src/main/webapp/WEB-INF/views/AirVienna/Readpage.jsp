@@ -222,7 +222,9 @@
          </div>
 
       </div>
-
+	<form id = "operForm" method = "post" action = "/AirVienna/Readpage">
+		<input type = "hidden" name = "ano" value = '${vo.ano}' />
+	</form>
       <hr class="featurette-divider">
 
 
@@ -387,20 +389,24 @@
          </div>
       </form>
    </div>
-
+	<div class="panel-body">
+				<div class="uploadResult">
+					<ul></ul>
+				</div>
+	</div>
    <div class="container marketing">
 
       <div class="commentList"></div>
    </div>
 
    <script>
-      var ano = ${vo.ano};
+      var anoVal = ${vo.ano};
      var name = '${info.username}';
       $('button[name=commentInsertBtn]').click(function() { //댓글 등록 버튼 클릭시 
 
          var reply = {
             content : $("#content").val(),
-            ano : ano
+            ano : anoVal
          };
          $.ajax({
             type : 'post',
@@ -416,20 +422,18 @@
          });
       });
       function commentList() {
-         $
-               .ajax({
+         $.ajax({
                   url : '/comment/list',
                   type : 'get',
                   data : {
-                     'ano' : ano
+                     'ano' : anoVal
                   },
                   dataType : "JSON",
                   success : function(data) {
                      var a = '';
                      console.log(data);
             
-                     $(data)
-                           .each(
+                     $(data).each(
                                  function(i, obj) {
 
                                     a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
@@ -452,15 +456,32 @@
                   }
                });
       }
-
+      
+      $.getJSON("/AirVienna/getAttachList",{ano:anoVal},function(arr){
+			console.log(arr);
+		
+			var uploadResult = $(".uploadResult ul");
+			var str="";
+			$(arr).each(function(i,obj){
+				if(obj.fileType){//true이면 이미지
+					//썸네일 이미지 경로
+					var filePath=encodeURIComponent(obj.uploadPath+"\\s_"+obj.uuid+"_"+obj.fileName);
+					
+					str+="<li data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"'";
+					str+=" data-filename='"+obj.fileName+"' data-type='"+obj.fileType+"'>";
+					str+="<div><a><img src='/display?fileName="+filePath+"'></a>";
+					str+="</div></li>";
+					
+				}
+			});
+			uploadResult.html(str);
+		});
       $(document).ready(function() {
          commentList(); //페이지 로딩시 댓글 목록 출력 
       });
    </script> <!-- 댓글 영역 종료 --> <!-- 댓글 모달 -->
 
-   <form id="operForm" action="/board/modify">
-      <input type="hidden" name="ano" value="${vo.ano}" />
-   </form>
+  
   <script>
    window.jQuery
          || document
@@ -557,6 +578,11 @@
              
              //페이지 로딩시 댓글 목록 출력 
        });
+      
+      var form = $("#operForm");
+      $(".reserve").click(function() {
+    	  form.submit();
+      });
       
    });
 </script>

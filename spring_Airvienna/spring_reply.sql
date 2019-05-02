@@ -6,10 +6,10 @@ create table spring_reply (
   regdate Date default sysdate
  ); 
 
-alter table jjimlist add constraint fk_jjimlist
+alter table spring_reply add constraint fk_replybno
 foreign key(bno) references airuser(bno);
 
-alter table jjimlist add constraint fk_jjimlist_home
+alter table spring_reply add constraint fk_replyano
 foreign key(ano) references project_accommodation(ano);
  
  create sequence rep_seq;

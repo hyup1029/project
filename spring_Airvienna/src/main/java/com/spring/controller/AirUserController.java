@@ -56,6 +56,7 @@ public class AirUserController {
 	private AccommodationService homeservice;
 	@Inject 
 	private HomeRegisterService homeattservice;
+ 
 	
 	
 	@GetMapping("/step1")
@@ -477,10 +478,10 @@ public class AirUserController {
 	}
 	
 	@PostMapping(value = "/Readpage")
-	public String toPay(Model model,ReserveVO vo, AccommodationVO product, int ano)  {
+	public String toPay(Model model,ReserveVO vo, AccommodationVO product)  {
 	
 		log.info("예약 : "+vo);
-		product = homeservice.getPage(ano);
+		product = homeservice.getPage(1);
 		model.addAttribute("vo",product);
 		model.addAttribute("resev",vo);
 		return "AirVienna/pay";
@@ -489,6 +490,14 @@ public class AirUserController {
 	@GetMapping("/completePay")
 	public void completePay() {
 		log.info("Complete buy");
+	}
+	
+	// 너무 하기 싫은 사진 가져오는 것
+	@GetMapping("/getAttachList")
+	public ResponseEntity<List<HomeAttachVO>> getAttachList(int ano) {
+		log.info("집 등록에 사용된 사진 가져오기 : ");
+		
+		return new ResponseEntity<List<HomeAttachVO>>(homeattservice.attachList(ano),HttpStatus.OK);
 	}
 	
 	

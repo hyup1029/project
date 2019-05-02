@@ -17,5 +17,5 @@ create sequence seq_bno;
 
 select * from airuser;
 
-drop table airuser;
+drop table airuser cascade constraints;
 drop sequence seq_bno;
