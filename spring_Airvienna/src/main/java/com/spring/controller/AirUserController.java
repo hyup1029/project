@@ -148,8 +148,7 @@ public class AirUserController {
 	public String handleStep2_3Get() {
 		return "redirect:step1";
 	}
-	
-	
+
 	@PostMapping("/home_register")
 	public String homeRegister(@ModelAttribute("info")AirUserVO info,AccommodationVO vo) {
 		log.info("집정보 등록...");
