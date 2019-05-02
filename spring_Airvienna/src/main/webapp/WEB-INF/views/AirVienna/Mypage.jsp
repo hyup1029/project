@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <%@include file="../includes/header.jsp"%>
 <head>
@@ -106,14 +106,13 @@ border-bottom: solid 1px #cccccc;
 		<div class="row">
 			<div class="col-md-6 mb-3">
 				<label for="firstName">이메일</label> 
-				<input type="text" class="form-control" id="firstName" value="" readonly>
+				<input type="text" class="form-control" id="firstName" value="${info.email}" readonly >
 			</div>
 			<div class="col-md-6 mb-3">
 				<label for="lastName">이름</label> 
-				<input type="text" class="form-control" id="lastName" value="" readonly style ="width : 200px;">
+				<input type="text" class="form-control" id="lastName" value="${info.username}" readonly style ="width : 200px;">
 			</div>
 		</div>
-		
 		
 		<div class="form-group">
 			<label for="tel">전화번호</label>
