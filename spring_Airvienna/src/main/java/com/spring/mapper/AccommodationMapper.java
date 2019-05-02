@@ -19,6 +19,9 @@ public interface AccommodationMapper {
 	public int jjiminsert(jjimVO vo);
 	public List<jjimVO> jjimlist (int bno);
 	public int jjimremove(int ano);
+	
 
 	public AccommodationVO getPage(int ano);
+	
+	public AccommodationVO get_home(AccommodationVO vo);
 }

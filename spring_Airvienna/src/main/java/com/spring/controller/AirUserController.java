@@ -175,10 +175,31 @@ public class AirUserController {
 		return "AirVienna/home_register";
 	}
 	
+//	for(AccommodationVO vo:list) {
+	//	int ano=vo.getAno();
+//		HomeAttachVO vo2 = homeattservice.homeAttachList(ano);
+//		vo.setHomeAttach(new ArrayList<>());
+//		
+//		vo.getHomeAttach().add(vo2);
+//		log.info(vo+"");
+//	}
+//	log.info(list+"");
+//	model.addAttribute("list",list);
 	@GetMapping("/home_modify")
-	public String home_modify() {
+	public String home_modify(@ModelAttribute("info")AirUserVO info ,AccommodationVO vo, Model model) {
 		log.info("집등록페이지 호출...");
 		
+		vo.setBno(info.getBno());
+		
+		vo = homeservice.get_home(vo);
+		List<HomeAttachVO> vo2 = homeattservice.findByAno(vo.getAno());
+		vo.setHomeAttach(vo2);
+		
+		log.info(vo.getPrice()+"");	
+		log.info(vo.getAno()+"");
+		log.info(vo.getBno()+"");
+		log.info(vo.getHomeAttach()+"");
+		model.addAttribute("vo",vo);
 		
 		return "AirVienna/home_modify";
 	}

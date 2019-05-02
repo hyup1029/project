@@ -87,5 +87,10 @@ public class AccommodationServiceImpl implements AccommodationService {
 		return mapper.jjimremove(ano);
 	}
 
+	@Override
+	public AccommodationVO get_home(AccommodationVO vo) {
+		return mapper.get_home(vo);
+	}
+
 	
 }

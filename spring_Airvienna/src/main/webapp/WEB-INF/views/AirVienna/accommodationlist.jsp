@@ -17,7 +17,7 @@
       <h1 class="jumbotron-heading">모두가 호스트</h1>
       <p class="lead text-muted">자신의 집을 공유해 보세요!! 안쓰는 방 활용 하여 돈도 벌고 국내 여행객 뿐 아니라 여려나라 사람들을 만나며 경험과 견문을 확장 시킬수 있는 기회입니다.</p>
       <p>
-        <a href="#" class="btn btn-primary my-2">자신의 home share</a>
+        <a href="home_register" class="btn btn-primary my-2">자신의 home share</a>
       </p>
     </div>
   </section>
@@ -46,7 +46,7 @@
                        if(vo.getHomeAttach()!=null){
                           for(HomeAttachVO home:vo.getHomeAttach()){
  //                            System.out.println("uuid "+home.getUuid());
-                         filePath=home.getUploadPath()+"\\1_"+home.getUuid()+"_"+home.getFileName();
+                         filePath=home.getUploadPath()+"\\s_"+home.getUuid()+"_"+home.getFileName();
                              String oriPath = filePath;
                              oriPath= oriPath.replaceAll("\\\\","/");
                          // 이렇게 변수에 담고
