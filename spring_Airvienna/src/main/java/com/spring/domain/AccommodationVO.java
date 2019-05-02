@@ -34,5 +34,5 @@ public class AccommodationVO {
 	
 	//파일 첨부 목록 추가하기
 	
-	private List<HomeAttachVO> HomeAttach;
+	private List<HomeAttachVO> homeAttach;
 }

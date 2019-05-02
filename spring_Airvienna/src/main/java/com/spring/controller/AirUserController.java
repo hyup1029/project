@@ -1,6 +1,7 @@
 package com.spring.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,9 +28,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.spring.domain.AccommodationVO;
 import com.spring.domain.AirUserVO;
 import com.spring.domain.Criteria;
+import com.spring.domain.HomeAttachVO;
 import com.spring.domain.jjimVO;
 import com.spring.service.AccommodationService;
 import com.spring.service.AirUserService;
+import com.spring.service.HomeRegisterService;
 
 import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
@@ -44,6 +47,8 @@ public class AirUserController {
 	private AirUserService service;
 	@Inject
 	private AccommodationService homeservice;
+	@Inject 
+	private HomeRegisterService homeattservice;
 	
 	@GetMapping("/joinpage")
 	public void join() {
@@ -214,10 +219,23 @@ public class AirUserController {
 		return "AirVienna/accommodationlist";
 	}
 	@GetMapping("/accommodationlist")
-	public void listpage(Criteria ct, Model model){
+	public void listpage(Criteria ct, Model model)
+
+{
 		log.info("리스트페이지 호출...");
 		ct.setType("E");
-		List<AccommodationVO> list=homeservice.optionE(ct);
+		List<AccommodationVO> list = homeservice.optionE(ct);
+		
+		//list의 ano추출
+		for(AccommodationVO vo:list) {
+			int ano=vo.getAno();
+			HomeAttachVO vo2 = homeattservice.homeAttachList(ano);
+			vo.setHomeAttach(new ArrayList<>());
+			
+			vo.getHomeAttach().add(vo2);
+			log.info(vo+"");
+		}
+		log.info(list+"");
 		model.addAttribute("list",list);
 	}
 	@PostMapping("/jjimregist")

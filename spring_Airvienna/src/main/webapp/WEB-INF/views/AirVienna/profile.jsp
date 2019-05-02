@@ -8,16 +8,33 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
- <style>
-.wen {width:200px; height:200px; border-radius:200px;margin-top:50px; margin: 0 auto; overflow:hidden; border: solid 2px #cccccc;}
-.wen img {height:200px; width:200px; display:block; margin:0 auto;}
-.navbar {border-bottom: solid 1px #cccccc;}
- </style>
+<style>
+.wen {
+	width: 200px;
+	height: 200px;
+	border-radius: 200px;
+	margin-top: 50px;
+	margin: 0 auto;
+	overflow: hidden;
+	border: solid 2px #cccccc;
+}
+
+.wen img {
+	height: 200px;
+	width: 200px;
+	display: block;
+	margin: 0 auto;
+}
+
+.navbar {
+	border-bottom: solid 1px #cccccc;
+}
+</style>
 
 </head>
 
 
-<div class="container" style = "margin-top: 50px;">
+<div class="container" style="margin-top: 50px;">
 
 	<div class="row">
 		<div class="col-sm-3">
@@ -31,9 +48,9 @@
 
 			</div>
 			<br>
-			<h5 style ="text-align: center;">~ 님</h5>
+			<h5 style="text-align: center;">~ 님</h5>
 			<ul class="list-group">
-				
+
 				<li class="list-group-item text-muted">Activity <i
 					class="fa fa-dashboard fa-1x"></i></li>
 				<li class="list-group-item text-right"><span class="pull-left"><strong>Shares</strong></span>
@@ -63,9 +80,8 @@
 			<div class="tab-content">
 				<div class="tab-pane active" id="home">
 					<form class="form" action="##" method="post" id="registrationForm">
-
+						<h4 class="mb-3">프로필 정보</h4>
 						<div class="form-group">
-
 							<div class="col-xs-6">
 								<label for="phone">이름</label>
 
@@ -91,16 +107,37 @@
 						<div class="form-group">
 
 							<div class="col-xs-6">
-								<label for="email">주소</label> asdasdasdasd
+								<label for="email">주소</label>
 							</div>
 						</div>
-
-
-
 					</form>
-
 					<hr>
+					<h4 class="mb-3">등록된 집</h4>
+					<div class="row">
+						<div class="col-lg-4 text-center" style="margin-top: 10px;">
+							<div class="home_container">
+								<div>
+									<img src="/resources/img/a.jpg" class="home_img">
+								</div>
 
+							</div>
+
+						</div>
+						<div class="col-lg-8" style="padding-right: 55px;">
+							<ul class="list-layout picture-tiles clearfix ui-sortable"></ul>
+							<h3 style="margin-top: 10px;">집이름</h3>
+
+							<hr>
+							<p>집 간단설명</p>
+							<div class="row row-condensed">
+								<div class="">
+									<span class="file-input-container"> <iframe
+											id="upload_frame" name="upload_frame" style="display: none;"></iframe>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 
 
