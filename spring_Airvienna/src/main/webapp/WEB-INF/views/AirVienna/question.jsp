@@ -8,7 +8,7 @@
                 <span class="cs-faq__contents-title-left">
                     <span class="cs-faq__contents-desc-question-mark"></span>
                     <span class="cs-faq__contents-title ">
-                        [로켓와우] 로켓페이를 사용해야만 로켓와우클럽에 가입할 수 있나요?
+                        [air비엔나] 집사진 어떤것을 써야 좋을까요?
                     </span>
                 </span>
             <span class="cs-faq__contents-title-right">
@@ -34,7 +34,7 @@
                 <span class="cs-faq__contents-title-left">
                     <span class="cs-faq__contents-desc-question-mark"></span>
                     <span class="cs-faq__contents-title ">
-                        [로켓페이] 로켓페이 종류는 어떤것이 있나요?
+                        [air비엔나] 집 등록 과정은 어떻게 되나요?
                     </span>
                 </span>
             <span class="cs-faq__contents-title-right">
@@ -49,15 +49,15 @@
                     </td>
                     <td halign="left" valign="top">
                         <div class="cs-faq__contents-desc-answer-area"><p><span style="font-family: Dotum; white-space: pre-wrap;">로켓페이는 계좌이체, 신용카드, 로켓머니로 이용이 가능합니다.</span><br></p><p><font face="Dotum"><span style="white-space: pre-wrap;">
-[로켓페이 등록 방법] 
-1. 로켓페이 계좌이체: [마이쿠팡 &gt; 간편결제 로켓페 &gt; 은행계좌 추가] 
-2. 로켓페이 신용카드: [마이쿠팡 &gt; 간편결제 로켓페이 &gt; 결제수단 관리 &gt; 신용카드 추가] 
-3. 로켓머니 충전:  [마이쿠팡 &gt; 간편결제 로켓페 &gt; 로켓머니]
- 로켓머니 전용 충전계좌를 발급받은 후 원하시는 금액을 미리 이체(충전)하여 사용
+[집 등록 방법] 
+1. List에서 집 등록 버튼 클릭
+2. 양식에 맞춰서 기입
+3. 사진 추가 (3장):  [신중하게 결정 &gt; 3장 한정]
+4. 성공적 집등록
 
 ■ 참고내용
- - 로켓페이 계좌이체/카드는 총 10개까지 등록 가능합니다. 
- - 로켓페이-계좌이체/로켓머니로 결제 시 결제금액의 2%를 쿠팡캐시로 적립해 드립니다.</span></font><br></p></div>
+ - 고객센터 전화. 
+ - 예약 성공시 결제금액의 2%를 포인트로 적립해 드립 수 있게 할 예정입니다.</span></font><br></p></div>
                     </td>
                 </tr>
             </tbody></table>

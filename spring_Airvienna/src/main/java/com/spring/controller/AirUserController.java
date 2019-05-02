@@ -55,6 +55,7 @@ public class AirUserController {
 	@Inject 
 	private HomeRegisterService homeattservice;
 	
+	
 	@GetMapping("/step1")
 	public void step1() {
 		log.info("step1 페이지 호출");
@@ -147,6 +148,32 @@ public class AirUserController {
 	public String handleStep2_3Get() {
 		return "redirect:step1";
 	}
+	
+	@PostMapping("/home_register")
+	public String homeRegister(@ModelAttribute("info")AirUserVO info,AccommodationVO vo) {
+		log.info("집정보 등록...");
+		log.info(vo+"aa");
+		vo.setBno(info.getBno());
+		if(vo.getHomeAttach() != null) {
+			for (HomeAttachVO attach : vo.getHomeAttach()) {
+				log.info("" + attach);
+			}
+		}
+		homeattservice.homeRegister(vo);
+		return "redirect:accommodationlist";
+		
+	}
+	
+	@GetMapping("/home_register")
+	public String home_register(AirUserVO info, Model model) {
+		log.info("집등록페이지 호출...");
+		
+		
+		return "AirVienna/home_register";
+	}
+
+	
+	
 	
 	@ResponseBody
 	@PostMapping("/checkEmail")
@@ -249,6 +276,7 @@ public class AirUserController {
 			List<AccommodationVO> list=homeservice.optionE(ct);
 			model.addAttribute("ct",ct);
 			model.addAttribute("list",list);
+		
 		
 		return "AirVienna/accommodationlist";
 	}

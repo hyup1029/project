@@ -40,11 +40,7 @@ public class MainController {
 		
 		return "AirVienna/Mypage";
 	}
-	@GetMapping("/home_register")
-	public String home_register() {
-		
-		return "AirVienna/home_register";
-	}
+
 	
 	@GetMapping("/profile")
 	public void profilePage(int bno,Model model){
@@ -65,9 +61,20 @@ public class MainController {
 		log.info("vo는 오는지" + vo);
 		model.addAttribute("vo",vo);
 	}
-	@GetMapping("/costomercenter")
-	public void costomercenter() {
-		
+	
+	@PostMapping(value = "/Readpage")
+	public String toPay(Model model,ReserveVO vo, AccommodationVO product)  {
+	
+		log.info("예약 : "+vo);
+		product = service.getPage(1);
+		model.addAttribute("vo",product);
+		model.addAttribute("resev",vo);
+		return "AirVienna/pay";
+	}
+	
+	@GetMapping("/completePay")
+	public void completePay() {
+		log.info("Complete buy");
 	}
 	@GetMapping("/question")
 	public String question(Model model) {
@@ -95,19 +102,8 @@ public class MainController {
 		log.info("확인"+inform);
 		return"AirVienna/costomercenter";
 	}
-	
-	@PostMapping(value = "/Readpage")
-	public String toPay(Model model,ReserveVO vo, AccommodationVO product)  {
-
-		log.info("예약 : "+vo);
-		product = service.getPage(1);
-		model.addAttribute("vo",product);
-		model.addAttribute("resev",vo);
-		return "AirVienna/pay";
-	}
-	
-	@GetMapping("/completePay")
-	public void completePay() {
-		log.info("Complete buy");
+	@GetMapping("/costomercenter")
+	public void costomercenter() {
+		
 	}
 }

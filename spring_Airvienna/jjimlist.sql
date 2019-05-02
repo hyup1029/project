@@ -1,7 +1,6 @@
 create table jjimlist(
-	jno number(10,0)constraint pk_jjimlist primary key,
 	bno number(10)not null,
-	ano number(10,0)not null,
+	ano number(10,0)constraint pk_jjimlist primary key,
 	homename nvarchar2(200) not null,
 	jjimselect char(1) default '0'
 ); <!-- 찜 디비 가격추가 -->
@@ -16,9 +15,3 @@ delete from JJIMLIST;
 select * from JJIMLIST;
 
 drop table JJIMLIST;
-drop sequence seq_jjim;
-create sequence seq_jjim;
-
-
-ALTER TABLE airuser DROP PRIMARY KEY;
-alter table jjimlist add jno number(10,0) pk_jjimlist primary key;

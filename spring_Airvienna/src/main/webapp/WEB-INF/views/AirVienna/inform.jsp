@@ -33,7 +33,7 @@
                 <span class="cs-faq__contents-title-left">
                     <span class="cs-faq__contents-desc-question-mark"></span>
                     <span class="cs-faq__contents-title ">
-                        [로켓페이] 로켓페이 종류는 어떤것이 있나요?
+                        [포인트 제도 도입] 다음달 부터 예약 완료후 결제 금액을 포인트로 돌려줌
                     </span>
                 </span>
             <span class="cs-faq__contents-title-right">
@@ -48,15 +48,13 @@
                     </td>
                     <td halign="left" valign="top">
                         <div class="cs-faq__contents-desc-answer-area"><p><span style="font-family: Dotum; white-space: pre-wrap;">로켓페이는 계좌이체, 신용카드, 로켓머니로 이용이 가능합니다.</span><br></p><p><font face="Dotum"><span style="white-space: pre-wrap;">
-[로켓페이 등록 방법] 
-1. 로켓페이 계좌이체: [마이쿠팡 &gt; 간편결제 로켓페 &gt; 은행계좌 추가] 
-2. 로켓페이 신용카드: [마이쿠팡 &gt; 간편결제 로켓페이 &gt; 결제수단 관리 &gt; 신용카드 추가] 
-3. 로켓머니 충전:  [마이쿠팡 &gt; 간편결제 로켓페 &gt; 로켓머니]
- 로켓머니 전용 충전계좌를 발급받은 후 원하시는 금액을 미리 이체(충전)하여 사용
+[포인트 제도 준비중] 
+포인트 제도를 도입하려 준비 중입니다.
+점점더 발전하는 귀여운 소시지가 되겠습니다.
 
-■ 참고내용
- - 로켓페이 계좌이체/카드는 총 10개까지 등록 가능합니다. 
- - 로켓페이-계좌이체/로켓머니로 결제 시 결제금액의 2%를 쿠팡캐시로 적립해 드립니다.</span></font><br></p></div>
+■ 페이지 제작자 체용
+ - 페이지를 잘 많드는 인제를 체용하고 있습니다 
+ - 자신있으신 분은 언제든지 고객센터로 문의 주십시오.</span></font><br></p></div>
                     </td>
                 </tr>
             </tbody></table>

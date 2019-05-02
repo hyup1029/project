@@ -12,11 +12,20 @@
           font-size: 3.5rem;
         }
       }
-.text-center{
-	background-size : auto;
-}
-.abc{
-	font-family: 새굴림;
-	font-size: 25px;
-	color:#3B240B;
-}
+      .jjim{
+      	position: absolute !important;
+    	right: 8px !important;
+    	top: 8px !important;
+    	padding: 8px !important;
+      }
+      ._jjim{
+      	cursor: pointer !important;
+   		background-color: white !important;
+    	color: buttontext !important;
+    	display: block !important;
+    	border-width: 0px !important;
+    	border-style: initial !important;
+    	border-color: initial !important;
+    	border-image: initial !important;
+      }
+      

@@ -4,7 +4,7 @@
 <script src="/resources/js/joinform.js"></script><!--form validation script -->
 <link rel="stylesheet" href="/resources/css/upload.css" />
 	<div class="container" style="margin-top:40px">
-	<form class="form-signin" action="step3" method="post" role="form" enctype="multipart/form-data" id="joinpage">
+	<form class="form-signin" action="" method="post" role="form" enctype="multipart/form-data" id="joinpage">
 		<div class="wen" >				
 			<div class="uploadDiv">
 				<img src="/resources/img/vienna.PNG" class="photo" />

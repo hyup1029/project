@@ -7,15 +7,19 @@
 <%@include file="../includes/header.jsp" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<link rel="stylesheet" href="/resources/css/accommodationlist.css"/>
+<style>
+ #ddd {
+ 
+ }                        			
+              		</style>
 <main role="main">
 
-  <section class="jumbotron text-center" style="padding-bottom: 100px;">
-    <div class="container"style="padding-top: 30px;">
+  <section class="jumbotron text-center">
+    <div class="container">
       <h1 class="jumbotron-heading">모두가 호스트</h1>
-      <p class="lead text-muted" style="margin-top: 20px;">자신의 집을 공유해 보세요!! 안쓰는 방 활용 하여 돈도 벌고 국내 여행객 뿐 아니라 여려나라 사람들을 만나며 경험과 견문을 확장 시킬수 있는 기회입니다.</p>
-      <p style="padding-top: 20px;margin-bottom: 0px;">
-        <a href="#" class="btn btn-primary my-2">자신의 home share</a>
+      <p class="lead text-muted">자신의 집을 공유해 보세요!! 안쓰는 방 활용 하여 돈도 벌고 국내 여행객 뿐 아니라 여려나라 사람들을 만나며 경험과 견문을 확장 시킬수 있는 기회입니다.</p>
+      <p>
+        <a href="home_register" class="btn btn-primary my-2">자신의 home share</a>
       </p>
     </div>
   </section>
@@ -45,7 +49,7 @@
               			if(vo.getHomeAttach()!=null){
               				for(HomeAttachVO home:vo.getHomeAttach()){
  //             					System.out.println("uuid "+home.getUuid());
- 								filePath=home.getUploadPath()+"\\1_"+home.getUuid()+"_"+home.getFileName();
+ 								filePath=home.getUploadPath()+"\\s_"+home.getUuid()+"_"+home.getFileName();
     		          			String oriPath = filePath;
     		          			oriPath= oriPath.replaceAll("\\\\","/");
  								// 이렇게 변수에 담고
@@ -56,7 +60,7 @@
               %>        
               
                                     
-              <img src="/homedisplay?fileName=<%=oriPath%>" style='margin-top:10px; width:96%; height:250px;'/>
+              <a href="Readpage"><img src="/homedisplay?fileName=<%=oriPath%>" style='margin-top:10px; width:96%; height:250px;'/></a>
               		<% } %>
               	<% } %> 
               
@@ -66,8 +70,8 @@
           
           <form class="jjimlist" action="jjimregist" method="post">
             <div class="card-body">
-              <p class="card-text"><%=vo.getHomename()%></p>
-              <h4 class="card-text"><%=vo.getBirfcontent()%></h4> 
+              <h4 class="card-text"><a href="Readpage"><%=vo.getHomename()%></a></h4>
+              <p class="card-text"><%=vo.getBirfcontent()%></p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <small class="card-tmuted">평점 : </small>
@@ -201,4 +205,3 @@
     <p>New to Bootstrap? <a href="https://getbootstrap.com/">Visit the homepage</a> or read our <a href="/docs/4.3/getting-started/introduction/">getting started guide</a>.</p>
   </div>
 </footer>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
