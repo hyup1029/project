@@ -30,6 +30,7 @@
 .navbar {
 	border-bottom: solid 1px #cccccc;
 }
+.tab{white-space:pre;}
 </style>
 
 </head>
@@ -84,31 +85,29 @@
 		</div>
 		<!--/col-3-->
 		<div class="col-sm-9">
-
 			<div class="tab-content">
 				<div class="tab-pane active" id="home">
 					<form class="form" action="##" method="post" id="registrationForm">
 						<h4 class="mb-3">프로필 정보</h4>
 						<div class="form-group">
 							<div class="col-xs-6">
-								<label for="name">이름&nbsp;</label>${info.username}
+								<label for="name" class="tab">이      름 &#9;</label>${info.username}
 							</div>
 						</div>
+						<div class="form-group">
+							<div class="col-xs-6">
+								<label for="tel" class="tab">전화번호 &nbsp;</label>${info.tel}
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-6">
+								<label for="email">이 메 일&nbsp;&nbsp;&nbsp;&nbsp;</label>${info.email}
+							</div>
+						</div>
+						<div class="form-group">
 
-						<div class="form-group">
 							<div class="col-xs-6">
-								<label for="tel">전화번호 &nbsp;</label>${info.tel}
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-xs-6">
-								<label for="email">이메일&nbsp;</label>${info.email}
-							</div>
-						</div>
-						<div class="form-group">
-
-							<div class="col-xs-6">
-								<label for="address">주소&nbsp;</label>${info.address}
+								<label for="address" class="tab">주      소 &#9;</label>${info.address}
 							</div>
 						</div>
 					</form>
