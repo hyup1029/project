@@ -40,11 +40,7 @@ public class MainController {
 		
 		return "AirVienna/Mypage";
 	}
-	@GetMapping("/home_register")
-	public String home_register() {
-		
-		return "AirVienna/home_register";
-	}
+
 	
 
 	@GetMapping("/password_change")
@@ -73,5 +69,35 @@ public class MainController {
 	@GetMapping("/completePay")
 	public void completePay() {
 		log.info("Complete buy");
+	}
+	@GetMapping("/question")
+	public String question(Model model) {
+		boolean question=true;
+		
+		model.addAttribute("question",question);
+		log.info("확인"+model);
+		log.info("확인"+question);
+		return"AirVienna/costomercenter";
+	}
+	@GetMapping("/costomersound")
+	public String costomersound(Model model) {
+		boolean costomersound=true;
+		
+		model.addAttribute("costomersound",costomersound);
+		log.info("확인"+model);
+		log.info("확인"+costomersound);
+		return"AirVienna/costomercenter";
+	}
+	@GetMapping("/inform")
+	public String inform(Model model) {
+		boolean inform=true;
+		
+		model.addAttribute("inform",inform);
+		log.info("확인"+inform);
+		return"AirVienna/costomercenter";
+	}
+	@GetMapping("/costomercenter")
+	public void costomercenter() {
+		
 	}
 }

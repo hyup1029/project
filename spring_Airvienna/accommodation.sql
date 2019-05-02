@@ -41,7 +41,9 @@ create table accommodation_attach(
 alter table accommodation_attach add constraint fk_accommodation
 foreign key(ano) references project_accommodation(ano);
 
-
+delete from accommodation_attach;
+delete from project_accommodation;
+delete from jjimlist;
 
 select * from accommodation_attach;
 
