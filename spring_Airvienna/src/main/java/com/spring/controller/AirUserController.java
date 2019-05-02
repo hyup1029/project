@@ -1,44 +1,38 @@
 package com.spring.controller;
 
 import java.io.File;
-import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.spring.domain.AccommodationVO;
 import com.spring.domain.AirUserVO;
 import com.spring.domain.Criteria;
-import com.spring.domain.SnsUserVO;
+import com.spring.domain.HomeAttachVO;
 import com.spring.domain.jjimVO;
 import com.spring.service.AccommodationService;
 import com.spring.service.AirUserService;
+import com.spring.service.HomeRegisterService;
 
 import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
@@ -46,13 +40,15 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("/AirVienna/*")
 @Slf4j
-@SessionAttributes({"info","jjimlist","sns"})
+@SessionAttributes({"info","jjimlist"})
 public class AirUserController {
 	
 	@Inject
 	private AirUserService service;
 	@Inject
 	private AccommodationService homeservice;
+	@Inject 
+	private HomeRegisterService homeattservice;
 	
 	@GetMapping("/joinpage")
 	public void join() {
@@ -88,8 +84,11 @@ public class AirUserController {
 			return "redirect:mainpage";
 		}else {
 			//log.info("로그인정보..."+vo.toString());
+			log.info("정보 : "+info.getEmail()+info.getUsername());
 			model.addAttribute("info",info);
-			log.info("정보 : "+info.getEmail()+info.getUuid()+info.getUploadPath()+info.getFileName());
+			int bno=info.getBno();
+			List<jjimVO> jjimlist=homeservice.jjimlist(bno);
+			model.addAttribute("jjimlist",jjimlist);
 			return "redirect:mainpage";
 		}
 	}
@@ -102,35 +101,10 @@ public class AirUserController {
 		return "redirect:mainpage";
 	}
 	
-	@PostMapping("/kakaoLogin")	
-	public ResponseEntity<String> kakaoLogin(@RequestBody SnsUserVO vo, Model model) {
-		log.info("kakao..."+vo.toString());
-		if(vo!=null) {
-			model.addAttribute("sns",vo);			
-		}
-		log.info("session..."+vo.toString());
-		return new ResponseEntity<>("success",HttpStatus.OK);
-	}
-	
 
-	@PostMapping(value="/googleLogin",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<String> googleLogin(@RequestBody SnsUserVO vo, Model model) {
-		log.info("google..."+vo.toString());
-		if(vo!=null) {
-			model.addAttribute("sns",vo);			
-		}
-		log.info("session..."+vo.toString());
-		return new ResponseEntity<>("success",HttpStatus.OK);
-	}
 	
-/*	@PostMapping(value="/googleLogin", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public String googleLogin(@RequestBody KakaoUserVO vo, Model model) {
-		log.info("google..."+vo.toString());
-		model.addAttribute("info",vo);
-		log.info("session..."+vo.toString());
-		return "redirect:mainpage";
-	}
-*/
+	
+	
 	@ResponseBody
 	@PostMapping("/checkEmail")
 	public String checkEmail(String email) {
@@ -245,10 +219,23 @@ public class AirUserController {
 		return "AirVienna/accommodationlist";
 	}
 	@GetMapping("/accommodationlist")
-	public void listpage(Criteria ct, Model model){
+	public void listpage(Criteria ct, Model model)
+
+{
 		log.info("리스트페이지 호출...");
 		ct.setType("E");
-		List<AccommodationVO> list=homeservice.optionE(ct);
+		List<AccommodationVO> list = homeservice.optionE(ct);
+		
+		//list의 ano추출
+		for(AccommodationVO vo:list) {
+			int ano=vo.getAno();
+			HomeAttachVO vo2 = homeattservice.homeAttachList(ano);
+			vo.setHomeAttach(new ArrayList<>());
+			
+			vo.getHomeAttach().add(vo2);
+			log.info(vo+"");
+		}
+		log.info(list+"");
 		model.addAttribute("list",list);
 	}
 	@PostMapping("/jjimregist")
