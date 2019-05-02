@@ -42,13 +42,7 @@ public class MainController {
 	}
 
 	
-	@GetMapping("/profile")
-	public void profilePage(int bno,Model model){
-		log.info("프로필페이지 호출...");
-		AirUserVO vo = Airservice.profile(bno);
-		model.addAttribute("vo"+vo);
-		
-	}	
+
 	@GetMapping("/password_change")
 	public void passwordPage(){
 		log.info("프로필페이지 호출...");
