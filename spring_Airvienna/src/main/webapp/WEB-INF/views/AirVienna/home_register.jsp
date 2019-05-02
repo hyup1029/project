@@ -297,10 +297,10 @@ $(function(){
 		$(".uploadResult span").each(function(i,obj){
 			var job=$(obj);
 			
-			str+="<input type='hidden' name='HomeAttach["+i+"].uuid' value='"+job.data("uuid")+"'>";
-			str+="<input type='hidden' name='HomeAttach["+i+"].uploadPath' value='"+job.data("path")+"'>";
-			str+="<input type='hidden' name='HomeAttach["+i+"].fileName' value='"+job.data("filename")+"'>";
-			str+="<input type='hidden' name='HomeAttach["+i+"].fileType' value='"+job.data("type")+"'>";
+			str+="<input type='hidden' name='homeAttach["+i+"].uuid' value='"+job.data("uuid")+"'>";
+			str+="<input type='hidden' name='homeAttach["+i+"].uploadPath' value='"+job.data("path")+"'>";
+			str+="<input type='hidden' name='homeAttach["+i+"].fileName' value='"+job.data("filename")+"'>";
+			str+="<input type='hidden' name='homeAttach["+i+"].fileType' value='"+job.data("type")+"'>";
 		});
 		console.log(str);
 		formObj.append(str);
@@ -374,7 +374,6 @@ $(function(){
 					var filePath=encodeURIComponent(obj.uploadPath+"\\s_"+obj.uuid+"_"+obj.fileName);
  					//원본 파일 이미지 경로
 					var oriPath=obj.uploadPath+"\\"+obj.uuid+"_"+obj.fileName;
- 					
  					
 					//폴더 구분의 \를 /로 바꾸는 작업
 					oriPath=oriPath.replace(new RegExp(/\\/g),"/");

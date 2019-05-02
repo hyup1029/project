@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.spring.domain.AccommodationVO;
 import com.spring.domain.AirUserVO;
 import com.spring.mapper.AirUserMapper;
 
@@ -27,6 +28,12 @@ public class AirUserServiceImpl implements AirUserService {
 	public AirUserVO login(AirUserVO vo) {
 		return mapper.login(vo);
 	}
+
+	@Override
+	public AirUserVO profile(int bno) {
+		return mapper.profile(bno);
+	}
+
 
 
 }

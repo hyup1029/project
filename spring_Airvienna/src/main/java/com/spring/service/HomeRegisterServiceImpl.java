@@ -37,8 +37,13 @@ public class HomeRegisterServiceImpl implements HomeRegisterService {
 	}
 
 	@Override
-	public List<HomeAttachVO> attachList(int ano) {
+	public List<HomeAttachVO> findByAno(int ano) {
 		return attachMapper.findByAno(ano);
+	}
+
+	@Override
+	public HomeAttachVO homeAttachList(int ano) {
+		return attachMapper.homeAttachList(ano);
 	}
 
 }

@@ -11,7 +11,8 @@ public interface HomeRegisterService {
 	
 	
 	
-	// 첨부파일
-	public List<HomeAttachVO> attachList(int ano);
+	// 첨부파일 목록
+	public HomeAttachVO homeAttachList(int ano);
+	public List<HomeAttachVO> findByAno(int ano);
 	
 }

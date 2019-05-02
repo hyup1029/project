@@ -16,9 +16,12 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.domain.AccommodationVO;
+import com.spring.domain.AirUserVO;
 import com.spring.domain.Criteria;
+import com.spring.domain.ReserveVO;
 import com.spring.domain.jjimVO;
 import com.spring.service.AccommodationService;
+import com.spring.service.AirUserService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,7 +31,8 @@ import lombok.extern.slf4j.Slf4j;
 public class MainController {
 	@Inject
 	private AccommodationService service;
-	
+	@Inject
+	private AirUserService Airservice;
 	
 	
 	@GetMapping("/mypage")
@@ -43,8 +47,11 @@ public class MainController {
 	}
 	
 	@GetMapping("/profile")
-	public void profilePage(){
+	public void profilePage(int bno,Model model){
 		log.info("프로필페이지 호출...");
+		AirUserVO vo = Airservice.profile(bno);
+		model.addAttribute("vo"+vo);
+		
 	}	
 	@GetMapping("/password_change")
 	public void passwordPage(){
@@ -53,7 +60,7 @@ public class MainController {
 	
 	@GetMapping("/Readpage")
 	public void readpage(AccommodationVO vo, Model model) {
-		vo = service.getPage(5);
+		vo = service.getPage(43);
 		log.info("리드 페이지 호출");
 		log.info("vo는 오는지" + vo);
 		model.addAttribute("vo",vo);
@@ -89,4 +96,18 @@ public class MainController {
 		return"AirVienna/costomercenter";
 	}
 	
+	@PostMapping(value = "/Readpage")
+	public String toPay(Model model,ReserveVO vo, AccommodationVO product)  {
+
+		log.info("예약 : "+vo);
+		product = service.getPage(1);
+		model.addAttribute("vo",product);
+		model.addAttribute("resev",vo);
+		return "AirVienna/pay";
+	}
+	
+	@GetMapping("/completePay")
+	public void completePay() {
+		log.info("Complete buy");
+	}
 }
