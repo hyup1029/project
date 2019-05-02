@@ -21,7 +21,7 @@ border-bottom: solid 1px #cccccc;
 	border-color: #cccccc;
 	width: 800px;
 	margin-top: 5%;
-	height: 700px;
+	height: 800px;
 	float: right;	
 
 }
@@ -75,6 +75,18 @@ border-bottom: solid 1px #cccccc;
 	font-size: 18px;
 	
 }
+#uploadIMG {
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 101.988636px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin-left: 570px;
+    position : relative;
+    bottom: 34px;
+
+    
+}
 
 
 .wen {width:200px; height:200px; border-radius:200px;margin-top:50px; margin: 0 auto; overflow:hidden; border: solid 2px #cccccc;}
@@ -85,7 +97,7 @@ border-bottom: solid 1px #cccccc;
 </style>
 
 
-<title>마이페이지</title>
+<title>나의 집 관리</title>
 </head>	
 	<div class="container">
 	
@@ -99,81 +111,71 @@ border-bottom: solid 1px #cccccc;
 			
 		<div class="necessary">
 			<div class="panel-heading">
-				<h5 class="panel-title">필수사항</h5>
+				<h5 class="panel-title">집 정보 수정</h5>
 			</div>
 			
 			<form action="" id ="memberinfo" style = "margin-left : 100px">
 		<div class="row">
 			<div class="col-md-6 mb-3">
-				<label for="firstName">이메일</label> 
-				<input type="text" class="form-control" id="firstName" value="" readonly>
+				<label for="firstName">집 이름</label> 
+				<input type="text" class="form-control" id="firstName" value="">
 			</div>
 			<div class="col-md-6 mb-3">
-				<label for="lastName">이름</label> 
-				<input type="text" class="form-control" id="lastName" value="" readonly style ="width : 200px;">
+				<label for="lastName">가격</label> 
+				<input type="text" class="form-control" id="lastName" value="" style ="width : 200px;">
 			</div>
 		</div>
 		
+			
 		
-		<div class="form-group">
-			<label for="tel">전화번호</label>
-			<input type="text" class="form-control" name="tel" id="tel" placeholder="ex)010-xxxx-xxxx" style ="width : 346px;"/> 
-			<small id="tel" class="text-info"></small>
-		</div>
-		
-		<div class="form-group">
-			<label for="birth">생년월일</label> 
-			<input type="text" class="form-control" name="birth" id="birth" placeholder="ex)yymmdd" style ="width : 346px;" />
-			<small id="birth" class="text-info"></small>
-		</div>
-		
-			<button type="submit" class="btn btn-primary" style ="margin-top: 10px;">수정완료</button>
-			<button type="reset" class="btn btn-danger" style ="margin-top: 10px; margin-left: 5px" >취소</button>
+		<div class="fome-group">
+						<label for="simple_intro"> 간단한 소개 </label>
+						 <input type="text" class="form-control" id="birfcontent" name="birfcontent" placeholder="자신의 집을 간단하게 소개해보세요!" style="width:525px;">
+					</div>
+					
+					<label for="home_intro">상세 설명 </label>
+				 <textarea class="form-control" id="content" name ="content" rows="7" style = "margin-bottom: 5%; width:525px;" placeholder ="(편의시설,방 갯수,구조,집의 상태 등등)"></textarea>
 			
 			</form>
 			
 			
 			<div class="panel-heading">
-				<h5 class="panel-title">프로필 사진</h5>
+				<h5 class="panel-title">나의 집 사진</h5>
 			</div>
-
-
-
-<div class="panel-body photos-section">
-    <div class="row">
-      <div class="col-lg-4 text-center" style = "margin-top : 10px;">
- 			<div class="wen">
-				<div>
-					<img src="/resources/img/vienna.PNG" class="photo"/> <input
-						type="file" name="uploadFile" class="file" />
-				</div>
-
-        </div>
-
-      </div>
-      <div class="col-lg-8" style ="padding-right : 55px;">
-        <ul class="list-layout picture-tiles clearfix ui-sortable"></ul>
-        <h3 style = "margin-top : 10px;">프로필사진을 변경 할 수 있습니다.</h3>
-        
-		<hr />
-        <p>
-      	    호스트와 게스트가 서로를 알 수 있도록 선명하게 나온 얼굴 정면 사진을 사용하는 것이 중요합니다. 풍경 사진을 올리면 호스트가 알아보기 힘들겠죠?
-      	    회원님의 얼굴이 선명하게 보이며 호스트나 게스트에게 공개하고 싶지 않은 개인 정보나 민감한 정보가 나타나지 않은 사진을 사용하세요.
-        </p>
-        <div class="row row-condensed">
-          <div class="">
-            <span class="file-input-container">
-              <iframe id="upload_frame" name="upload_frame" style="display:none;"></iframe>
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-			
-			
+					<div style="margin-left : 150px; margin-top : 20px;">
+					<h3 class="text-info">집 사진을 변경하세요</h3>
+					<p class="text-muted">여기서 집 사진을 변경할 수 있습니다.</p>
+					</div>
+					<!--이미지 업로드 구간 시작-->
+					<div class="box">
+						<!-- 파일업로드 썸네일 부분  -->
+							<div class="uploadResult">
+						
+							</div>
+						<!-- 파일 추가 부분 -->
+						<div class="row" style="margin-top:10px; width : 500px;">
+							<div class="col-sm-10" style ="border : 1px solid #cccccc; background-color: white; border-radius: 5px; left:10px; margin-left: 150px;">
+								<span class="control-fileupload">
+								<input type="file" name="uploadFile" multiple="multiple" style="margin:3px; right : 12px; position: relative;">
+								</span>
+							</div>
+							<div class="col-sm-2">
+						<button type="button" class="btn btn-primary btn-block" id="uploadIMG">
+									<i class="icon-upload icon-white"></i> 사진등록 </button>
+							</div>
+						</div>
+					<div style="margin-left: 150px; margin-top: 15x;	">
+					<button type="submit" class="btn btn-primary" style ="margin-top: 10px;">수정완료</button>
+					<button type="reset" class="btn btn-danger" style ="margin-top: 10px; margin-left: 5px" >취소</button>
+					</div>
 		</div>
 	</div>
+
+
+
+	</div>
+
+	
 	
 	
 	<!-- 프로필 사진을 클릭했을때 이미지 업로드 -->

@@ -17,22 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/AirVienna/*")
 public class HomeController {
 
-	@Autowired
-	private HomeRegisterService service;
-	
-	
-	@PostMapping("/home_register")
-	public String homeRegister(AccommodationVO vo) {
-		log.info("집정보 등록...");
-		log.info(vo+"aa");
-		if(vo.getHomeAttach() != null) {
-			for (HomeAttachVO attach : vo.getHomeAttach()) {
-				log.info("" + attach);
-			}
-		}
-		service.homeRegister(vo);
-		return "redirect:accommodationlist";
-		
-	}
-	
+   
+   
+   
 }
