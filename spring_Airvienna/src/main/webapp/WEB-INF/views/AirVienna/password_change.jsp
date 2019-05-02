@@ -84,16 +84,16 @@ border-bottom: solid 1px #cccccc;
 
 </style>
 
-
 <title>마이페이지</title>
 </head>	
+
 	<div class="container">
 	
 		<div class="menu" id="menu">
-			<a class="dropdown-item" href="#" id ="side">프로필 수정</a>
-			<a class="dropdown-item" href="#" id ="side">비밀번호 변경</a>
-			 <a class="dropdown-item" href="#" id ="side">나의 후기관리</a>
-			  <a class="dropdown-item" href="#" id ="side">추천글 관리</a>
+			<a class="dropdown-item" href="mypage" id ="side">프로필 수정</a>
+			<a class="dropdown-item" href="password_change" id ="side">비밀번호 변경</a>
+			 <a class="dropdown-item" href="home_modify" id ="side">나의 집 관리</a>
+			  <a class="dropdown-item" href="#" id ="side">찜목록 관리</a>
 				<button type="button" class="btn-side btn-primary btn-lg">프로필 보기</button>
 			</div>
 			

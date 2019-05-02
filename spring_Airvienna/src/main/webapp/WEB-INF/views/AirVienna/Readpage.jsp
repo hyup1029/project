@@ -2,6 +2,14 @@
    pageEncoding="UTF-8"%>
 <%@include file="../includes/header.jsp"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%
+   int price = 50000;
+
+   String email = "ajdzl777@naver.com";
+
+   String content = "너무 좋아요!";
+%>
+
 <link rel="canonical"
    href="https://getbootstrap.com/docs/4.3/examples/carousel/">
 
@@ -138,7 +146,8 @@
             <text x="50%" y="50%" fill="#777" dy=".3em"></text>
             </img>
 
-            <p style="text-align: center;">${vo.ano}</p>
+            <p style="text-align: center;">${info.username}</p>
+
 
          </div>
 
@@ -252,9 +261,9 @@
 
             <p style="margin-top: 15px; text-align: center">
 
-               조식 : <input type="checkbox"
+               조식 : <input type="radio"
                   style="text-align: right; width: 30px; background-clip: padding-box; border: 1px solid #ced4da; border-radius: .25rem"
-                  name="num" placeholder="0" readonly="readonly" />
+                  name="breakfast" value = "${vo.breakfast}" placeholder="0" readonly="readonly" />
 
             </p>
 
@@ -271,9 +280,9 @@
 
             <p style="margin-top: 15px; text-align: center">
 
-               주차장 : <input type="checkbox"
+               주차장 : <input type="radio"
                   style="text-align: right; width: 30px; background-clip: padding-box; border: 1px solid #ced4da; border-radius: .25rem"
-                  name="num" placeholder="0" readonly="readonly" />
+                  name="parkingarea" value = "${vo.parkingarea}" placeholder="0" readonly="readonly" />
 
             </p>
 
@@ -291,9 +300,9 @@
 
             <p style="margin-top: 15px; text-align: center">
 
-               와이파이 : <input type="checkbox"
+               와이파이 : <input type="radio"
                   style="text-align: right; width: 30px; background-clip: padding-box; border: 1px solid #ced4da; border-radius: .25rem"
-                  name="num" placeholder="0" readonly="readonly" />
+                  name="wifi" value = "${vo.wifi}" placeholder="0" readonly="readonly" />
             </p>
          </div>
       </div>
@@ -321,7 +330,7 @@
          // 주소로 좌표를 검색합니다
          geocoder
                .addressSearch(
-                     "${vo.region}",
+                     "${vo.region2}",
                      function(result, status) {
 
                         // 정상적으로 검색이 완료됐으면 
@@ -385,8 +394,8 @@
    </div>
 
    <script>
-      var ano = 43;
-
+      var ano = ${vo.ano};
+     var name = '${info.username}';
       $('button[name=commentInsertBtn]').click(function() { //댓글 등록 버튼 클릭시 
 
          var reply = {
@@ -418,14 +427,14 @@
                   success : function(data) {
                      var a = '';
                      console.log(data);
-
+            
                      $(data)
                            .each(
                                  function(i, obj) {
 
                                     a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
                                     a += "<div class='commentInfo'>"
-                                          + obj.ano;
+                                          + name;
                                     a += '<a onclick="commentUpdate('
                                           + obj.ano
                                           + ',\''
@@ -434,7 +443,7 @@
                                     a += '<a onclick="commentDelete('
                                           + obj.ano
                                           + ');"> </a> </div>';
-                                    a += '<div class="commentContent'+obj.ano+'"> <p>'
+                                    a += '<div class="commentContent'+name+'"> <p>'
                                           + obj.content + '</p>';
                                     a += '</div></div>';
                                  });
@@ -452,9 +461,7 @@
    <form id="operForm" action="/board/modify">
       <input type="hidden" name="ano" value="${vo.ano}" />
    </form>
-   <script>
-      
-   </script> <script>
+  <script>
    window.jQuery
          || document
                .write('<script src="/resources/js/jquery-slim.min.js"><\/script>')
@@ -467,6 +474,7 @@
 <script>
    $(function() {
 
+      
       var resultp = $(".result");
       var price = ${vo.price};
       var checkin;
@@ -525,7 +533,31 @@
             resultp.val(price * people * resultd);
          }
       });
-
+      
+      $(document).ready(function() {
+          var breakfast =  $('input:radio[name="breakfast"]').val();
+          var parkingarea = $('input:radio[name="parkingarea"]').val();
+          var wifi = $('input:radio[name="wifi"]').val();
+          
+          console.log(breakfast);
+          console.log(parkingarea);
+          if (breakfast === 'true'){
+             $('input:radio[name="breakfast"]').prop("checked",true);
+          }
+          
+          if (parkingarea === 'true'){
+             $('input:radio[name="parkingarea"]').prop("checked",true);
+          }
+          
+          if (wifi === 'true'){
+             $('input:radio[name="wifi"]').prop("checked",true);
+          }
+             
+             
+             
+             //페이지 로딩시 댓글 목록 출력 
+       });
+      
    });
 </script>
 </html>

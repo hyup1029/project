@@ -10,7 +10,9 @@
 	insert into spring_reply (cno, ano, content)
 	values (rep_seq.nextVal,#{ano},#{content})
 </insert>
-
+<select id = "replyCnt" resultType = "int">
+	select * from spring_reply where ano = #{ano}
+</select>
 
 
 

@@ -8,4 +8,5 @@ public interface ReplyService {
 
 	public List<ReplyVO> replyList(int ano);
 	public int replyInsert(ReplyVO vo);
+	public int replyCnt(int ano);
 }
