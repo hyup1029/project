@@ -7,8 +7,8 @@
 		select seq_accommodation.nextVal from dual
 		</selectKey>
 		insert into project_accommodation
-		(ano,homename,maxperson,birfcontent,content,price,bedcount,breakfast,parkingarea,wifi,region,region2,region3,region4,region5,ReplyCnt)
-		values(#{ano},#{homename},#{maxperson},#{birfcontent},#{content},#{price},#{bedcount},#{breakfast},#{parkingarea},#{wifi},#{region},#{region2},#{region3},#{region4},#{region5},0)
+		(ano,bno,homename,maxperson,birfcontent,content,price,bedcount,breakfast,parkingarea,wifi,region,region2,region3,region4,region5,ReplyCnt)
+		values(#{ano},#{bno},#{homename},#{maxperson},#{birfcontent},#{content},#{price},#{bedcount},#{breakfast},#{parkingarea},#{wifi},#{region},#{region2},#{region3},#{region4},#{region5},0)
 	</insert>
 
 </mapper>

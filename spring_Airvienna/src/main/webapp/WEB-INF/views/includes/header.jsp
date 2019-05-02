@@ -174,6 +174,9 @@ div{
     line-height: 1 !important;
     padding: 8px !important;
     border-bottom: 2px solid transparent !important;
+    font-size: 18px;
+    letter-spacing: -1px;
+    font-weight: bold;
 }
 ._lvb55za {
     display: inline-block !important;
@@ -211,7 +214,7 @@ div{
 		<li class="_li1">
 			<div>
 				<div class="_div1">
-					<button type="button" class="buttonstyle">
+					<button type="button" class="buttonstyle"  onclick="location.href='costomercenter'">
 						<div class="buttonline">
 							<div class="buttonfont">고객센터
 							</div>
@@ -223,7 +226,7 @@ div{
 		<li class="_li1">
 			<div>
 				<div class="_div1">
-					<button type="button" class="buttonstyle" onclick="location.href='joinpage'">
+					<button type="button" class="buttonstyle" onclick="location.href='step1'">
 						<div class="buttonline">
 							<div class="buttonfont">회원가입
 							</div>
@@ -289,7 +292,7 @@ div{
 		<li class="_li1">
 			<div>
 				<div class="_div1">
-					<button type="button" class="buttonstyle">
+					<button type="button" class="buttonstyle"  onclick="location.href='costomercenter'">
 						<div class="buttonline">
 							<div class="buttonfont">고객센터
 							</div>
@@ -363,7 +366,7 @@ div{
 				<c:if test="${!empty info}">
 					<c:choose>
 						<c:when test="${empty info.uploadPath}">
-							<img alt=" " height="28" src="/resources/img/vienna.PNG" width="28" class="_1pa4v1p">
+							<img alt=" " height="28" src="/resources/img/vienna.PNG" width="28" class="_1pa4v1p" onclick="location.href='/AirVienna/mypage'">
 						</c:when>
 						<c:when test="${!empty info.uploadPath }">
 							<%
@@ -373,7 +376,7 @@ div{
 								filePath = filePath.replaceAll("\\\\", "/");
 								System.out.print("filePath"+filePath);
 							%>
-							<img alt=" " height="28" src="/display?fileName=<%=filePath%>" width="28" class="_1pa4v1p">
+							<img alt=" " height="28" src="/display?fileName=<%=filePath%>" width="28" class="_1pa4v1p" onclick="location.href='/AirVienna/mypage'">
 						</c:when>
 					</c:choose>
 				</c:if>

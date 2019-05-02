@@ -163,7 +163,7 @@
 						</div>
 						<div class="col-md-6 mb-3">
 							<label for="lastName">등록자 성명</label> <input type="text"
-								class="form-control" id="username" name ="username" value="" readonly="readonly">
+								class="form-control" id="username" name ="username" value="${info.username}" readonly="readonly">
 						</div>
 					</div>
 					<div class="mb-3">
