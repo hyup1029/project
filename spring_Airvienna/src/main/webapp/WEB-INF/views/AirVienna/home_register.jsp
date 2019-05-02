@@ -152,7 +152,6 @@
 
 
 <!-- 숙보정보 부분 시작  -->
-<<<<<<< HEAD
          <div class="col-md-8 order-md-1">
             <h3 class="mb-3">숙소 정보</h3>
             <form action="" method="post" class="home_info" role="form">
@@ -188,43 +187,6 @@
                   </div>
                </div>
                <hr class="mb-4">
-=======
-			<div class="col-md-8 order-md-1">
-				<h3 class="mb-3">숙소 정보</h3>
-				<form action="" method="post" class="home_info" role="form">
-					<div class="row">
-					<hr class="mb-4">
-						<div class="col-md-6 mb-3">
-							<label for="firstName">숙소 이름</label> <input type="text"
-								class="form-control" id="homename" name ="homename" value="">
-						</div>
-						<div class="col-md-6 mb-3">
-							<label for="lastName">등록자 성명</label> <input type="text"
-								class="form-control" id="username" name ="username" value="${info.username}" readonly="readonly">
-						</div>
-					</div>
-					<div class="mb-3">
-						<label for="sample4_postcode">집 주소</label> 
-							<input type="text" id="region" name ="region" class="form-control" placeholder="우편번호" style ="width: 100px;" />
-						<div style ="margin-top: 10px;">
-							<input type="text" id="region2" name ="region2" class="form-control" style ="width: 250px; float:left; margin-right:5px;" placeholder="도로명주소">
-							<input type="text" id="region3" name ="region3" class="form-control" style ="width: 300px;" placeholder="지번주소">
-							<span id="guide" style="color:#999;display:none"></span>
-						</div>
-						<div style ="margin-top: 5px;">
-							<input type="text" id="region4" name ="region4" class="form-control" style ="width: 400px; float:left; margin-right:5px;" placeholder="상세주소">
-							<input type="text" id="region5" name ="region5" class="form-control" style ="width: 150px;" placeholder="참고항목">
-						</div>
-					</div>
-					
-					<div class="row">
-						<div class="col-md-5 mb-3">
-							<label for="price">가격</label> 
-							<input type="text" id="price" name="price" class="form-control" style ="width: 150px;" placeholder="">
-						</div>
-					</div>
-					<hr class="mb-4">
->>>>>>> refs/remotes/origin/master
 
                <h3 class="text-info">당신의 집은 어떻게 생겼나요?</h3>
                <p class="text-muted"> 멋진 사진들로 손님들에게 자신의 집을 알리세요!</p>
