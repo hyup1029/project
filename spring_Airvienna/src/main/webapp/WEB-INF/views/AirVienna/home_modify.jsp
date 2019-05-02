@@ -118,11 +118,11 @@ border-bottom: solid 1px #cccccc;
 		<div class="row">
 			<div class="col-md-6 mb-3">
 				<label for="firstName">집 이름</label> 
-				<input type="text" class="form-control" id="firstName" value="">
+				<input type="text" class="form-control" id="firstName" value="${vo.homename}">
 			</div>
 			<div class="col-md-6 mb-3">
 				<label for="lastName">가격</label> 
-				<input type="text" class="form-control" id="lastName" value="" style ="width : 200px;">
+				<input type="text" class="form-control" id="lastName" value="${vo.price}" style ="width : 200px;">
 			</div>
 		</div>
 		
@@ -130,11 +130,11 @@ border-bottom: solid 1px #cccccc;
 		
 		<div class="fome-group">
 						<label for="simple_intro"> 간단한 소개 </label>
-						 <input type="text" class="form-control" id="birfcontent" name="birfcontent" placeholder="자신의 집을 간단하게 소개해보세요!" style="width:525px;">
+						 <input type="text" class="form-control" value="${vo.birfcontent}" id="birfcontent" name="birfcontent" placeholder="자신의 집을 간단하게 소개해보세요!" style="width:525px;">
 					</div>
 					
 					<label for="home_intro">상세 설명 </label>
-				 <textarea class="form-control" id="content" name ="content" rows="7" style = "margin-bottom: 5%; width:525px;" placeholder ="(편의시설,방 갯수,구조,집의 상태 등등)"></textarea>
+				 <textarea class="form-control" id="content" name ="content" rows="7" style = "margin-bottom: 5%; width:525px;" placeholder ="(편의시설,방 갯수,구조,집의 상태 등등)">${vo.content}</textarea>
 			
 			</form>
 			

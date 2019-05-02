@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.spring.domain.AccommodationVO;
 import com.spring.domain.Criteria;
-import com.spring.domain.HomeAttachVO;
 import com.spring.domain.jjimVO;
 import com.spring.mapper.AccommodationMapper;
 
@@ -88,8 +87,10 @@ public class AccommodationServiceImpl implements AccommodationService {
 		return mapper.jjimremove(ano);
 	}
 
-
-	
+	@Override
+	public AccommodationVO get_home(AccommodationVO vo) {
+		return mapper.get_home(vo);
+	}
 
 	
 }
