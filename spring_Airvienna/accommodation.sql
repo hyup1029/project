@@ -21,7 +21,7 @@ create sequence seq_accommodation;
 
 alter table project_accommodation modify breakfast char(1) default '0';
 alter table project_accommodation modify parkingarea char(1) default '0';
-alter table project_accommodation modify wifi char(1) default 
+alter table project_accommodation modify wifi char(1) default
 alter table project_accommodation RENAME COLUMN bno to ano;
 
 alter table project_accommodation add bno number(10);
