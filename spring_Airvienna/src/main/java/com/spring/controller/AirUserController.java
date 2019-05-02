@@ -10,13 +10,16 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,6 +32,7 @@ import com.spring.domain.AccommodationVO;
 import com.spring.domain.AirUserVO;
 import com.spring.domain.Criteria;
 import com.spring.domain.HomeAttachVO;
+import com.spring.domain.SnsUserVO;
 import com.spring.domain.jjimVO;
 import com.spring.service.AccommodationService;
 import com.spring.service.AirUserService;
@@ -40,7 +44,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("/AirVienna/*")
 @Slf4j
-@SessionAttributes({"info","jjimlist"})
+@SessionAttributes({"info","jjimlist","sns"})
 public class AirUserController {
 	
 	@Inject
@@ -84,13 +88,34 @@ public class AirUserController {
 			return "redirect:mainpage";
 		}else {
 			//log.info("로그인정보..."+vo.toString());
-			log.info("정보 : "+info.getEmail()+info.getUsername());
+			log.info("정보 : "+info.getEmail());
 			model.addAttribute("info",info);
 			int bno=info.getBno();
 			List<jjimVO> jjimlist=homeservice.jjimlist(bno);
 			model.addAttribute("jjimlist",jjimlist);
 			return "redirect:mainpage";
 		}
+	}
+	
+	@PostMapping("/kakaoLogin")	
+	public ResponseEntity<String> kakaoLogin(@RequestBody SnsUserVO vo, Model model) {
+		log.info("kakao..."+vo.toString());
+		if(vo!=null) {
+			model.addAttribute("sns",vo);			
+		}
+		log.info("session..."+vo.toString());
+		return new ResponseEntity<>("success",HttpStatus.OK);
+	}
+	
+
+	@PostMapping(value="/googleLogin",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<String> googleLogin(@RequestBody SnsUserVO vo, Model model) {
+		log.info("google..."+vo.toString());
+		if(vo!=null) {
+			model.addAttribute("sns",vo);			
+		}
+		log.info("session..."+vo.toString());
+		return new ResponseEntity<>("success",HttpStatus.OK);
 	}
 	
 	@GetMapping("/logout")
