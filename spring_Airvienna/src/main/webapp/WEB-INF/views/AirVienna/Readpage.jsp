@@ -1155,7 +1155,7 @@ if (status === daum.maps.services.Status.OK) {
 
     </div>
        <hr class="featurette-divider" />
-       
+       <h3></h3>
        <div class="container marketing">
         <label for="content">comment</label>
         <form name="commentInsertForm" action = "insert" method = "get">
