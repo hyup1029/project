@@ -58,7 +58,7 @@
               %>        
               
                                     
-              <%-- <img src="/homedisplay?fileName=<%=oriPath%>" style='margin-top:10px; width:96%; height:250px;'/> --%>
+              <img src="/homedisplay?fileName=<%=oriPath%>" style='margin-top:10px; width:96%; height:250px;'/>
               		<% } %>
               	<% } %> 
               
@@ -74,13 +74,13 @@
                 <div class="btn-group">
                   <small class="card-tmuted">평점 : </small>
                 </div>
-                <small class="text-muted">등록 시간 : <fmt:formatDate pattern="yyyy-MM-dd" value="${vo.registDate}"></fmt:formatDate></small>
+                <small class="text-muted">등록 시간 : <fmt:formatDate pattern="yyyy-MM-dd" value="<%=vo.getRegistDate() %>"></fmt:formatDate></small>
                 <div class="jjim">
                <%-- <c:if test="${!empty jjimlist}"> --%>
                <%  
 	               List<jjimVO> jjimlist=(List<jjimVO>)request.getAttribute("jjimlist");
 	               if(jjimlist!=null){
-		               boolean flag=false; 
+		               boolean flag=false;
 		               
 		               for(jjimVO jjim:jjimlist){
 		               /* 	<c:forEach var="jjim" items="${jjimlist}">  
