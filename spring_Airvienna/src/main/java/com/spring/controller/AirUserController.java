@@ -45,7 +45,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("/AirVienna/*")
 @Slf4j
-@SessionAttributes({"info","jjimlist","sns","profile"})
+@SessionAttributes({"info","jjimlist","sns"})
 public class AirUserController {
 	
 	@Inject
@@ -55,15 +55,6 @@ public class AirUserController {
 	@Inject 
 	private HomeRegisterService homeattservice;
 	
-	@GetMapping("/profile")
-	public void profilePage(@ModelAttribute("info")AirUserVO vo,Model model){
-		log.info("프로필페이지 호출...");
-
-	}	
-	
-	/*
-	 * @GetMapping("/joinpage") public void join() { log.info("회원가입 page...."); };
-	 */
 	
 	@GetMapping("/step1")
 	public void step1() {
@@ -108,14 +99,14 @@ public class AirUserController {
 
 	@PostMapping("/login")
 	public String loginPost(AirUserVO vo,Model model)  {
-		log.info("로그인요청...");
+		log.info("로그인..."+vo.toString());
 		AirUserVO info = service.login(vo);
 		if(info == null) {
 			log.info("틀렸음");
 			return "redirect:mainpage";
 		}else {
 			//log.info("로그인정보..."+vo.toString());
-			log.info("정보 : "+info.toString());
+			log.info("정보 : "+info.getEmail());
 			model.addAttribute("info",info);
 			int bno=info.getBno();
 			List<jjimVO> jjimlist=homeservice.jjimlist(bno);
@@ -153,7 +144,7 @@ public class AirUserController {
 		return "redirect:mainpage";
 	}
 	
-	@GetMapping(value= {"/step2","/step3"})
+	@GetMapping(value= {"/step2,/step3"})
 	public String handleStep2_3Get() {
 		return "redirect:step1";
 	}

@@ -226,7 +226,7 @@ div{
 		<li class="_li1">
 			<div>
 				<div class="_div1">
-					<button type="button" class="buttonstyle" onclick="location.href='joinpage'">
+					<button type="button" class="buttonstyle" onclick="location.href='step1'">
 						<div class="buttonline">
 							<div class="buttonfont">회원가입
 							</div>
