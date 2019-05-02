@@ -2,7 +2,6 @@ create table project_accommodation(
 	bno number(10,0) constraint pk_accommodation primary key, <!-- bno -> ano로 수정 -->
 	homename nvarchar2(200) not null,
 	maxperson number(5,0)not null,
-	username nvarchar2(10)not null,
 	birfcontent nvarchar2(200) not null,
 	content nvarchar2(1000) not null,
 	price number(15,0)not null,
