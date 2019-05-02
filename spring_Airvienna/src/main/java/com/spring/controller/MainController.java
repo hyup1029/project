@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.spring.domain.AccommodationVO;
 import com.spring.domain.AirUserVO;
 import com.spring.domain.Criteria;
+import com.spring.domain.ReserveVO;
 import com.spring.domain.jjimVO;
 import com.spring.service.AccommodationService;
 import com.spring.service.AirUserService;
@@ -65,5 +66,18 @@ public class MainController {
 		model.addAttribute("vo",vo);
 	}
 	
+	@PostMapping(value = "/Readpage")
+	public String toPay(Model model,ReserveVO vo, AccommodationVO product)  {
 	
+		log.info("예약 : "+vo);
+		product = service.getPage(1);
+		model.addAttribute("vo",product);
+		model.addAttribute("resev",vo);
+		return "AirVienna/pay";
+	}
+	
+	@GetMapping("/completePay")
+	public void completePay() {
+		log.info("Complete buy");
+	}
 }

@@ -99,7 +99,7 @@ public class HomeAjaxUploadController {
 				//썸네일 작업하기
 				try {
 					FileOutputStream thumbnail= new FileOutputStream(new File(uploadPath,"s_"+uploadFileName2));
-					Thumbnailator.createThumbnail(f.getInputStream(),thumbnail,100,100);
+					Thumbnailator.createThumbnail(f.getInputStream(),thumbnail,400,400);
 					thumbnail.close();
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
