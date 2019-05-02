@@ -44,15 +44,21 @@
 
 			<div class="wen">
 				<div>
-					<%
+					<c:choose>
+						<c:when test="${empty info.uploadPath}">
+							<img src="/resources/img/vienna.PNG" class="photo">
+						</c:when>
+						<c:when test="${!empty info.uploadPath }">
+							<%
 								String filePath = null;
 								AirUserVO vo = (AirUserVO)request.getAttribute("info");
 								filePath= vo.getUploadPath()+"\\"+vo.getUuid()+"_"+vo.getFileName();
 								filePath = filePath.replaceAll("\\\\", "/");
 								System.out.print("filePath"+filePath);
-					%>
-					<img src="/display?fileName=<%=filePath%>" class="photo" /> <input
-						type="file" name="uploadFile" class="file" />
+							%>
+							<img src="/display?fileName=<%=filePath%>" class="photo">
+						</c:when>
+					</c:choose>
 				</div>
 
 			</div>
