@@ -13,4 +13,6 @@ public interface AirUserMapper {
 	public AirUserVO profile(int bno);
 	public int changePwd(ChangePwd vo);
 	public AirUserVO selectByPassword(String password);
+	public int profile_modify(AirUserVO vo);
+	
 }

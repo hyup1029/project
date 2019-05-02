@@ -44,6 +44,11 @@ public class AirUserServiceImpl implements AirUserService {
 	public AirUserVO selectByPassword(String password) {
 		return mapper.selectByPassword(password);
 	}
+	
+	@Override
+	public boolean profile_modify(AirUserVO vo) {
+		return mapper.profile_modify(vo)==1;
+	}
 
 
 

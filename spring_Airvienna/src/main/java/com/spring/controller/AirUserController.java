@@ -34,6 +34,7 @@ import com.spring.domain.AirUserVO;
 import com.spring.domain.ChangePwd;
 import com.spring.domain.Criteria;
 import com.spring.domain.HomeAttachVO;
+import com.spring.domain.ReserveVO;
 import com.spring.domain.SnsUserVO;
 import com.spring.domain.jjimVO;
 import com.spring.service.AccommodationService;
@@ -48,7 +49,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @SessionAttributes({"info","jjimlist","sns"})
 public class AirUserController {
-	
+	 
 	@Inject
 	private AirUserService service;
 	@Inject
@@ -182,6 +183,27 @@ public class AirUserController {
 		return "AirVienna/home_modify";
 	}
 	
+	@PostMapping("/user_modify")
+	public String profile_modify(@ModelAttribute("info")AirUserVO info, AirUserVO vo) {
+		log.info("유저 정보 수정...");
+		log.info(info.getFileName());
+		log.info(info.getTel());
+		log.info(info.getBno()+"");
+		log.info(info.getUploadPath());
+		
+		vo.setBno(info.getBno());
+		
+		boolean result = service.profile_modify(vo);
+		
+		if(result) {
+			log.info("성공");
+			return "AirVienna/profile";
+		}
+		log.info("실패");
+		
+		return "AirVienna/profile";
+	}
+	
 	@GetMapping("/password_change")
 	public void passwordPage(){
 		log.info("패스워드폼 호출...");
@@ -200,12 +222,15 @@ public class AirUserController {
 	
 	@GetMapping("/profile")
 	public void profile(@ModelAttribute("info")AirUserVO vo) {
-		log.info("profile");
+		log.info("프로필 호출");
+
+			
 	}
 	
 	@GetMapping("/mypage")
 	public String mypage(@ModelAttribute("info")AirUserVO vo) {
 		log.info("mypage");
+		log.info(vo.getBirth());
 		return "AirVienna/Mypage";
 	}
 
@@ -442,4 +467,29 @@ public class AirUserController {
 		
 	}
 	//고객센터 종료
+
+	@GetMapping("/Readpage")
+	public void readpage(AccommodationVO vo, Model model, int ano) {
+		vo = homeservice.getPage(ano);
+		log.info("리드 페이지 호출");
+		log.info("vo는 오는지" + vo);
+		model.addAttribute("vo",vo);
+	}
+	
+	@PostMapping(value = "/Readpage")
+	public String toPay(Model model,ReserveVO vo, AccommodationVO product, int ano)  {
+	
+		log.info("예약 : "+vo);
+		product = homeservice.getPage(ano);
+		model.addAttribute("vo",product);
+		model.addAttribute("resev",vo);
+		return "AirVienna/pay";
+	}
+	
+	@GetMapping("/completePay")
+	public void completePay() {
+		log.info("Complete buy");
+	}
+	
+	
 }
