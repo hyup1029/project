@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
-<!DOCTYPE html>
-<%@include file="../includes/header.jsp"%>
+<%@include file="../includes/header.jsp" %>
+<script src="/resources/js/changepwd.js"></script>
+
 <head>
 <meta charset="UTF-8">
 
@@ -101,23 +101,27 @@ border-bottom: solid 1px #cccccc;
 			<div class="panel-heading">
 				<h5 class="panel-title">비밀번호 변경</h5>
 			</div>
-			<form action="" id ="memberinfo" style = "margin-left : 100px">
-		<div class="form-group">
-			<label for="text">현재 비밀번호</label>
-			<input type="text" class="form-control" name="password" id="password" style ="width : 346px;"/> 
-		</div>
-		<div class="form-group">
-			<label for="birth">변경 비밀번호</label> 
-			<input type="text" class="form-control" name="curruent_password" id="curruent_password" style ="width : 346px;" />
-		</div>
-		<div class="form-group">
-			<label for="birth">변경 비밀번호(확인)</label> 
-			<input type="text" class="form-control" name="check_password" id="check_password" style ="width : 346px;" />
-		</div>
-		
-		<button type="submit" class="btn btn-primary" style ="margin-top: 10px;">수정완료</button>
-		<button type="reset" class="btn btn-danger" style ="margin-top: 10px; margin-left: 5px" >취소</button>
-		
+		<form action="password_change" method="post" id ="password_change" style = "margin-left : 100px">
+			<div class="form-group">
+				<label for="password">현재 비밀번호</label>
+				<input type="password" class="form-control" name="password" id="password" style ="width : 346px;"/> 
+				<small id="password" class="text-info"></small>
+			</div>
+			<div class="form-group">
+				<label for="password">변경 비밀번호</label> 
+				<input type="password" class="form-control" name="curruent_password" id="curruent_password" placeholder="password를 입력하세요" style ="width : 346px;" />
+				<small id="curruent_password" class="text-info"></small>
+			</div>
+			<div class="form-group">
+				<label for="password">변경 비밀번호(확인)</label> 
+				<input type="password" class="form-control" name="check_password" id="check_password" placeholder="password를 입력하세요" style ="width : 346px;" />
+				<small id="check_password" class="text-info"></small>
+			</div>
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary" style ="margin-top: 10px;">수정완료</button>
+				<button type="reset" class="btn btn-danger" style ="margin-top: 10px; margin-left: 5px" >취소</button>
+			</div>
+			
 	</form>
    </div>
  </div>

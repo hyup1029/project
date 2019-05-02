@@ -31,6 +31,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.domain.AccommodationVO;
 import com.spring.domain.AirUserVO;
+import com.spring.domain.ChangePwd;
 import com.spring.domain.Criteria;
 import com.spring.domain.HomeAttachVO;
 import com.spring.domain.SnsUserVO;
@@ -98,11 +99,12 @@ public class AirUserController {
 	};
 
 	@PostMapping("/login")
-	public String loginPost(AirUserVO vo,Model model)  {
+	public String loginPost(AirUserVO vo,Model model,RedirectAttributes rttr)  {
 		log.info("로그인...");
 		AirUserVO info = service.login(vo);
 		if(info == null) {
 			log.info("틀렸음");
+			rttr.addFlashAttribute("fa","false");
 			return "redirect:mainpage";
 		}else {
 			//log.info("로그인정보..."+vo.toString());
@@ -182,9 +184,19 @@ public class AirUserController {
 	
 	@GetMapping("/password_change")
 	public void passwordPage(){
-		log.info("프로필페이지 호출...");
+		log.info("패스워드폼 호출...");
 	}	
-
+	@PostMapping("/password_change")
+	public String passwordPost(@ModelAttribute("info") AirUserVO info,  ChangePwd pwd,SessionStatus status) {
+		pwd.setEmail(info.getEmail());
+		int result = service.changePwd(pwd);
+		log.info("pwd"+pwd.getPassword());
+		if(result > 0) {
+			status.setComplete();
+			log.info("변경완료");
+		}
+		return "redirect:mainpage";
+	}
 	
 	@GetMapping("/profile")
 	public void profile(@ModelAttribute("info")AirUserVO vo) {
@@ -210,6 +222,20 @@ public class AirUserController {
 		}else {
 			//널이면 사용할 수 있는 아이디
 			log.info("사용가능한 아이디 입니다.");
+			return "true";
+		}
+	}
+	
+	@ResponseBody
+	@PostMapping("/checkPassword")
+	public String checkPassword(String password) {
+		log.info("패스워드 확인...");
+		AirUserVO dupPassword = service.selectByPassword(password);
+		if(dupPassword==null) {
+			log.info("패스워드가 틀렸습니다");
+			return "false";
+		}else {
+			log.info("패스워드 맞습니다.");
 			return "true";
 		}
 	}

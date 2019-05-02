@@ -14,4 +14,10 @@
 	<select id="profile" resultType="com.spring.domain.AirUserVO">
 		select * from airuser where bno=#{bno}
 	</select>
+	<update id="changePwd">
+		update airuser set password=#{curruent_password} where email=#{email} and password=#{password}
+	</update>
+	<select id="selectByPassword" resultType="com.spring.domain.AirUserVO">
+		select * from airuser where password=#{password}
+	</select>
 </mapper>
