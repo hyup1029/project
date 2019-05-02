@@ -171,6 +171,19 @@ public class AirUserController {
 		
 		return "AirVienna/home_register";
 	}
+	
+	@GetMapping("/home_modify")
+	public String home_modify() {
+		log.info("집등록페이지 호출...");
+		
+		
+		return "AirVienna/home_modify";
+	}
+	
+	@GetMapping("/password_change")
+	public void passwordPage(){
+		log.info("프로필페이지 호출...");
+	}	
 
 	
 	@GetMapping("/profile")

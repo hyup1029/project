@@ -32,10 +32,7 @@ public class MainController {
 	@Inject
 	private AccommodationService service;
 
-	@GetMapping("/password_change")
-	public void passwordPage(){
-		log.info("프로필페이지 호출...");
-	}	
+
 	
 	@GetMapping("/Readpage")
 	public void readpage(AccommodationVO vo, Model model) {
