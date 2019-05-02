@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap core CSS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
@@ -170,6 +171,9 @@ div{
     line-height: 1 !important;
     padding: 8px !important;
     border-bottom: 2px solid transparent !important;
+    font-size: 18px;
+    letter-spacing: -1px;
+    font-weight: bold;
 }
 ._lvb55za {
     display: inline-block !important;
@@ -206,7 +210,7 @@ div{
 		<li class="_li1">
 			<div>
 				<div class="_div1">
-					<button type="button" class="buttonstyle">
+					<button type="button" class="buttonstyle" onclick="location.href='costomercenter'">
 						<div class="buttonline">
 							<div class="buttonfont">고객센터
 							</div>
@@ -218,7 +222,7 @@ div{
 		<li class="_li1">
 			<div>
 				<div class="_div1">
-					<button type="button" class="buttonstyle" onclick="location.href='joinpage'">
+					<button type="button" class="buttonstyle" onclick="location.href='step1'">
 						<div class="buttonline">
 							<div class="buttonfont">회원가입
 							</div>
@@ -282,7 +286,7 @@ div{
 		<li class="_li1">
 			<div>
 				<div class="_div1">
-					<button type="button" class="buttonstyle">
+					<button type="button" class="buttonstyle" onclick="location.href='costomercenter'">
 						<div class="buttonline">
 							<div class="buttonfont">고객센터
 							</div>

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -45,12 +46,28 @@ public class AirUserController {
 	@Inject
 	private AccommodationService homeservice;
 	
-	@GetMapping("/joinpage")
-	public void join() {
-		log.info("회원가입 page....");
-	};
+	@GetMapping("/step1")
+	public void step1() {
+		log.info("step1 페이지 호출");
+	}
+	@PostMapping("/step2")
+	public String step2(@RequestParam(value="agree",defaultValue="false")boolean agree,
+			RedirectAttributes rttr) {
+		log.info("회원 가입 폼 요청.....");
+		//약관동의 여부 체크하기
+		//약관동의를 안했다면 step1 페이지로 돌려보내고
+		//동의를 했다면 step2 페이지가 보여지도록 코드 작성
+		if(!agree) {
+			rttr.addFlashAttribute("check", false);
+			return "redirect:step1";
+		}
+		return "/AirVienna/joinpage";		
+	}
+	/*
+	 * @GetMapping("/joinpage") public void join() { log.info("회원가입 page...."); };
+	 */
 	
-	@PostMapping("/joinpage")
+	@PostMapping("/step3")
 	public String joinpost(AirUserVO vo,RedirectAttributes rttr) {
 		log.info("회원가입 성공"+vo.toString());
 		if(vo.getAttachList()!=null) {
@@ -96,9 +113,10 @@ public class AirUserController {
 		return "redirect:mainpage";
 	}
 	
-
-	
-	
+	@GetMapping(value= {"/step2","/step3"})
+	public String handleStep2_3Get() {
+		return "redirect:step1";
+	}
 	
 	@ResponseBody
 	@PostMapping("/checkEmail")
@@ -201,7 +219,6 @@ public class AirUserController {
 			List<AccommodationVO> list=homeservice.optionE(ct);
 			model.addAttribute("ct",ct);
 			model.addAttribute("list",list);
-		
 		
 		return "AirVienna/accommodationlist";
 	}

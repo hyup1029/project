@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class jjimVO {
-
+	private int jno;
 	private int bno;
 	private int ano;
 	private String homename;

@@ -3,16 +3,14 @@
 <%@include file="../includes/header.jsp" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<style>
-                         			
-              		</style>
+<link rel="stylesheet" href="/resources/css/accommodationlist.css"/>
 <main role="main">
 
-  <section class="jumbotron text-center">
-    <div class="container">
+  <section class="jumbotron text-center" style="padding-bottom: 100px;">
+    <div class="container"style="padding-top: 30px;">
       <h1 class="jumbotron-heading">모두가 호스트</h1>
-      <p class="lead text-muted">자신의 집을 공유해 보세요!! 안쓰는 방 활용 하여 돈도 벌고 국내 여행객 뿐 아니라 여려나라 사람들을 만나며 경험과 견문을 확장 시킬수 있는 기회입니다.</p>
-      <p>
+      <p class="lead text-muted" style="margin-top: 20px;">자신의 집을 공유해 보세요!! 안쓰는 방 활용 하여 돈도 벌고 국내 여행객 뿐 아니라 여려나라 사람들을 만나며 경험과 견문을 확장 시킬수 있는 기회입니다.</p>
+      <p style="padding-top: 20px;margin-bottom: 0px;">
         <a href="#" class="btn btn-primary my-2">자신의 home share</a>
       </p>
     </div>
@@ -159,4 +157,3 @@
   </div>
 </footer>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
