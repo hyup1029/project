@@ -34,6 +34,11 @@ public class AirUserServiceImpl implements AirUserService {
 		return mapper.profile(bno);
 	}
 
+	@Override
+	public boolean profile_modify(AirUserVO vo) {
+		return mapper.profile_modify(vo)==1;
+	}
+
 
 
 }

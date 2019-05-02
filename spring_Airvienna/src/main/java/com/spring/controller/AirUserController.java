@@ -180,6 +180,27 @@ public class AirUserController {
 		return "AirVienna/home_modify";
 	}
 	
+	@PostMapping("/user_modify")
+	public String profile_modify(@ModelAttribute("info")AirUserVO info, AirUserVO vo) {
+		log.info("유저 정보 수정...");
+		log.info(info.getFileName());
+		log.info(info.getTel());
+		log.info(info.getBno()+"");
+		log.info(info.getUploadPath());
+		
+		vo.setBno(info.getBno());
+		
+		boolean result = service.profile_modify(vo);
+		
+		if(result) {
+			log.info("성공");
+			return "AirVienna/profile";
+		}
+		log.info("실패");
+		
+		return "AirVienna/profile";
+	}
+	
 	@GetMapping("/password_change")
 	public void passwordPage(){
 		log.info("프로필페이지 호출...");
@@ -188,12 +209,15 @@ public class AirUserController {
 	
 	@GetMapping("/profile")
 	public void profile(@ModelAttribute("info")AirUserVO vo) {
-		log.info("profile");
+		log.info("프로필 호출");
+
+			
 	}
 	
 	@GetMapping("/mypage")
 	public String mypage(@ModelAttribute("info")AirUserVO vo) {
 		log.info("mypage");
+		log.info(vo.getBirth());
 		return "AirVienna/Mypage";
 	}
 

@@ -8,5 +8,6 @@ public interface AirUserService {
 	public AirUserVO login(AirUserVO vo);
 	public AirUserVO selectByEmail(String email);
 	public AirUserVO profile(int bno);
+	public boolean profile_modify(AirUserVO vo);
 
 }

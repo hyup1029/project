@@ -14,4 +14,11 @@
 	<select id="profile" resultType="com.spring.domain.AirUserVO">
 		select * from airuser where bno=#{bno}
 	</select>
+	
+	<update id="profile_modify">
+		update airuser set tel=#{tel},address=#{address},
+		uuid=#{uuid, jdbcType=VARCHAR},uploadpath=#{uploadPath, jdbcType=VARCHAR},filename=#{fileName, jdbcType=VARCHAR}
+		 where bno=#{bno}
+	</update>
+	
 </mapper>

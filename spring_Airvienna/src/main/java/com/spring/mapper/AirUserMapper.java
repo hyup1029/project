@@ -10,5 +10,6 @@ public interface AirUserMapper {
 	public AirUserVO login(AirUserVO vo);
 	public AirUserVO selectByEmail(String email);
 	public AirUserVO profile(int bno);
+	public int profile_modify(AirUserVO vo);
 	
 }
