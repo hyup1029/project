@@ -46,6 +46,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @SessionAttributes({"info","jjimlist","sns"})
 public class AirUserController {
+<<<<<<< HEAD
    
    @Inject
    private AirUserService service;
@@ -95,6 +96,57 @@ public class AirUserController {
    public void login() {
       log.info("login 요청");
    };
+=======
+	
+	@Inject
+	private AirUserService service;
+	@Inject
+	private AccommodationService homeservice;
+	@Inject 
+	private HomeRegisterService homeattservice;
+	
+	
+	@GetMapping("/step1")
+	public void step1() {
+		log.info("step1 페이지 호출");
+	}
+	@PostMapping("/step2")
+	public String step2(@RequestParam(value="agree",defaultValue="false")boolean agree,
+			RedirectAttributes rttr) {
+		log.info("회원 가입 폼 요청.....");
+		//약관동의 여부 체크하기
+		//약관동의를 안했다면 step1 페이지로 돌려보내고
+		//동의를 했다면 step2 페이지가 보여지도록 코드 작성
+		if(!agree) {
+			rttr.addFlashAttribute("check", false);
+			return "redirect:step1";
+		}
+		return "/AirVienna/joinpage";		
+	}
+	/*
+	 * @GetMapping("/joinpage") public void join() { log.info("회원가입 page...."); };
+	 */
+	
+	@PostMapping("/step3")
+	public String joinpost(AirUserVO vo,RedirectAttributes rttr) {
+		log.info("회원가입 성공"+vo.toString());
+		if(vo.getAttachList()!=null) {
+			for(AirUserVO attach:vo.getAttachList()) {
+				log.info(""+attach);
+			}
+		}
+		if(service.insert(vo)) {
+				return "redirect:mainpage";
+			}
+		rttr.addFlashAttribute("result",vo.getBno());
+		return "redirect:mainpage";
+	}
+	
+	@GetMapping("/login")
+	public void login() {
+		log.info("login 요청");
+	};
+>>>>>>> refs/remotes/origin/master
 
    @PostMapping("/login")
    public String loginPost(AirUserVO vo,Model model)  {
@@ -125,6 +177,7 @@ public class AirUserController {
    }
    
 
+<<<<<<< HEAD
    @PostMapping(value="/googleLogin",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
    public ResponseEntity<String> googleLogin(@RequestBody SnsUserVO vo, Model model) {
       log.info("google..."+vo.toString());
@@ -147,6 +200,53 @@ public class AirUserController {
    public String handleStep2_3Get() {
       return "redirect:step1";
    }
+=======
+	@PostMapping(value="/googleLogin",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<String> googleLogin(@RequestBody SnsUserVO vo, Model model) {
+		log.info("google..."+vo.toString());
+		if(vo!=null) {
+			model.addAttribute("sns",vo);			
+		}
+		log.info("session..."+vo.toString());
+		return new ResponseEntity<>("success",HttpStatus.OK);
+	}
+	
+	@GetMapping("/logout")
+	public String logout(SessionStatus status) {
+		log.info("로그아웃...");
+		status.setComplete();
+		//session.removeAttribute("info");
+		return "redirect:mainpage";
+	}
+	
+	@GetMapping(value= {"/step2,/step3"})
+	public String handleStep2_3Get() {
+		return "redirect:step1";
+	}
+
+	@PostMapping("/home_register")
+	public String homeRegister(@ModelAttribute("info")AirUserVO info,AccommodationVO vo) {
+		log.info("집정보 등록...");
+		log.info(vo+"aa");
+		vo.setBno(info.getBno());
+		if(vo.getHomeAttach() != null) {
+			for (HomeAttachVO attach : vo.getHomeAttach()) {
+				log.info("" + attach);
+			}
+		}
+		homeattservice.homeRegister(vo);
+		return "redirect:accommodationlist";
+		
+	}
+	
+	@GetMapping("/home_register")
+	public String home_register(AirUserVO info, Model model) {
+		log.info("집등록페이지 호출...");
+		
+		
+		return "AirVienna/home_register";
+	}
+>>>>>>> refs/remotes/origin/master
 
    @PostMapping("/home_register")
    public String homeRegister(@ModelAttribute("info")AirUserVO info,AccommodationVO vo) {

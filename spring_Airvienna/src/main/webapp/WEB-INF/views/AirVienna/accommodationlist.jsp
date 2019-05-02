@@ -143,6 +143,7 @@
       console.log()
    } */
 
+<<<<<<< HEAD
    $(function(){
       var formObj=$('.jjimlist');
       /* var length=${fn:length(jjimlist)};
@@ -195,6 +196,60 @@
       
          
    });
+=======
+	$(function(){
+		var formObj=$('.jjimlist');
+		/* var length=${fn:length(jjimlist)};
+		for(var i=0;i<length;i++){
+			${jjimlist}.get(i).toString();
+		} */
+		/* var length = ${fn:length(list)}; */
+		/* for(var i=1;i<=length;i++){
+			var test=$("#jjimano"+i+"").val();
+		} */
+		$('._jjim').click(function(){
+			//var homename=$("#data").data('homename');
+			//var ano=$("#data").data('ano');
+			/* var res = $('._jjim').val();	
+			alert(res); */
+			var str="";
+			if(${!empty info}){
+				
+					//$(this).find('.sv').attr("fill", "#FF5A5F");
+					//$(this).find('.sv').attr("fill-opacity", "1");
+					//$(this).find('.sv').attr("stroke", "#FF5A5F");
+				var homename = $(this).find("input[name='homename1']").val();
+				var ano = $(this).find("input[name='ano1']").val();
+				var price = $(this).find("input[name='price1']").val();
+				res=true;
+				str+="<input type='hidden' name='jjimselect' value='"+res+"'/>"
+				str+="<input type='hidden' name='bno' value='${info.bno}'/>"
+				str+="<input type='hidden' name='ano' value='"+ano+"'/>"
+				str+="<input type='hidden' name='homename' value='"+homename+"'/>"
+				str+="<input type='hidden' name='price' value='"+price+"'/>"
+				formObj.append(str);
+				formObj.submit();
+				
+			}else{
+				alert("로그인을 하고 찜 기능을 이용하십시오!!");
+				location.href="login";
+			}
+			
+			});
+		
+		$('._jjimremove').click(function(){
+			var str="";
+			formObj.attr("action","jjimremovelist")
+			var ano = $(this).find("input[name='ano1']").val();
+			str+="<input type='hidden' name='ano' value='"+ano+"'/>"
+			formObj.append(str);
+			formObj.submit();
+		})
+		
+		
+			
+	});
+>>>>>>> refs/remotes/origin/master
 </script>
 <footer class="text-muted">
   <div class="container">

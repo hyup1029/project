@@ -37,7 +37,7 @@
 		Minus (select * from project_accommodation where(checkin<=#{checkin} and #{checkin}<checkout) or (checkin<#{checkout} and #{checkout}<=checkout))]]>
 	</select>
 	<insert id="jjiminsert">
-		insert into jjimlist(bno,ano,homename,price,jjimselect) values(#{bno},#{ano},#{homename},#{price},#{jjimselect})
+		insert into jjimlist(jno,bno,ano,homename,price,jjimselect) values(seq_jjim.nextVal,#{bno},#{ano},#{homename},#{price},#{jjimselect})
 	</insert>
 	<select id="jjimlist" resultType="com.spring.domain.jjimVO">
 		select * from jjimlist where bno=#{bno}

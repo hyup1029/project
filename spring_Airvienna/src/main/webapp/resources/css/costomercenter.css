@@ -1,0 +1,336 @@
+dl, dt, dd, ul, ol, menu, li {
+    list-style: none;
+}
+#contents {
+    width: 980px;
+    margin: 0 auto;
+}
+#contents {
+    z-index: 1;
+}
+#header, #gnb, #contents, #footer {
+    position: relative;
+}
+.contents {
+    padding: 0;
+}
+.cs-font--gothic, .cs-chat-message, .cs-nav__menu-lists, .cs-nav__sub-menu-lists, .cs-nav__phone-label, .cs-nav__phone-number, .cs-search, .cs-inquiry, .cs-inquiry-v2, .cs-cart-items, .contents, .cs-chat-popup, .cs-faq__menu, .cs-faq__search-text, .cs-faq__search-right, .cs-faq__contents-empty-row, .cs-faq__contents-title, .cs-faq__contents-date, .cs-faq__contents-desc-answer-area, .cs-voc__top-left, .cs-voc__selectbox-text, .cs-voc__option-link, .cs-voc__contents-product-title-text, .cs-voc__textarea, .cs-voc__contents__image-info-top-text, .cs-notice__menu, .cs-notice__contents-empty-row, .cs-notice__contents-title, .cs-notice__contents-date {
+    font-family: AppleSDGothicNeo, "나눔고딕", "NanumGothic", "나눔바른고딕", "NanumBarunGothic", "맑은 고딕", "Malgun Gothic", "굴림", Gulim, gulim, "돋움", dotum, sans-serif;
+}
+.contents {
+    padding: 0 0 40px;
+}
+article, aside, hgroup, header, footer, figure, figcaption, nav, section, time, mark, canvas, video, audio, details, summary {
+    display: block;
+}
+user agent stylesheet
+article, aside, footer, header, hgroup, main, nav, section {
+    display: block;
+}
+body, input, textarea, select, button, table {
+    font-family: '돋움', Dotum, sans-serif;
+    font-size: 100%;
+}
+.cs-container {
+    background-color: #ffffff;
+    margin: 0 0;
+    padding: 0 0;
+    margin-bottom: 85px;
+}
+.cs-search {
+    width: 100%;
+    height: 90px;
+    padding: 20px 0px 20px 56px;
+    background-color: #7d9def;
+    color: #ffffff;
+}
+.cs-search__title {
+    display: inline-block;
+    position: relative;
+    top: 6px;
+    font-size: 31px;
+    font-weight: bold;
+    letter-spacing: -0.7px;
+    margin-right: 95px;
+}
+.cs-search__input-area {
+    display: inline-block;
+    position: absolute;
+    top: 21px;
+    width: 410px;
+    height: 48px;
+    background-color: #ffffff;
+    padding: 15px 15px;
+    margin-right: 72px;
+}
+input[type=text] {
+    outline: none;
+}
+.cs-search__input {
+    width: 330px;
+    color: #0051f5;
+    font-size: 17px;
+    font-weight: bold;
+    border: none;
+}
+.cs-search__icon {
+    width: 50px;
+    height: 48px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+.cs-sprite-icon-search {
+    position: relative;
+    top: 0;
+    width: 48px;
+    height: 48px;
+}
+.cs-nav {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 64px;
+    border-bottom: solid 1px #e6e6e6;
+}
+.cs-nav__menu-lists {
+    position: relative;
+    display: inline-block;
+    width: auto;
+    height: auto;
+    float: left;
+    padding-left: 30px;
+    padding-top: 23px;
+    text-align: center;
+}
+.cs-nav__menu.on {
+    border-bottom: 2px solid #346aff;
+}
+.cs-nav__menu {
+    position: relative;
+    display: inline-block;
+    width: auto;
+    height: 41px;
+    float: left;
+    margin-right: 30px;
+}
+.cs-nav__sub-menu {
+    float: left;
+}
+.cs-nav__sub-menu-link {
+    display: block;
+    font-size: 12px;
+    letter-spacing: -1px;
+    font-weight: bold;
+    text-align: center;
+    float: left;
+    margin-top: 25px;
+    margin-left: 15px;
+    color: #555555;
+}
+.cs-nav__phone-section {
+    position: absolute;
+    display: inline-block;
+    width: 130px;
+    height: 64px;
+    right: 0;
+    padding-top: 17px;
+    padding-left: 13px;
+    text-align: center;
+}
+.cs-nav__phone-line {
+    position: absolute;
+    display: block;
+    width: 1px;
+    height: 30px;
+    background-color: #eeeeee;
+    top: 17px;
+    left: -1px;
+}
+.cs-nav__phone-label {
+    position: relative;
+    display: block;
+    text-align: left;
+    width: 100%;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 11px;
+    color: #7f9fec;
+}
+.cs-nav__phone-number {
+    position: relative;
+    display: block;
+    text-align: left;
+    width: 100%;
+    font-size: 18px;
+    letter-spacing: -1px;
+    font-weight: bold;
+    color: #618ef7;
+}
+.cs-faq__contents-list {
+    width: 100%;
+    height: auto;
+    margin-top: 0px;
+}
+.cs-faq__contents {
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    border-top: 1px solid #eeeeee;
+}
+a {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+}
+.cs-faq__contents-title-area {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+    padding: 25px 34px 25px 34px;
+    cursor: pointer;
+}
+.cs-faq__contents-desc-question-mark {
+    position: relative;
+    display: block;
+    top: 4px;
+    left: 0;
+    float: left;
+    margin-right: 57px;
+}
+.cs-sprite-q, .cs-faq__contents-desc-question-mark {
+    display: inline-block;
+    background: url(../../../../requirejs/cs-center/pc/image/sprite/cs-center-pc-sprite-20191105_0000.png) 0 0 no-repeat;
+    overflow: hidden;
+    text-indent: -9999px;
+    text-align: left;
+    background-position: -218px -279px;
+    width: 14px;
+    height: 17px;
+}
+.cs-voc__top {
+    position: relative;
+    width: 100%;
+    margin-top: 50px;
+    background-color: #ffffff;
+}
+.cs-voc__top-left {
+    display: inline-block;
+    padding-left: 50px;
+}
+.cs-voc__title {
+    font: inherit;
+    font-size: 30px;
+    font-weight: 400;
+    letter-spacing: -0.8px;
+    color: #111111;
+    margin-bottom: 10px;
+}
+.bold {
+    font-weight: 700;
+}
+.text-black {
+    color: #111111;
+}
+.cs-voc__title {
+    font: inherit;
+    font-size: 30px;
+    font-weight: 400;
+    letter-spacing: -0.8px;
+    color: #111111;
+    margin-bottom: 10px;
+}
+.text-blue {
+    color: #0051f5;
+}
+.cs-voc__desc {
+    font: inherit;
+    font-size: 14px;
+    line-height: 1.5;
+    letter-spacing: -0.3px;
+    color: #111111;
+    margin-bottom: 7px;
+}
+body, div, dl, dt, dd, ul, ol, menu, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, blockquote, th, td, p {
+    margin: 0;
+    padding: 0;
+}
+user agent stylesheet
+h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+.cs-voc__sub-desc {
+    font: inherit;
+    font-size: 12px;
+    letter-spacing: -0.2px;
+    color: #929292;
+}
+.cs-voc__email {
+    font: inherit;
+    font-size: 12px;
+    letter-spacing: -0.2px;
+    color: #929292;
+}
+.cs-voc__top-right {
+    position: absolute;
+    display: inline-block;
+    right: 110px;
+    top: 0;
+}
+.cs-voc__top-right-image {
+    display: inline-block;
+    background: url(../../../../requirejs/cs-center/pc/image/sprite/cs-center-pc-sprite-20191105_0000.png) 0 0 no-repeat;
+    overflow: hidden;
+    text-indent: -9999px;
+    text-align: left;
+    background-position: -2px -0px;
+    width: 232px;
+    height: 153px;
+}
+.cs-voc__contents {
+    width: 100%;
+    height: auto;
+    background-color: #f8f8f8;
+    padding: 20px 35px 40px 35px;
+    margin-top: 64px;
+    border: solid 1px #e5e5e5;
+}
+
+.cs-voc__submit-area {
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    margin: 0 auto;
+}
+.cs-voc__submit-btn {
+    display: inline-block;
+    width: 180px;
+    height: 50px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    border: none;
+    border-radius: 2px;
+    background-color: #3d82f7;
+    padding: 15px 8px;
+    cursor: pointer;
+}

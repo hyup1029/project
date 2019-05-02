@@ -395,7 +395,11 @@
 
    <script>
       var ano = ${vo.ano};
+<<<<<<< HEAD
      var name = '${info.username}';
+=======
+  	var name = '${info.username}';
+>>>>>>> refs/remotes/origin/master
       $('button[name=commentInsertBtn]').click(function() { //댓글 등록 버튼 클릭시 
 
          var reply = {
@@ -427,7 +431,11 @@
                   success : function(data) {
                      var a = '';
                      console.log(data);
+<<<<<<< HEAD
             
+=======
+				
+>>>>>>> refs/remotes/origin/master
                      $(data)
                            .each(
                                  function(i, obj) {
@@ -474,7 +482,11 @@
 <script>
    $(function() {
 
+<<<<<<< HEAD
       
+=======
+	   
+>>>>>>> refs/remotes/origin/master
       var resultp = $(".result");
       var price = ${vo.price};
       var checkin;
@@ -542,6 +554,7 @@
           console.log(breakfast);
           console.log(parkingarea);
           if (breakfast === 'true'){
+<<<<<<< HEAD
              $('input:radio[name="breakfast"]').prop("checked",true);
           }
           
@@ -556,6 +569,22 @@
              
              
              //페이지 로딩시 댓글 목록 출력 
+=======
+        	  $('input:radio[name="breakfast"]').prop("checked",true);
+          }
+          
+          if (parkingarea === 'true'){
+        	  $('input:radio[name="parkingarea"]').prop("checked",true);
+          }
+          
+          if (wifi === 'true'){
+        	  $('input:radio[name="wifi"]').prop("checked",true);
+          }
+        	  
+        	  
+        	  
+        	  //페이지 로딩시 댓글 목록 출력 
+>>>>>>> refs/remotes/origin/master
        });
       
    });

@@ -21,7 +21,7 @@ create sequence seq_accommodation;
 
 alter table project_accommodation modify breakfast char(1) default '0';
 alter table project_accommodation modify parkingarea char(1) default '0';
-alter table project_accommodation modify wifi char(1) default 
+alter table project_accommodation modify wifi char(1) default
 alter table project_accommodation RENAME COLUMN bno to ano;
 
 alter table project_accommodation add bno number(10);
@@ -41,7 +41,8 @@ create table accommodation_attach(
 alter table accommodation_attach add constraint fk_accommodation
 foreign key(ano) references project_accommodation(ano);
 
-
+alter table accommodation_attach
+rename column pictureName to fileName;
 
 select * from accommodation_attach;
 
