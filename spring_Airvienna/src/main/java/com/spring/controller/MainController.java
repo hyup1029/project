@@ -29,75 +29,35 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("/AirVienna/*")
 public class MainController {
-   @Inject
-   private AccommodationService service;
-   @Inject
-   private AirUserService Airservice;
-   
-   
-   @GetMapping("/mypage")
-   public String mypage() {
-      
-      return "AirVienna/Mypage";
-   }
+	@Inject
+	private AccommodationService service;
 
-   
+	@GetMapping("/password_change")
+	public void passwordPage(){
+		log.info("프로필페이지 호출...");
+	}	
+	
+	@GetMapping("/Readpage")
+	public void readpage(AccommodationVO vo, Model model) {
+		vo = service.getPage(43);
+		log.info("리드 페이지 호출");
+		log.info("vo는 오는지" + vo);
+		model.addAttribute("vo",vo);
+	}
+	
+	@PostMapping(value = "/Readpage")
+	public String toPay(Model model,ReserveVO vo, AccommodationVO product)  {
+	
+		log.info("예약 : "+vo);
+		product = service.getPage(1);
+		model.addAttribute("vo",product);
+		model.addAttribute("resev",vo);
+		return "AirVienna/pay";
+	}
+	
+	@GetMapping("/completePay")
+	public void completePay() {
+		log.info("Complete buy");
+	}
 
-   @GetMapping("/password_change")
-   public void passwordPage(){
-      log.info("프로필페이지 호출...");
-   }   
-   
-   @GetMapping("/Readpage")
-   public void readpage(int ano, AccommodationVO vo, Model model) {
-      vo = service.getPage(ano);
-      log.info("리드 페이지 호출");
-      log.info("vo는 오는지" + vo);
-      model.addAttribute("vo",vo);
-   }
-   
-      @PostMapping(value = "/Readpage")
-      public String toPay(Model model,ReserveVO vo, AccommodationVO product)  {
-      
-         log.info("예약 : "+vo);
-         product = service.getPage(product.getAno());
-         model.addAttribute("vo",product);
-         model.addAttribute("resev",vo);
-         return "AirVienna/pay";
-      }
-   
-   @GetMapping("/completePay")
-   public void completePay() {
-      log.info("Complete buy");
-   }
-   @GetMapping("/question")
-   public String question(Model model) {
-      boolean question=true;
-      
-      model.addAttribute("question",question);
-      log.info("확인"+model);
-      log.info("확인"+question);
-      return"AirVienna/costomercenter";
-   }
-   @GetMapping("/costomersound")
-   public String costomersound(Model model) {
-      boolean costomersound=true;
-      
-      model.addAttribute("costomersound",costomersound);
-      log.info("확인"+model);
-      log.info("확인"+costomersound);
-      return"AirVienna/costomercenter";
-   }
-   @GetMapping("/inform")
-   public String inform(Model model) {
-      boolean inform=true;
-      
-      model.addAttribute("inform",inform);
-      log.info("확인"+inform);
-      return"AirVienna/costomercenter";
-   }
-   @GetMapping("/costomercenter")
-   public void costomercenter() {
-      
-   }
 }
