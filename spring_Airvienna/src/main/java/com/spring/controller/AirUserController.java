@@ -352,17 +352,18 @@ public class AirUserController {
 	@GetMapping("/accommodationlist")
 	public void postaccommodationlist(@ModelAttribute("ct")Criteria ct, Model model) {
 		
+				
 		if("E".equals(ct.getType())) {
 			List<AccommodationVO> list=homeservice.optionE(ct);
 			for(AccommodationVO vo:list) {
 				int ano=vo.getAno();
 				HomeAttachVO vo2 = homeattservice.homeAttachList(ano);
 				vo.setHomeAttach(new ArrayList<>());
+				//log.info(vo+"");
 				
 				vo.getHomeAttach().add(vo2);
-				log.info(vo+"");
 			}
-			log.info(list+"");
+			log.info(list+"E ct.getType()");
 			model.addAttribute("list",list);
 		}
 		if("R".equals(ct.getType())) {
@@ -373,9 +374,8 @@ public class AirUserController {
 				vo.setHomeAttach(new ArrayList<>());
 				
 				vo.getHomeAttach().add(vo2);
-				log.info(vo+"");
 			}
-			log.info(list+"");
+			log.info(list+"R ct.getType()");
 			model.addAttribute("list",list);
 		}
 		if("M".equals(ct.getType())) {
@@ -388,7 +388,7 @@ public class AirUserController {
 				vo.getHomeAttach().add(vo2);
 				log.info(vo+"");
 			}
-			log.info(list+"");
+			log.info(list+"M ct.getType()");
 			model.addAttribute("list",list);
 		}
 		if("T".equals(ct.getType())) {
@@ -401,7 +401,7 @@ public class AirUserController {
 				vo.getHomeAttach().add(vo2);
 				log.info(vo+"");
 			}
-			log.info(list+"");
+			log.info(list+"T ct.getType()");
 			model.addAttribute("list",list);
 		}
 		if("RT".equals(ct.getType())) {
@@ -414,7 +414,8 @@ public class AirUserController {
 				vo.getHomeAttach().add(vo2);
 				log.info(vo+"");
 			}
-			log.info(list+"");
+			log.info(list+"RT ct.getType()");
+			
 			model.addAttribute("list",list);
 		}
 		if("TM".equals(ct.getType())) {
@@ -427,7 +428,7 @@ public class AirUserController {
 				vo.getHomeAttach().add(vo2);
 				log.info(vo+"");
 			}
-			log.info(list+"");
+			log.info(list+"TM ct.getType()");
 			model.addAttribute("list",list);
 		}
 		if("RM".equals(ct.getType())) {
@@ -440,7 +441,7 @@ public class AirUserController {
 				vo.getHomeAttach().add(vo2);
 				log.info(vo+"");
 			}
-			log.info(list+"");
+			log.info(list+"RM ct.getType()");
 			model.addAttribute("list",list);
 		}
 		if("RTM".equals(ct.getType())) {
@@ -453,7 +454,7 @@ public class AirUserController {
 				vo.getHomeAttach().add(vo2);
 				log.info(vo+"");
 			}
-			log.info(list+"");
+			log.info(list+"RTM ct.getType()");
 			model.addAttribute("list",list);
 		}
 		

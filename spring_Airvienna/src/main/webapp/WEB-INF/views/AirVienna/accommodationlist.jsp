@@ -30,11 +30,13 @@
    </c:forEach>
   <div class="album py-5 bg-light">
     <div class="container">
-
       <div class="row">
      <%--  <c:forEach var="vo" items="${list}">  --%>
                <%
-                  List<AccommodationVO> accList=(List<AccommodationVO>)request.getAttribute("list");
+               List<AccommodationVO> accList=null;
+               
+            	if(request.getAttribute("list")!=null){
+                  accList=(List<AccommodationVO>)request.getAttribute("list");
                   for(AccommodationVO vo : accList){
             %>
                   
@@ -69,13 +71,13 @@
               <h4 class="card-text"><%=vo.getHomename()%></h4> 
               <p class="card-text"><a href = "Readpage?ano=<%=vo.getAno()%>" class = "move"><%=vo.getBirfcontent()%></a></p>
               <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <small class="card-tmuted">평점 : </small>
-                </div>
+
                 <small class="text-muted">등록 시간 : <fmt:formatDate pattern="yyyy-MM-dd" value="<%=vo.getRegistDate() %>"></fmt:formatDate></small>
                 <div class="jjim">
                <%-- <c:if test="${!empty jjimlist}"> --%>
                <%  
+               
+              
                   List<jjimVO> jjimlist=(List<jjimVO>)request.getAttribute("jjimlist");
                   if(jjimlist!=null){
                      boolean flag=false;
@@ -126,7 +128,9 @@
             </form>
           </div>
         </div>
-        <%}%>
+        <%}
+        
+        }%>
       </div>
     </div>
   </div>
