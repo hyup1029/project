@@ -8,61 +8,15 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <meta charset="UTF-8">
-<script>
-function onSignIn(googleUser) {
-    // Useful data for your client-side scripts:
-    var profile = googleUser.getBasicProfile();
-    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-    console.log('Full Name: ' + profile.getName());
-    console.log('Given Name: ' + profile.getGivenName());
-    console.log('Family Name: ' + profile.getFamilyName());
-    console.log("Image URL: " + profile.getImageUrl());
-    console.log("Email: " + profile.getEmail()); 
- // The ID token you need to pass to your backend:
-    var id_token = googleUser.getAuthResponse().id_token;
-    console.log("ID Token: " + id_token);
-    $.ajax({
-    	type:"post",
-    	url:"/AirVienna/googleLogin",
-    	headers:{
-    		"Accept":"application/json",
-    		"Content-Type":"application/json"
-    	},
-    	data:JSON.stringify({
-    		snsid : profile.getId(),
-    		snsemail : profile.getEmail(),
-    		snsnickname : profile.getName(),
-    		snsimage : profile.getImageUrl()
-    	}),
-    	dataType:"text",
-    	success:function(result){
-    		$(".modal").modal("hide");
-    		if(result==='success'){
-    			location.href='mainpage';
-    		}
-    	}
-    })
-}
-</script>
-<%
- String fa = (String)request.getAttribute("fa");
-if(fa == null){
-	fa = "true";
-}else{
-	%>
-	 <script>
-	  alert("아이디와 비밀번호를 잘못 입력하셨습니다.");
- 	 </script>
-	<% 
-}
-%>
 </head>
 <style>
 #kakao-login-btn {
- width:434px;
+ /* width:434px; */
  height:50px;
-}
 
+}
+.wen {width:200px; height:200px; border-radius:200px;margin-top:50px; margin: 0 auto; overflow:hidden; border:solid 2px #cccccc;}
+.photo {height:200px; width:200px; display:block; margin:0 auto;}
 </style> 
 <div class="modal fade" id="myModal">
 	<div class="modal-dialog">
@@ -87,81 +41,12 @@ if(fa == null){
 													<section>
 														<section>
 															<div>
-																<div style="margin-bottom: 8px;">
-																	<div class="g-signin2" data-onsuccess="onSignIn" data-width="434" data-height="50" data-longtitle="true" ></div>
-																</div>
-																<div style="margin-bottom: 8px;" >
-																	<a id="kakao-login-btn"></a>
-																	<a href="http://developers.kakao.com/logout"></a>
-																
-																	<script>
-																	$(document).ready(function(){
-																		//<![CDATA[
-																		// 사용할 앱의 JavaScript 키를 설정해 주세요.
-																		Kakao.init('40b247566ba3a9ad80eb5d6ab5c35e74');
-																		//여기서 아까 발급받은 키 중 javascript키를 사용해준다.
-																		// 카카오 로그인 버튼을 생성합니다.
-																		Kakao.Auth.createLoginButton({
-																			container: '#kakao-login-btn',
-																			success: function(authObj) {
-																				//alert(JSON.stringify(authObj));
-																				Kakao.API.request({
-																		          url: '/v2/user/me',
-																		          success: function(res) {
-														           			 		 $(".modal").modal("hide");
-																		        	
-																		            //alert(JSON.stringify(res));
-																			            alert(res.properties.nickname+'님 환영합니다.');
-																		           		login(res);
-																				  },
-																				  fail: function(error) {
-																				            alert(JSON.stringify(error));
-																				   }
-																		        }); //Kakao.API.request 종료
-																		      },
-																			 fail: function(err) {
-																				alert(JSON.stringify(err));
-																			}
-																		});
-																	});
-																	//]]>
-																	function login(res){
-																		$.ajax({
-														           			type:"post",
-														           			url:"/AirVienna/kakaoLogin",
-														           			headers : {
-														           				"Accept" : "application/json",
-														           				"Content-Type" : "application/json"
-														           			}, 
-														           			//dataType: "json",
-														           			data:JSON.stringify({
-														           				snsid : res.id,
-														           				snsemail : res.kaccount_email,
-														           				snsnickname : res.properties.nickname,
-														           				snsimage : res.properties.thumbnail_image
-														           			}),
-														           			dataType:"text",
-														           			success: function(result){
-														           				console.log(result);
-														           				if(result==='success'){
-														           					location.href='mainpage';
-														           				}
-														           			}
-														           		})
-																	}
-																		
-																		
-																	</script>
+																<div class="wen" style="margin-bottom: 8px;" >
+																	<img src="/resources/img/loginvienna.png" class="photo"/>
 																</div>	
 															</div>
 															<div>
-																<div style="margin-top : 16px; margin-bottom: 16px;">
-																	<div class="_12j61cy">
-																		<span class="_1ish1khj">
-																			<span class="_1rbmiub1">또는</span>
-																		</span>							
-																	</div>
-																</div>	
+																
 																<form action="/AirVienna/login" method="post" id="input_login"novalidate>	<!-- action에 들어가있던거 /authenticate -->	
 																	<input type="hidden" name="authenticity_token" value=
 																	"V4$.airbnb.co.kr$oACVpmJE18E$A4EnTj0C_-nzS1fo3bfM3MTy7A2MLAP42_mZKZ1dh2M=">
@@ -235,6 +120,17 @@ if(fa == null){
 																				<span class="_ftj2sg4">로그인</span>
 																			</button>
 																		</div>
+																		<div style="margin-top : 16px; margin-bottom: 16px;">
+																			<div class="_12j61cy">
+																				<span class="_1ish1khj">
+																					<span class="_1rbmiub1">또는</span>
+																				</span>							
+																			</div>
+																		</div>	
+																		<div style="margin-bottom: 8px; display: flex;">
+																			<a id="kakao-login-btn"></a>
+																			<div class="g-signin2" data-onsuccess="onSignIn" data-width="222" data-height="47" data-longtitle="true" ></div>
+																		</div>
 																	</div>
 																</form>
 															</div>
@@ -266,5 +162,103 @@ if(fa == null){
 		</div>
 	</div>
 </div>
-
-
+<%
+ String fa = (String)request.getAttribute("fa");
+if(fa == null){
+	fa = "true";
+}else{
+	%>
+	 <script>
+	  alert("아이디와 비밀번호를 잘못 입력하셨습니다.");
+ 	 </script>
+	<% 
+}
+%>
+<script>
+$(document).ready(function(){
+	//<![CDATA[
+	// 사용할 앱의 JavaScript 키를 설정해 주세요.
+	Kakao.init('40b247566ba3a9ad80eb5d6ab5c35e74');
+	// 카카오 로그인 버튼을 생성합니다.
+	Kakao.Auth.createLoginButton({
+		container: '#kakao-login-btn',
+		success: function(authObj) {
+			//alert(JSON.stringify(authObj));
+			Kakao.API.request({
+	          url: '/v2/user/me',
+	          success: function(res) {
+        			 		 $(".modal").modal("hide");
+		            alert(res.properties.nickname+'님 환영합니다.');
+	           		login(res);
+			  },
+			  fail: function(error) {
+			            alert(JSON.stringify(error));
+			   }
+	        }); //Kakao.API.request 종료
+	      },
+		 fail: function(err) {
+			alert(JSON.stringify(err));
+		}
+	});
+});
+//]]>
+function login(res){
+	$.ajax({
+        			type:"post",
+        			url:"/AirVienna/kakaoLogin",
+        			headers : {
+        				"Accept" : "application/json",
+        				"Content-Type" : "application/json"
+        			}, 
+        			data:JSON.stringify({
+        				snsid : res.id,
+        				snsemail : res.kaccount_email,
+        				snsnickname : res.properties.nickname,
+        				snsimage : res.properties.thumbnail_image
+        			}),
+        			dataType:"text",
+        			success: function(result){
+        				console.log(result);
+        				if(result==='success'){
+        					location.href='mainpage';
+        				}
+        			}
+        		})
+}
+</script>
+<script>
+function onSignIn(googleUser) {
+    // Useful data for your client-side scripts:
+    var profile = googleUser.getBasicProfile();
+    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+    console.log('Full Name: ' + profile.getName());
+    console.log('Given Name: ' + profile.getGivenName());
+    console.log('Family Name: ' + profile.getFamilyName());
+    console.log("Image URL: " + profile.getImageUrl());
+    console.log("Email: " + profile.getEmail()); 
+ // The ID token you need to pass to your backend:
+    var id_token = googleUser.getAuthResponse().id_token;
+    console.log("ID Token: " + id_token);
+    $.ajax({
+    	type:"post",
+    	url:"/AirVienna/googleLogin",
+    	headers:{
+    		"Accept":"application/json",
+    		"Content-Type":"application/json"
+    	},
+    	data:JSON.stringify({
+    		snsid : profile.getId(),
+    		snsemail : profile.getEmail(),
+    		snsnickname : profile.getName(),
+    		snsimage : profile.getImageUrl()
+    	}),
+    	dataType:"text",
+    	success:function(result){
+    		$(".modal").modal("hide");
+    		if(result==='success'){
+    			location.href='mainpage';
+    		}
+    	}
+    })
+}
+</script>

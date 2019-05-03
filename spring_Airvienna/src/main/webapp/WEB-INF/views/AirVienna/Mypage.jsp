@@ -131,14 +131,12 @@ border-bottom: solid 1px #cccccc;
 		
 			<button type="submit" class="btn btn-primary" style ="margin-top: 10px;">수정완료</button>
 			<button type="reset" class="btn btn-danger" style ="margin-top: 10px; margin-left: 5px" >취소</button>
+			<button type="button" class="btn btn-danger" onclick="location.href='/AirVienna/userdelete'" style="margin-top: 10px; margin-left: 270px" >회원탈퇴</button>
 			</form>
-			
-			
 			
 			<div class="panel-heading">
 				<h5 class="panel-title">프로필 사진</h5>
 			</div>
-
 
 
 <div class="panel-body photos-section">

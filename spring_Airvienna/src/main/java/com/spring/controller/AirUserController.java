@@ -139,6 +139,17 @@ public class AirUserController {
 		return new ResponseEntity<>("success",HttpStatus.OK);
 	}
 	
+	@GetMapping("/userdelete")
+	public String userdelete(@ModelAttribute("info") AirUserVO info,SessionStatus status,RedirectAttributes rttr) {
+		int result = service.userdelete(info.getEmail());
+		if(result > 0) {
+			status.setComplete();
+			rttr.addFlashAttribute("msg","success");
+		}
+		return "redirect:mainpage";
+		
+	}
+	
 	@GetMapping("/logout")
 	public String logout(SessionStatus status) {
 		log.info("로그아웃...");
@@ -209,15 +220,19 @@ public class AirUserController {
 		log.info("패스워드폼 호출...");
 	}	
 	@PostMapping("/password_change")
-	public String passwordPost(@ModelAttribute("info") AirUserVO info,  ChangePwd pwd,SessionStatus status) {
+	public String passwordPost(@ModelAttribute("info") AirUserVO info,  ChangePwd pwd,SessionStatus status,RedirectAttributes rttr) {
 		pwd.setEmail(info.getEmail());
 		int result = service.changePwd(pwd);
 		log.info("pwd"+pwd.getPassword());
 		if(result > 0) {
 			status.setComplete();
 			log.info("변경완료");
+			rttr.addFlashAttribute("success","success");
+			return "redirect:mainpage";
+		}else {
+			rttr.addFlashAttribute("fail","false");
+			return "redirect:password_change";
 		}
-		return "redirect:mainpage";
 	}
 	
 	@GetMapping("/profile")
@@ -251,19 +266,6 @@ public class AirUserController {
 		}
 	}
 	
-	@ResponseBody
-	@PostMapping("/checkPassword")
-	public String checkPassword(String password) {
-		log.info("패스워드 확인...");
-		AirUserVO dupPassword = service.selectByPassword(password);
-		if(dupPassword==null) {
-			log.info("패스워드가 틀렸습니다");
-			return "false";
-		}else {
-			log.info("패스워드 맞습니다.");
-			return "true";
-		}
-	}
 	@GetMapping("/mainpage")
 	public void mainpage() {
 		log.info("메인페이지 호출...");

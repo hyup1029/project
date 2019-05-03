@@ -11,16 +11,7 @@ $(function(){
 		rules:{
 			password:{
 				required: true,
-				validEmail : true,
-				remote:{
-					url:"checkPassword",
-					type:"post",
-					data:{
-						password:function(){
-							return $('#password').val();
-						}
-					}
-				}
+				validPwd : true
 			},
 			curruent_password:{
 				required: true,

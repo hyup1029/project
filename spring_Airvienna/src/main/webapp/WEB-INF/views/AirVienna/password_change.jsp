@@ -148,3 +148,15 @@ border-bottom: solid 1px #cccccc;
 
 	});
 	</script>
+<%
+ String fail = (String)request.getAttribute("fail");
+if(fail == null){
+	fail = "true";
+}else{
+	%>
+	 <script>
+	  alert("현재 비밀번호를 확인하세요.");
+ 	 </script>
+	<% 
+}
+%>

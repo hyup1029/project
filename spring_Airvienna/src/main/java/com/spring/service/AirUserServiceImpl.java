@@ -41,13 +41,13 @@ public class AirUserServiceImpl implements AirUserService {
 	}
 
 	@Override
-	public AirUserVO selectByPassword(String password) {
-		return mapper.selectByPassword(password);
-	}
-	
-	@Override
 	public boolean profile_modify(AirUserVO vo) {
 		return mapper.profile_modify(vo)==1;
+	}
+
+	@Override
+	public int userdelete(String email) {
+		return mapper.userdelete(email);
 	}
 
 

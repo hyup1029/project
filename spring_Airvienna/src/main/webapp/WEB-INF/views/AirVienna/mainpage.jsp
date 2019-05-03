@@ -3,6 +3,30 @@
     pageEncoding="UTF-8"%>
 <%@include file="../includes/header.jsp" %>
 <link rel="stylesheet" href="/resources/css/mainpage.css"/>
+<%
+ String success = (String)request.getAttribute("success");
+if(success == null){
+	success = "true";
+}else{
+	%>
+	 <script>
+	  alert("비밀번호를 성공적으로 변경하였습니다.다시 로그인 해주세요");
+ 	 </script>
+	<% 
+}
+%>
+<%
+ String msg = (String)request.getAttribute("msg");
+if(msg == null){
+	msg = "true";
+}else{
+	%>
+	 <script>
+	  alert("그동안 이용해 주셔서 감사합니다.");
+ 	 </script>
+	<% 
+}
+%>
 <div class="backimg">
 	<form action="search" method="post" role="form">
 		<div class="datacover">

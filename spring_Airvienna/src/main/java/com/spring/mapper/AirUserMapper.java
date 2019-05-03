@@ -12,7 +12,6 @@ public interface AirUserMapper {
 	public AirUserVO selectByEmail(String email);
 	public AirUserVO profile(int bno);
 	public int changePwd(ChangePwd vo);
-	public AirUserVO selectByPassword(String password);
 	public int profile_modify(AirUserVO vo);
-	
+	public int userdelete(String email);
 }

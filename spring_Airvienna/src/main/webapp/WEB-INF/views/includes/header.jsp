@@ -301,12 +301,24 @@ div{
 		<li class="_li1">
 			<div>
 				<div class="_div1">
-					<button type="button" class="buttonstyle" onclick="location.href='jjimlist'">
-						<div class="buttonline">
-							<div class="buttonfont">찜목록
+					<c:choose>
+						<c:when test="${!empty info}">
+							<button type="button" class="buttonstyle" onclick="location.href='jjimlist'">
+							<div class="buttonline">
+							<div class="buttonfont">찜목록</div>
 							</div>
-						</div>
-					</button>
+							</button>
+						</c:when>
+						<c:when test="${!empty sns}">
+							<button type="button" class="buttonstyle" id="snslogin">
+							<div class="buttonline">
+							<div class="buttonfont">찜목록</div>
+							</div>
+							</button>
+						</c:when>
+					</c:choose>
+						
+					<!-- </button> -->
 				</div>
 			</div>
 		</li>
@@ -391,5 +403,11 @@ $(function(){
 	$(".login").click(function(){
 		$(".modal").modal();
 	})
+	$("#snslogin").click(function(){
+		alert("${sns.snsnickname}님은 Guest 입니다 회원가입 후 이용 바랍니다.");
+	})
 })
+
+
+
 </script>

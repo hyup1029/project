@@ -70,42 +70,33 @@ $(document).ready(function(){
 		//var cloneObj=$(".uploadDiv").clone();
 		var formObj=$("form[role='form']");
 		$("button[type='submit']").click(function(e){
-		
-		
 			//submit버튼이 눌러지면 폼 전송 막기
 			//첨부파일 내용을 가지고 같이 가야 하기 때문에
 			e.preventDefault();
-			
 			//첨부파일 내용 : uuid,uploadPath,fileType,fileName
 			//=>uploadResult ul li가 가지고 있기 때문에 그 영역에 있는 값 수집하기
 			var str="";
-			$(".photo li").each(function(i,obj){
-				var job=$(obj);
-				
+				var job=$(".photo li");
 				str+="<input type='hidden' name='uuid' value='"+job.data("uuid")+"'>";
 				str+="<input type='hidden' name='uploadPath' value='"+job.data("path")+"'>";
 				str+="<input type='hidden' name='fileName' value='"+job.data("filename")+"'>";
 				str+="<input type='hidden' name='fileType' value='"+job.data("type")+"'>";
-			});
 			console.log(str);
 			formObj.append(str).submit();
 		});
 		$("input[type='file']").change(function(){
 			console.log("upload 버튼 클릭");
-			
 			//multipart-form-data 형태의 폼을 한꺼번에 가져오기
 			var formData=new FormData();
 			//file안에 들어있는 여러개의 첨부된 파일 가져오기
 			var inputFile=$("input[name='uploadFile']");
 			var files=inputFile[0].files;
-			
 			for(var i=0;i<files.length;i++){
 				if(!checkExtension(files[i].name,files[i].size)){
 					return false;
 				}
 				formData.append("uploadFile",files[i]);
 			}
-			
 			//formData를 ajax 기술로 서버로 전송하기
 			$.ajax({
 				url : "/uploadAjax",	//가야할 컨트롤러 주소
@@ -117,7 +108,6 @@ $(document).ready(function(){
 				success : function(result){
 					console.log(result);
 					showUploadedFile(result);
-					//$(".uploadDiv").html(cloneObj.html());
 				}
 			});
 		}); //#uploadBtn 종료
@@ -137,24 +127,22 @@ $(document).ready(function(){
 			return true;
 		}	
 		//서버에서 result를 받은 후 result 보여주기
-		function showUploadedFile(uploadResultArr){
+		function showUploadedFile(obj){
 			//결과를 보여줄 영역 가져오기
 			var uploadResult = $(".photo");
 			//
 			var str="";
-			$(uploadResultArr).each(function(i,obj){
-				if(obj.fileType){//true이면 이미지
+				if(obj[0].fileType){//true이면 이미지
 					//썸네일 이미지 경로
-					var filePath=encodeURIComponent(obj.uploadPath+"\\s_"+obj.uuid+"_"+obj.fileName);					
+					var filePath=encodeURIComponent(obj[0].uploadPath+"\\s_"+obj[0].uuid+"_"+obj[0].fileName);					
 					
-					str+="<li data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"'";
-					str+=" data-filename='"+obj.fileName+"' data-type='"+obj.fileType+"'";
+					str+="<li data-path='"+obj[0].uploadPath+"' data-uuid='"+obj[0].uuid+"'";
+					str+=" data-filename='"+obj[0].fileName+"' data-type='"+obj[0].fileType+"'";
 					str+=">";					
 					str+="<img src='/display?fileName="+filePath+"'>";
 					str+="</li>";
 				}
-			});
-			//console.log(str);
+			console.log("profile"+str);
 			//uploadResult.append(str);
 			uploadResult.html(str);
 		};
