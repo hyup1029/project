@@ -34,7 +34,6 @@ create table accommodation_attach(
 	fileName varchar2(100) not null,
 	ano number(10,0)
 );
-DROP TABLE accommodation_attach CASCADE CONSTRAINTS;
 
 alter table accommodation_attach add constraint fk_accommodation
 foreign key(ano) references project_accommodation(ano);

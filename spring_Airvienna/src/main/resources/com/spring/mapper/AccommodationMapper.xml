@@ -49,4 +49,11 @@
 		delete from jjimlist where ano=#{ano}
 	</delete>
 	
+	
+	
+	<!-- 집 관리 페이지에 보여줌 -->
+	<select id="get_home" resultType="com.spring.domain.AccommodationVO">
+	select * from project_accommodation where bno=#{bno}
+	</select>
+	
 </mapper>
