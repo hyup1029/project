@@ -1,26 +1,3 @@
-create table jjimlist(
-   jno number(10,0)constraint pk_jjimlist primary key,
-   bno number(10)not null,
-   ano number(10,0)not null,
-   homename nvarchar2(200) not null,
-   jjimselect char(1) default '0',
-   price number(15,0)not null
-); <!-- 찜 디비 가격추가 -->
-
-
-create sequence seq_jjim;
-
-alter table jjimlist add constraint fk_jjimlist
-foreign key(bno) references airuser(bno);
-
-alter table jjimlist add constraint fk_jjimlist_home
-foreign key(ano) references project_accommodation(ano);
-
-
-delete from JJIMLIST;
-select * from JJIMLIST;
-
-drop table JJIMLIST;
 <%@page import="com.spring.domain.jjimVO"%>
 <%@page import="com.spring.domain.HomeAttachVO"%>
 <%@page import="com.spring.domain.AccommodationVO"%>
@@ -180,31 +157,27 @@ drop table JJIMLIST;
          /* var res = $('._jjim').val();   
          alert(res); */
          var str="";
-         if(${!empty info}){
-            
-               //$(this).find('.sv').attr("fill", "#FF5A5F");
-               //$(this).find('.sv').attr("fill-opacity", "1");
-               //$(this).find('.sv').attr("stroke", "#FF5A5F");
-            var homename = $(this).find("input[name='homename1']").val();
-            var ano = $(this).find("input[name='ano1']").val();
-            var price = $(this).find("input[name='price1']").val();
+         if(${!empty info}){ // 로그인이 되어있다면 실행
+            var homename = $(this).find("input[name='homename1']").val(); // 찜 DB에 집이름 등록
+            var ano = $(this).find("input[name='ano1']").val(); // 찜 DB 집 기본키 등록
+            var price = $(this).find("input[name='price1']").val(); // 찜 DB에 가격 등록
             res=true;
             str+="<input type='hidden' name='jjimselect' value='"+res+"'/>"
             str+="<input type='hidden' name='bno' value='${info.bno}'/>"
             str+="<input type='hidden' name='ano' value='"+ano+"'/>"
             str+="<input type='hidden' name='homename' value='"+homename+"'/>"
             str+="<input type='hidden' name='price' value='"+price+"'/>"
-            formObj.append(str);
-            formObj.submit();
+            formObj.append(str); // 추가 시킴
+            formObj.submit(); // 서브밋 시켜줌
             
-         }else{
+         }else{ // 로그인이 안되어 있으면 찜 기능을 막고 로그인 페이지로 이동 시킴
             alert("로그인을 하고 찜 기능을 이용하십시오!!");
             location.href="login";
          }
          
          });
       
-      $('._jjimremove').click(function(){
+      $('._jjimremove').click(function(){ // 찜 버튼 다시 클릭시 찜 삭제
          var str="";
          formObj.attr("action","jjimremovelist")
          var ano = $(this).find("input[name='ano1']").val();
