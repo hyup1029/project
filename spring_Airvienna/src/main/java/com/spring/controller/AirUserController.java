@@ -187,7 +187,7 @@ public class AirUserController {
 //	model.addAttribute("list",list);
 	@GetMapping("/home_modify")
 	public String home_modify(@ModelAttribute("info")AirUserVO info ,AccommodationVO vo, Model model) {
-		log.info("집등록페이지 호출...");
+		log.info("집관리 페이지 호출...");
 		
 		vo.setBno(info.getBno());
 		
@@ -223,6 +223,9 @@ public class AirUserController {
 		log.info("실패");
 		
 		return "AirVienna/profile";
+		
+		
+		
 	}
 	
 	@GetMapping("/password_change")
@@ -241,10 +244,25 @@ public class AirUserController {
 		return "redirect:mainpage";
 	}
 	
+	
 	@GetMapping("/profile")
-	public void profile(@ModelAttribute("info")AirUserVO vo) {
+	public String profile(@ModelAttribute("info")AirUserVO info,AccommodationVO vo, Model model) {
 		log.info("프로필 호출");
-
+		
+		vo.setBno(info.getBno());
+		
+		vo = homeservice.get_home(vo);
+		
+		HomeAttachVO Attvo = homeattservice.homeAttachList(vo.getAno()); // 세션에있는 bno에 해당하는 어태치목록 가져오고 attvo에 담음
+		vo.setHomeAttach(new ArrayList<>());
+		
+		vo.getHomeAttach().add(Attvo);
+		
+		log.info(Attvo+"");
+		log.info(vo+"");
+		model.addAttribute("vo",vo);
+		
+		return "AirVienna/profile";
 			
 	}
 	
@@ -384,9 +402,7 @@ public class AirUserController {
 		return "AirVienna/accommodationlist";
 	}
 	@GetMapping("/accommodationlist")
-	public void listpage(Criteria ct, Model model)
-
-{
+	public void listpage(Criteria ct, Model model) {
 		log.info("리스트페이지 호출...");
 		ct.setType("E");
 		List<AccommodationVO> list = homeservice.optionE(ct);

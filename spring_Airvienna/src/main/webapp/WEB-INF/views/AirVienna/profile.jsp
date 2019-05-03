@@ -1,3 +1,5 @@
+<%@page import="com.spring.domain.HomeAttachVO"%>
+<%@page import="com.spring.domain.AccommodationVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -35,9 +37,8 @@
 
 </head>
 
-
 <div class="container" style="margin-top: 50px;">
-
+<hr />
 	<div class="row">
 		<div class="col-sm-3">
 			<!--left col-->
@@ -60,21 +61,21 @@
 						</c:when>
 					</c:choose>
 				</div>
-
+				
 			</div>
 			<br>
-			<h5 style="text-align: center;">${info.username}님</h5>
-			<ul class="list-group">
+			<h5 style="text-align: center;"><b>${info.username}</b>&nbsp&nbsp&nbsp님</h5>
+			<ul class="list-group" style ="margin-top : 60px;">
 
-				<li class="list-group-item text-muted">Activity <i
+				<li class="list-group-item text-muted">활동 내역 <i
 					class="fa fa-dashboard fa-1x"></i></li>
-				<li class="list-group-item text-right"><span class="pull-left"><strong>Shares</strong></span>
+				<li class="list-group-item text-right"><span class="pull-left"><strong>공유</strong></span>
 					125</li>
-				<li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span>
+				<li class="list-group-item text-right"><span class="pull-left"><strong>좋아요</strong></span>
 					13</li>
-				<li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span>
+				<li class="list-group-item text-right"><span class="pull-left"><strong>찜</strong></span>
 					37</li>
-				<li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span>
+				<li class="list-group-item text-right"><span class="pull-left"><strong>팔로워</strong></span>
 					78</li>
 			</ul>
 
@@ -122,19 +123,39 @@
 					<div class="row">
 						<div class="col-lg-4 text-center" style="margin-top: 10px;">
 							<div class="home_container">
-								<div>
-									<img src="/resources/img/a.jpg" class="home_img">
-								</div>
+								<div>    
+               <%
+               AccommodationVO acc= (AccommodationVO)request.getAttribute("vo");
+           if(acc.getHomeAttach()!=null){
+               for(HomeAttachVO home : acc.getHomeAttach()){
+                 	  String filePath2=null;
+               
+               
 
+                         System.out.println("uuid "+home.getUuid());
+                         filePath2=home.getUploadPath()+"\\s_"+home.getUuid()+"_"+home.getFileName();
+                             String oriPath2 = filePath2;
+                             oriPath2= oriPath2.replaceAll("\\\\","/");
+                         // 이렇게 변수에 담고
+
+                         System.out.println("uuid "+filePath2);
+                         System.out.println("oriPath"+oriPath2); 
+                       
+              %>        
+
+              <img src="/homedisplay?fileName=<%=oriPath2%>" style='margin-top:10px; width:96%; height:250px;'/>
+				<%} %>
+				<%} %>			
+								</div>
 							</div>
 
 						</div>
 						<div class="col-lg-8" style="padding-right: 55px;">
 							<ul class="list-layout picture-tiles clearfix ui-sortable"></ul>
-							<h3 style="margin-top: 10px;">집이름</h3>
+							<h3 style="margin-top: 10px;">${vo.homename}</h3>
 
 							<hr>
-							<p>집 간단설명</p>
+							<p>${vo.birfcontent}</p>
 							<div class="row row-condensed">
 								<div class="">
 									<span class="file-input-container"> <iframe
@@ -152,3 +173,9 @@
 		</div>
 	</div>
 </div>
+
+<script>
+
+
+
+</script>
