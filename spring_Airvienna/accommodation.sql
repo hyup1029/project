@@ -42,3 +42,5 @@ foreign key(ano) references project_accommodation(ano);
 select * from accommodation_attach;
 
 select * from project_accommodation;
+
+delete from project_accommodation where region2='광주 남구 판촌길 23-5';
