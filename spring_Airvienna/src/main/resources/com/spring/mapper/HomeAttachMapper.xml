@@ -8,6 +8,7 @@ values(#{uuid},#{uploadPath},#{fileName},#{ano})
 <select id="findByAno" resultType = "com.spring.domain.HomeAttachVO">
 	select * from accommodation_attach where ano=#{ano}
 </select>
+
 <select id="homeAttachList"  resultType = "com.spring.domain.HomeAttachVO">
 select ano,uuid,uploadpath,filename from accommodation_attach where rowid in
 (select max(rowid) from accommodation_attach group by ano) and ano=#{ano}

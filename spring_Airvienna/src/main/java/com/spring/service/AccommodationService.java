@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.spring.domain.AccommodationVO;
 import com.spring.domain.Criteria;
+import com.spring.domain.HomeAttachVO;
 import com.spring.domain.jjimVO;
 
 public interface AccommodationService {
@@ -20,5 +21,8 @@ public interface AccommodationService {
 	public List<jjimVO> jjimlist (int bno);
 	public int jjimremove(int ano);
 	
+	
 	public AccommodationVO getPage(int ano);
+	public AccommodationVO get_home(AccommodationVO vo);
+	
 }

@@ -17,7 +17,7 @@
       <h1 class="jumbotron-heading">모두가 호스트</h1>
       <p class="lead text-muted">자신의 집을 공유해 보세요!! 안쓰는 방 활용 하여 돈도 벌고 국내 여행객 뿐 아니라 여려나라 사람들을 만나며 경험과 견문을 확장 시킬수 있는 기회입니다.</p>
       <p>
-        <a href="#" class="btn btn-primary my-2">자신의 home share</a>
+        <a href="home_register" class="btn btn-primary my-2">자신의 home share</a>
       </p>
     </div>
   </section>
@@ -30,11 +30,13 @@
    </c:forEach>
   <div class="album py-5 bg-light">
     <div class="container">
-
       <div class="row">
      <%--  <c:forEach var="vo" items="${list}">  --%>
                <%
-                  List<AccommodationVO> accList=(List<AccommodationVO>)request.getAttribute("list");
+               List<AccommodationVO> accList=null;
+               
+            	if(request.getAttribute("list")!=null){
+                  accList=(List<AccommodationVO>)request.getAttribute("list");
                   for(AccommodationVO vo : accList){
             %>
                   
@@ -46,7 +48,7 @@
                        if(vo.getHomeAttach()!=null){
                           for(HomeAttachVO home:vo.getHomeAttach()){
  //                            System.out.println("uuid "+home.getUuid());
-                         filePath=home.getUploadPath()+"\\1_"+home.getUuid()+"_"+home.getFileName();
+                         filePath=home.getUploadPath()+"\\s_"+home.getUuid()+"_"+home.getFileName();
                              String oriPath = filePath;
                              oriPath= oriPath.replaceAll("\\\\","/");
                          // 이렇게 변수에 담고
@@ -69,13 +71,13 @@
               <h4 class="card-text"><%=vo.getHomename()%></h4> 
               <p class="card-text"><a href = "Readpage?ano=<%=vo.getAno()%>" class = "move"><%=vo.getBirfcontent()%></a></p>
               <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <small class="card-tmuted">평점 : </small>
-                </div>
+
                 <small class="text-muted">등록 시간 : <fmt:formatDate pattern="yyyy-MM-dd" value="<%=vo.getRegistDate() %>"></fmt:formatDate></small>
                 <div class="jjim">
                <%-- <c:if test="${!empty jjimlist}"> --%>
                <%  
+               
+              
                   List<jjimVO> jjimlist=(List<jjimVO>)request.getAttribute("jjimlist");
                   if(jjimlist!=null){
                      boolean flag=false;
@@ -126,7 +128,9 @@
             </form>
           </div>
         </div>
-        <%}%>
+        <%}
+        
+        }%>
       </div>
     </div>
   </div>
@@ -157,31 +161,27 @@
          /* var res = $('._jjim').val();   
          alert(res); */
          var str="";
-         if(${!empty info}){
-            
-               //$(this).find('.sv').attr("fill", "#FF5A5F");
-               //$(this).find('.sv').attr("fill-opacity", "1");
-               //$(this).find('.sv').attr("stroke", "#FF5A5F");
-            var homename = $(this).find("input[name='homename1']").val();
-            var ano = $(this).find("input[name='ano1']").val();
-            var price = $(this).find("input[name='price1']").val();
+         if(${!empty info}){ // 로그인이 되어있다면 실행
+            var homename = $(this).find("input[name='homename1']").val(); // 찜 DB에 집이름 등록
+            var ano = $(this).find("input[name='ano1']").val(); // 찜 DB 집 기본키 등록
+            var price = $(this).find("input[name='price1']").val(); // 찜 DB에 가격 등록
             res=true;
             str+="<input type='hidden' name='jjimselect' value='"+res+"'/>"
             str+="<input type='hidden' name='bno' value='${info.bno}'/>"
             str+="<input type='hidden' name='ano' value='"+ano+"'/>"
             str+="<input type='hidden' name='homename' value='"+homename+"'/>"
             str+="<input type='hidden' name='price' value='"+price+"'/>"
-            formObj.append(str);
-            formObj.submit();
+            formObj.append(str); // 추가 시킴
+            formObj.submit(); // 서브밋 시켜줌
             
-         }else{
+         }else{ // 로그인이 안되어 있으면 찜 기능을 막고 로그인 페이지로 이동 시킴
             alert("로그인을 하고 찜 기능을 이용하십시오!!");
             location.href="login";
          }
          
          });
       
-      $('._jjimremove').click(function(){
+      $('._jjimremove').click(function(){ // 찜 버튼 다시 클릭시 찜 삭제
          var str="";
          formObj.attr("action","jjimremovelist")
          var ano = $(this).find("input[name='ano1']").val();

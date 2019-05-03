@@ -276,15 +276,7 @@ $(function(){
 <!-- 파일 업로드 부분 시작 -->
 <script>
 $(function(){
-   // 처음 상태를 복제
-   // var cloneObj=$(".uploadDiv").clone();
    var formObj=$("form[role='form']");
-/*    var region = $('#region').val();
-   var region2 = $('#region2').val();
-   var region3 = $('#region3').val();
-   var region4 = $('#region4').val();
-   var region5 = $('#region5').val();
-   alert(region+region2+region3+region4+region5); 주소한번 합쳐봄 */
 
    $("button[type='submit']").click(function(e){
       // submit 버튼이 눌러지면 폼 전송 막기
