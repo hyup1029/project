@@ -21,7 +21,7 @@ border-bottom: solid 1px #cccccc;
 	border-color: #cccccc;
 	width: 800px;
 	margin-top: 5%;
-	height: 800px;
+	height: 930px;
 	float: right;	
 
 }
@@ -84,8 +84,17 @@ border-bottom: solid 1px #cccccc;
     margin-left: 570px;
     position : relative;
     bottom: 34px;
+}
+ 
+#img_px {
+   width: 200x;
+   height: 120px;  
+   margin-left : 10px;
+}
+.uploadResult{
+	margin-left : 140px;
+}
 
-    
 }
 
 
@@ -177,36 +186,157 @@ border-bottom: solid 1px #cccccc;
 
 	
 	
-	
-	<!-- 프로필 사진을 클릭했을때 이미지 업로드 -->
-	<script>
-	$(document).ready(function(){
-		$(".photo").click(function(){
-			$(".file").click() ;
-			
-			})			
-		})
-	</script>	
-		
-		
-	<script>
-	$(document).ready(function() {
+	<!-- 파일 업로드 부분 시작 -->
+</script>
 
-		// 기존 css에서 박스 위치(top)값을 가져와 저장한다.
-		var floatPosition = parseInt($("#menu").css('top'));
-		// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
 
-		$(window).scroll(function() {
-			// 현재 스크롤 위치를 가져온다.
-			var scrollTop = $(window).scrollTop();
-			var newPosition = scrollTop + floatPosition + "px";
-			 
-			 $("#menu").stop();
-			 $("#menu").animate({
-				"top" : newPosition
-			}); 
+<!-- 파일 업로드 부분 시작 -->
+<script>
+$(function(){
+   // 처음 상태를 복제
+   // var cloneObj=$(".uploadDiv").clone();
+   var formObj=$("form[role='form']");
+/*    var region = $('#region').val();
+   var region2 = $('#region2').val();
+   var region3 = $('#region3').val();
+   var region4 = $('#region4').val();
+   var region5 = $('#region5').val();
+   alert(region+region2+region3+region4+region5); 주소한번 합쳐봄 */
 
-		})
+   $("button[type='submit']").click(function(e){
+      // submit 버튼이 눌러지면 폼 전송 막기
+      // 막는 이유는 첨부파일 내용을 가지고 같이가야 하기 떄문이다.
+      e.preventDefault();
+      
+      // 첨부파일내용 : uuid, uploadPath, fileType, fileName
+      //=> uploadResult ul li가 가지고 있기 때문에 그 영역에 있는 값 수집하기
+      var str="";
+      $(".uploadResult span").each(function(i,obj){
+         var job=$(obj);
+         
+         str+="<input type='hidden' name='homeAttach["+i+"].uuid' value='"+job.data("uuid")+"'>";
+         str+="<input type='hidden' name='homeAttach["+i+"].uploadPath' value='"+job.data("path")+"'>";
+         str+="<input type='hidden' name='homeAttach["+i+"].fileName' value='"+job.data("filename")+"'>";
+         str+="<input type='hidden' name='homeAttach["+i+"].fileType' value='"+job.data("type")+"'>";
+      });
+      console.log(str);
+      formObj.append(str);
+      formObj.submit();
+   });
+      
+      // uploadBtn을 입력하면 uploadFile에 있는 정보 가져오기
+      
+      $("#uploadIMG").click(function(){
+         console.log("등록하기 버튼 클릭");
+         
+         // multipart/form-data 형태의 폼을 한꺼번에 처리하기
+         var formData = new FormData();
+         // file안에 들어있는 여러개의 첨부된 파일 가져오기
+         var inputFile=$("input[name='uploadFile']");
+         var files=inputFile[0].files;
+         
+         for(var i=0; i<files.length;i++){
+            
+            if(!checkExtension(files[i].name, files[i].size)){
+               return false;
+            } 
+            else if(files.length > 3) {
+               alert("이미지는 3개까지 등록 가능합니다.");
+               return false;
+            }
+            formData.append("uploadFile",files[i]);
+         }
+         
+         // formData를 ajax 기술로 서버로 전송하기 
+         $.ajax({
+            url : "/homeAjax",   // 가야할 컨트롤러 주소
+            data : formData,      // 전송할 데이터
+            processData : false,   // formData를 쓸때 무조건 필요함(데이터를 어떤방식으로 변환할 것인지 결정)
+            contentType : false,   // formData를 쓸때 무조건 필요함(formData가 기본적으로  application/x-www-form-urlencoded인 상황이라 false로 지정)
+            type :"post",
+            dataType : "json",      // 되돌아오는 데이터 타입 (전송이 잘 되면 success라는 문자열을 전송받을 예쩡)
+            success:function(result) {
+               console.log(result);   // 브라우저에 찍힌 파일내용
+               showUploadedFile(result);
+               //$(".uploadDiv").html(cloneObj.html());
+            }
+         });
+      });  //#uploadBtn 종료
+      
+      // 첨부파일의 크기와 확장자 제한
+      function checkExtension(fileName, fileSize){
+         var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$"); // 정규식 패턴 // 확장자 막음
+         var maxSize = 5242880; // 5MB
+         
+         if(fileSize > maxSize){
+            alert("파일 사이즈 초과");
+            return false;
+         }
+         if(regex.test(fileName)){
+            alert("이미지만 업로드할 수 있습니다.");
+            return false;
+         }
+         return true;
+      } // checkExtension 종료
+      
+      //서버에서 result를 받은 후 result 보여주기
+      function showUploadedFile(uploadResultArr){
+         //결과를 보여줄 영역 가져오기
+         var uploadResult = $(".uploadResult");
+         console.log(uploadResultArr);
+         var str="";                  
+         $(uploadResultArr).each(function(i,obj){   
+            if(obj.fileType){//true이면 이미지
+               //썸네일 이미지 경로
+               var filePath=encodeURIComponent(obj.uploadPath+"\\s_"+obj.uuid+"_"+obj.fileName);
+                //원본 파일 이미지 경로
+               var oriPath=obj.uploadPath+"\\"+obj.uuid+"_"+obj.fileName;
+                
+               //폴더 구분의 \를 /로 바꾸는 작업
+               oriPath=oriPath.replace(new RegExp(/\\/g),"/");
+               str+="<span id = 'image_span' data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"'";
+               str+=" data-filename='"+obj.fileName+"' data-type='"+obj.fileType+"'>";
+               str+="<img src='/homedisplay?fileName="+filePath+"' id ='img_px'></a>"; // 고정이미지값을 줄려고 id를 넣음
+               str+="</span>";
+            }
+            
+         });
+         var span_length=$(".uploadResult span").length;
+         console.log("span갯수 : " + span_length);
+         
+         if(span_length === 3) {
+            alert("이미지는 3개까지 업로드 가능합니다. ");
+            $("#uploadIMG").off('click');
+            
+            return;
+      }
+          uploadResult.append(str);
+      }
+      
+      // X를 클릭하면 첨부된 파일 삭제하기
+      $(".uploadResult").on("click","button",function(){
+         var targetFile=$(this).data("file");
+         var type=$(this).data("type");
+      
+         // 첨부목록 삭제
+         var targetLi=$(this).closest("li");
+         
+         
+         // 가져온 데이터 서버로 전송
+         $.ajax({
+            url : '/deleteHomeFile',
+            dataType : 'text',
+            data:{
+               fileName:targetFile,
+               type:type
+            },
+            type:'post',
+            success:function(result){
+               console.log(result);
+               targetLi.remove();
+            }
+         });
+      });
+   })
 
-	});
-	</script>
+</script>

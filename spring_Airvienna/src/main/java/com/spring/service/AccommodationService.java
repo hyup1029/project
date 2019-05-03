@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.spring.domain.AccommodationVO;
 import com.spring.domain.Criteria;
+import com.spring.domain.HomeAttachVO;
 import com.spring.domain.jjimVO;
 
 public interface AccommodationService {

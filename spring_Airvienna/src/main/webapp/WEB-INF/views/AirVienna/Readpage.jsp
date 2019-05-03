@@ -1,563 +1,205 @@
+<%@page import="com.spring.domain.jjimVO"%>
+<%@page import="com.spring.domain.HomeAttachVO"%>
+<%@page import="com.spring.domain.AccommodationVO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
-<%@include file="../includes/header.jsp"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%
-   int price = 50000;
-
-   String email = "ajdzl777@naver.com";
-
-   String content = "너무 좋아요!";
-%>
-
-<link rel="canonical"
-   href="https://getbootstrap.com/docs/4.3/examples/carousel/">
-
-<!-- Bootstrap core CSS -->
-
-<link href="/resources/css/bootstrap.min.css" rel="stylesheet"
-   integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-   crossorigin="anonymous">
-
+    pageEncoding="UTF-8"%>
+<%@include file="../includes/header.jsp" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <style>
-.bd-placeholder-img {
-   font-size: 1.125rem;
-   text-anchor: middle;
-   -webkit-user-select: none;
-   -moz-user-select: none;
-   -ms-user-select: none;
-   user-select: none;
-}
+                                  
+                    </style>
+<main role="main">
 
-@media ( min-width : 768px) {
-   .bd-placeholder-img-lg {
-      font-size: 3.5rem;
-   }
-}
-</style>
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">모두가 호스트</h1>
+      <p class="lead text-muted">자신의 집을 공유해 보세요!! 안쓰는 방 활용 하여 돈도 벌고 국내 여행객 뿐 아니라 여려나라 사람들을 만나며 경험과 견문을 확장 시킬수 있는 기회입니다.</p>
+      <p>
+        <a href="home_register" class="btn btn-primary my-2">자신의 home share</a>
+      </p>
+    </div>
+  </section>
+<input type="hidden" name="bno" value="${info.bno}"/>
+<c:forEach var="jjim" items="${jjimlist}">
+   <input type="hidden" id="jjimano" value="${jjim.ano}"/>
+   <input type="hidden" id="jjimbno" value="${jjim.bno}"/>
+   <input type="hidden" id="jjimhomename" value="${jjim.homename}"/>
+   <input type="hidden" id="jjimselect" value="${jjim.jjimselect}"/>
+   </c:forEach>
+  <div class="album py-5 bg-light">
+    <div class="container">
 
-<link href="/resources/css/carousel.css" rel="stylesheet">
-
-</head>
-
-<body style="padding-top: 0px;">
-   <script
-      src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-
-   <main role="main">
-
-
-   <div id="myCarousel" class="carousel slide" data-ride="carousel"
-      style="margin-left: 309px; width: 800px;">
-
-      <ol class="carousel-indicators">
-
-         <li data-target="#myCarousel" data-slide-to="0" class=""></li>
-         <li data-target="#myCarousel" data-slide-to="1" class=""></li>
-         <li data-target="#myCarousel" data-slide-to="2" class="active"></li>
-
-      </ol>
-
-      <div class="carousel-inner">
-         <div class="carousel-item">
-            <div class="bd-placeholder-img">
-               <img src="../resources/img/HavenueA.PNG" class="d-block w-100"
-                  alt="First Slide" style="width: 1110px; height: 400px;">
+      <div class="row">
+     <%--  <c:forEach var="vo" items="${list}">  --%>
+               <%
+                  List<AccommodationVO> accList=(List<AccommodationVO>)request.getAttribute("list");
+                  for(AccommodationVO vo : accList){
+            %>
+                  
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm" id="thumbnail">
+          <div class="bd-placeholder-img card-img-top" style ="text-align: center;">            
+              <%
+                       String filePath=null;
+                       if(vo.getHomeAttach()!=null){
+                          for(HomeAttachVO home:vo.getHomeAttach()){
+ //                            System.out.println("uuid "+home.getUuid());
+                         filePath=home.getUploadPath()+"\\s_"+home.getUuid()+"_"+home.getFileName();
+                             String oriPath = filePath;
+                             oriPath= oriPath.replaceAll("\\\\","/");
+                         // 이렇게 변수에 담고
+                      
+                         System.out.println("uuid "+filePath);
+                         System.out.println("oriPath"+oriPath);
+                       
+              %>        
+                                    
+              <img src="/homedisplay?fileName=<%=oriPath%>" style='margin-top:10px; width:96%; height:250px;'/>
+                    <% } %>
+                 <% } %> 
+              
+              
+          </div>
+          
+          
+          <form class="jjimlist" action="jjimregist" method="post">
+            <div class="card-body">
+              <h4 class="card-text"><%=vo.getHomename()%></h4> 
+              <p class="card-text"><a href = "Readpage?ano=<%=vo.getAno()%>" class = "move"><%=vo.getBirfcontent()%></a></p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <small class="card-tmuted">평점 : </small>
+                </div>
+                <small class="text-muted">등록 시간 : <fmt:formatDate pattern="yyyy-MM-dd" value="<%=vo.getRegistDate() %>"></fmt:formatDate></small>
+                <div class="jjim">
+               <%-- <c:if test="${!empty jjimlist}"> --%>
+               <%  
+                  List<jjimVO> jjimlist=(List<jjimVO>)request.getAttribute("jjimlist");
+                  if(jjimlist!=null){
+                     boolean flag=false;
+                     
+                     for(jjimVO jjim:jjimlist){
+                     /*    <c:forEach var="jjim" items="${jjimlist}">  
+                            <c:set value="${vo.ano}" var="v_ano"/>
+                            <c:set value="${jjim.ano}" var="j_ano"/>
+                            <% */
+                               //int                     
+                            
+                               
+                               if(vo.getAno()==jjim.getAno()){
+                                  flag=true;                    
+                                  break;
+                             }
+                     }
+                  %> 
+                  <%--  </c:forEach> --%>
+                  
+                   <% if(flag){ %>
+                   <button type="button" id="_jjimremove" onclick="test(this.form)" class="_jjimremove" name="select" role="<%=vo.getAno()%>" style="background-color:white; border:solid 0px;padding: 0px; margin: 0px;">
+                     <svg class="sv" viewBox="0 0 32 32" fill="#FF5A5F" fill-opacity="1" stroke="#FF5A5F" stroke-width="2.5" focusable="false" aria-label="트립 저장하기" role="img" stroke-linecap="round" stroke-linejoin="round" style="height: 24px; width: 24px; display: block; overflow: visible;"><path d="m23.99 2.75c-.3 0-.6.02-.9.05-1.14.13-2.29.51-3.41 1.14-1.23.68-2.41 1.62-3.69 2.94-1.28-1.32-2.46-2.25-3.69-2.94-1.12-.62-2.27-1-3.41-1.14a7.96 7.96 0 0 0 -.9-.05c-1.88 0-7.26 1.54-7.26 8.38 0 7.86 12.24 16.33 14.69 17.95a1 1 0 0 0 1.11 0c2.45-1.62 14.69-10.09 14.69-17.95 0-6.84-5.37-8.38-7.26-8.38"></path></svg>
+                  <input type="hidden" name="homename1" value="<%=vo.getHomename()%>"/><input type="hidden" name="ano1" value="<%=vo.getAno()%>"/>
+                  <input type="hidden" name="price1" value="<%=vo.getPrice()%>"/>
+                      <%   }if(!flag){%>
+                      <button type="button" id="_jjim" onclick="test(this.form)" class="_jjim" name="select" role="<%=vo.getAno()%>" style="background-color:white; border:solid 0px;padding: 0px; margin: 0px;">
+                     <svg class="sv" viewBox="0 0 32 32" fill="#ffffff" fill-opacity="0.5" stroke="#484848" stroke-width="2.5" focusable="false" aria-label="트립 저장하기" role="img" stroke-linecap="round" stroke-linejoin="round" style="height: 24px; width: 24px; display: block; overflow: visible;"><path d="m23.99 2.75c-.3 0-.6.02-.9.05-1.14.13-2.29.51-3.41 1.14-1.23.68-2.41 1.62-3.69 2.94-1.28-1.32-2.46-2.25-3.69-2.94-1.12-.62-2.27-1-3.41-1.14a7.96 7.96 0 0 0 -.9-.05c-1.88 0-7.26 1.54-7.26 8.38 0 7.86 12.24 16.33 14.69 17.95a1 1 0 0 0 1.11 0c2.45-1.62 14.69-10.09 14.69-17.95 0-6.84-5.37-8.38-7.26-8.38"></path></svg>
+                  <input type="hidden" name="homename1" value="<%=vo.getHomename()%>"/><input type="hidden" name="ano1" value="<%=vo.getAno()%>"/>
+                  <input type="hidden" name="price1" value="<%=vo.getPrice()%>"/>
+                  <%} 
+                     }   //if(jjimlist!=null) 종료
+                     
+                     
+                     %>
+                  <%--  </c:if> --%>
+                  <%--  <c:if test="${empty jjimlist}"> --%>
+                  <% if(jjimlist==null){ %>
+                    <button type="button" id="_jjim" onclick="test(this.form)" class="_jjim" name="select" role="<%=vo.getAno()%>" style="background-color:white; border:solid 0px;padding: 0px; margin: 0px;">
+                     <svg class="sv" viewBox="0 0 32 32" fill="#ffffff" fill-opacity="0.5" stroke="#484848" stroke-width="2.5" focusable="false" aria-label="트립 저장하기" role="img" stroke-linecap="round" stroke-linejoin="round" style="height: 24px; width: 24px; display: block; overflow: visible;"><path d="m23.99 2.75c-.3 0-.6.02-.9.05-1.14.13-2.29.51-3.41 1.14-1.23.68-2.41 1.62-3.69 2.94-1.28-1.32-2.46-2.25-3.69-2.94-1.12-.62-2.27-1-3.41-1.14a7.96 7.96 0 0 0 -.9-.05c-1.88 0-7.26 1.54-7.26 8.38 0 7.86 12.24 16.33 14.69 17.95a1 1 0 0 0 1.11 0c2.45-1.62 14.69-10.09 14.69-17.95 0-6.84-5.37-8.38-7.26-8.38"></path></svg>
+                  <input type="hidden" name="homename1" value="<%=vo.getHomename()%>"/><input type="hidden" name="ano1" value="<%=vo.getAno()%>"/>
+                  <input type="hidden" name="price1" value="<%=vo.getPrice()%>"/>
+                   <%-- </c:if> --%>
+                   <%} %>
+                </div>
+              </div>
             </div>
-            <div class="container">
-               <div class="carousel-caption text-left">
-                  <p></p>
-               </div>
-            </div>
-         </div>
-         <div class="carousel-item">
-            <svg class="bd-placeholder-img" width="100%" height="100%"
-               xmlns="http://www.w3.org/2000/svg"
-               preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-               <rect width="100%" height="100%" fill="#777"></rect></svg>
-            <div class="container">
-               <div class="carousel-caption">
-                  <h1>Another example headline.</h1>
-                  <p>Cras justo odio, dapibus ac facilisis in, egestas eget
-                     quam. Donec id elit non mi porta gravida at eget metus. Nullam id
-                     dolor id nibh ultricies vehicula ut id elit.</p>
-               </div>
-            </div>
-         </div>
-         <div class="carousel-item active">
-            <svg class="bd-placeholder-img" width="100%" height="100%"
-               xmlns="http://www.w3.org/2000/svg"
-               preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-               <rect width="100%" height="100%" fill="#777"></rect></svg>
-            <div class="container">
-               <div class="carousel-caption text-right">
-                  <h1>One more for good measure.</h1>
-                  <p>Cras justo odio, dapibus ac facilisis in, egestas eget
-                     quam. Donec id elit non mi porta gravida at eget metus. Nullam id
-                     dolor id nibh ultricies vehicula ut id elit.</p>
-                  <p></p>
-               </div>
-            </div>
-         </div>
-
-      </div>
-      <a class="carousel-control-prev" href="#myCarousel" role="button"
-         data-slide="prev"> <span class="carousel-control-prev-icon"
-         aria-hidden="true"></span> <span class="sr-only">Previous</span>
-
-      </a> <a class="carousel-control-next" href="#myCarousel" role="button"
-         data-slide="next"> <span class="carousel-control-next-icon"
-         aria-hidden="true"></span> <span class="sr-only">Next</span>
-      </a>
-
-   </div>
-
-   <div class="container marketing">
-      <hr class="featurette-divider">
-
-
-      <div class="row featurette">
-
-         <div class="col-md-6">
-
-            <h2 class="featurette-heading">${vo.ano}</h2>
-            <h3 class="text-muted">${vo.homename}</h3>
-
-
-            <h3 class="text-muted price" style="text-align: right;" id="price">${vo.price}<span>원</span>
-            </h3>
-            <p></p>
-
-            <h1></h1>
-
-            <h2></h2>
-
-            <p class="lead" style="padding-top: 5rem;">${vo.content}</p>
-         </div>
-
-         <div class="col-md-2" style="text-align: center;">
-
-            <img class="bd-placeholder-img rounded-circle" width="100"
-               height="100" src="resources/img/octopus.png"
-               preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
-               aria-label="Placeholder: 140x140">
-            <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="#777"></rect>
-            <text x="50%" y="50%" fill="#777" dy=".3em"></text>
-            </img>
-
-            <p style="text-align: center;">${info.username}</p>
-
-
-         </div>
-
-         <div class="col-md-4">
-
-            <form action="Readpage" method="post">
-
-               <div class="datacover">
-
-                  <div class="covereddata">
-
-                     <div class="coverdata" style="background-color: transparant">
-
-                        <div class="datainput">
-
-
-                           <div>
-
-                              <h1>편안하고 아늑한</h1>
-
-                              <h1>숙소를 예약하세요.</h1>
-
-                           </div>
-                           <div class="form-row">
-
-                              <div class="form-group col-md-6">
-
-                                 <label for="inputcheckin">체크인</label> <input type="date"
-                                    class="form-control checkin" name="checkin"
-                                    id="inputcheckin" placeholder="년/월/일">
-
-                              </div>
-
-                              <div class="form-group col-md-6">
-
-                                 <label for="inputcheckout">체크아웃</label> <input type="date"
-                                    class="form-control checkout" name="checkout"
-                                    id="inputcheckout" placeholder="년/월/일">
-
-                              </div>
-
-                           </div>
-
-                           <div class="form-group">
-
-
-                              <label for="inputnumber">인원</label> <input type="number"
-                                 class="form-control people" name="people" id="people"
-                                 placeholder="인원">
-
-                           </div>
-
-                           <div class="form-group">
-
-                              <label>가격</label> <input type="number"
-                                 class="form-control result" name="result" id="result"
-                                 readonly="readonly">
-
-                           </div>
-                           <div class="range" style="align-items: center;">
-
-                              <button type="submit" class="btn btn-primary reserve"
-                                 style="background-color: red; board-color: pink;">예약하기</button>
-                           </div>
-
-                        </div>
-                     </div>
-
-                  </div>
-               </div>
             </form>
-         </div>
-
+          </div>
+        </div>
+        <%}%>
       </div>
-
-      <hr class="featurette-divider">
-
-
-      <div class="row featurette">
-
-         <div class="col-md-12">
-
-            <h2 class="featurette-heading"
-               style="text-align: center; margin-bottom: 75px">
-               우리 숙소는요 <span class="text-muted">Our Home</span>
-            </h2>
-
-         </div>
-
-         <div class="com-md-2" id="box1"
-            style="width: 230px; height: 200px; border: 1px solid;">
-            <img class="bed" width="100" height="100"
-               src="../resources/img/bed.png"
-               style="margin-top: 30px; margin-left: 64px;"></img>
-
-
-            <p style="margin-top: 15px; text-align: center">
-
-               침대 : <input type="number"
-                  style="text-align: right; width: 30px; background-clip: padding-box; border: 1px solid #ced4da; border-radius: .25rem"
-                  name="num" placeholder="${vo.bedcount}" readonly="readonly" />
-         </div>
-
-         <div class="com-md-1" style="width: 50px";></div>
-
-         <div class="com-md-2" id="box2"
-            style="width: 230px; height: 200px; border: 1px solid;">
-            <img class="bed" width="100" height="100"
-               src="../resources/img/breakfast.png"
-               style="margin-top: 30px; margin-left: 64px;"></img>
-
-            <p style="margin-top: 15px; text-align: center">
-
-               조식 : <input type="radio"
-                  style="text-align: right; width: 30px; background-clip: padding-box; border: 1px solid #ced4da; border-radius: .25rem"
-                  name="breakfast" value = "${vo.breakfast}" placeholder="0" readonly="readonly" />
-
-            </p>
-
-
-         </div>
-
-         <div class="com-md-1" style="width: 50px";></div>
-
-         <div class="com-md-2" id="box3"
-            style="width: 230px; height: 200px; border: 1px solid;">
-            <img class="bed" width="100" height="100"
-               src="../resources/img/parking.png"
-               style="margin-top: 30px; margin-left: 64px;"></img>
-
-            <p style="margin-top: 15px; text-align: center">
-
-               주차장 : <input type="radio"
-                  style="text-align: right; width: 30px; background-clip: padding-box; border: 1px solid #ced4da; border-radius: .25rem"
-                  name="parkingarea" value = "${vo.parkingarea}" placeholder="0" readonly="readonly" />
-
-            </p>
-
-         </div>
-
-         <div class="com-md-1" style="width: 50px";></div>
-
-
-         <div class="com-md-2" id="box5"
-            style="width: 230px; height: 200px; border: 1px solid;">
-            <img class="bed" width="100" height="100"
-               src="../resources/img/wifi.png"
-               style="margin-top: 30px; margin-left: 64px;"></img>
-
-
-            <p style="margin-top: 15px; text-align: center">
-
-               와이파이 : <input type="radio"
-                  style="text-align: right; width: 30px; background-clip: padding-box; border: 1px solid #ced4da; border-radius: .25rem"
-                  name="wifi" value = "${vo.wifi}" placeholder="0" readonly="readonly" />
-            </p>
-         </div>
-      </div>
-   </div>
-   <hr class="featurette-divider">
-   <div class="row featurette">
-      <div class="container marketing" id="map"
-         style="width: 70%; height: 500px;"></div>
-
-      <script type="text/javascript"
-         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=421002b27b578b32733d1a1574e320e6&libraries=services"></script>
-      <script>
-         // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
-
-         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-         mapOption = {
-            center : new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-            level : 3
-         // 지도의 확대 레벨
-         };
-         // 지도를 생성합니다    
-         var map = new daum.maps.Map(mapContainer, mapOption);
-         // 주소-좌표 변환 객체를 생성합니다
-         var geocoder = new daum.maps.services.Geocoder();
-         // 주소로 좌표를 검색합니다
-         geocoder
-               .addressSearch(
-                     "${vo.region2}",
-                     function(result, status) {
-
-                        // 정상적으로 검색이 완료됐으면 
-                        if (status === daum.maps.services.Status.OK) {
-                           var coords = new daum.maps.LatLng(
-                                 result[0].y, result[0].x);
-                           
-                           // 결과값으로 받은 위치를 마커로 표시합니다
-                           var marker = new daum.maps.Marker({
-                              map : map,
-                              position : coords
-                           });
-
-                           // 인포윈도우로 장소에 대한 설명을 표시합니다
-                           var infowindow = new daum.maps.InfoWindow(
-                                 {
-                                    content : '<div style="width:300px;text-align:center;padding:6px 0;">우리집</div>'
-                                 });
-                           var detailAddr = !!result[0].road_address ? ''
-                                 + result[0].road_address.address_name
-                                 + ''
-                                 : '';
-                           detailAddr += '<div>'
-                                 + result[0].address.address_name
-                                 + '</div>';
-
-                           var content = '<div class="bAddr" style = "width : 300px; height : 50px;">'
-                                 +
-                                 '<span class="title"></span>' +
-                                 detailAddr +
-                                 '</div>';
-                           infowindow.setContent(content);
-                           infowindow.open(map, marker);
-
-                           // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-                           map.setCenter(coords);
-                        }
-                     });
-      </script>
-   </div>
-   <hr class="featurette-divider" />
-
-   <div class="container marketing">
-      <label for="content">comment</label>
-      <form name="commentInsertForm" action="insert" method="get">
-         <div class="input-group">
-            <input type="hidden" name="writer" value='${vo.ano}' id="writer">
-            <input type="text" class="form-control" style="margin-bottom: 30px;"
-               id="content" name="content" placeholder="내용을 입력하세요."> <span
-               class="input-group-btn">
-               <button class="btn btn-default" type="button"
-                  name="commentInsertBtn">등록</button>
-            </span>
-         </div>
-      </form>
-   </div>
-
-   <div class="container marketing">
-
-      <div class="commentList"></div>
-   </div>
-
-   <script>
-      var ano = ${vo.ano};
-     var name = '${info.username}';
-      $('button[name=commentInsertBtn]').click(function() { //댓글 등록 버튼 클릭시 
-
-         var reply = {
-            content : $("#content").val(),
-            ano : ano
-         };
-         $.ajax({
-            type : 'post',
-            url : '/comment/insert',
-            data : JSON.stringify(reply), //자바스크립트 객체를 json타입으로 만드는 작업
-            contentType : 'application/json;charset=utf-8',
-            success : function(result) {
-               if (result === 'success') {
-                  //댓글리스트 불러오는 함수 호출
-                  commentList();
-               }
-            }
-         });
-      });
-      function commentList() {
-         $
-               .ajax({
-                  url : '/comment/list',
-                  type : 'get',
-                  data : {
-                     'ano' : ano
-                  },
-                  dataType : "JSON",
-                  success : function(data) {
-                     var a = '';
-                     console.log(data);
-            
-                     $(data)
-                           .each(
-                                 function(i, obj) {
-
-                                    a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
-                                    a += "<div class='commentInfo'>"
-                                          + name;
-                                    a += '<a onclick="commentUpdate('
-                                          + obj.ano
-                                          + ',\''
-                                          + obj.content
-                                          + '\');"> </a>';
-                                    a += '<a onclick="commentDelete('
-                                          + obj.ano
-                                          + ');"> </a> </div>';
-                                    a += '<div class="commentContent'+name+'"> <p>'
-                                          + obj.content + '</p>';
-                                    a += '</div></div>';
-                                 });
-
-                     $(".commentList").html(a);
-                  }
-               });
-      }
-
-      $(document).ready(function() {
-         commentList(); //페이지 로딩시 댓글 목록 출력 
-      });
-   </script> <!-- 댓글 영역 종료 --> <!-- 댓글 모달 -->
-
-   <form id="operForm" action="/board/modify">
-      <input type="hidden" name="ano" value="${vo.ano}" />
-   </form>
-  <script>
-   window.jQuery
-         || document
-               .write('<script src="/resources/js/jquery-slim.min.js"><\/script>')
-</script>
-   <script src="/resources/js/bootstrap.bundle.min.js"
-      integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
-      crossorigin="anonymous"></script>
-</body>
+    </div>
+  </div>
+</main>
 
 <script>
-   $(function() {
+   /* function test(form){
+      console.log(form.home.value);
+      var homename=form.homename.value;
+      var ano=form.ano.value;
+      var bno=form.bno.value;
+      console.log()
+   } */
 
-      
-      var resultp = $(".result");
-      var price = ${vo.price};
-      var checkin;
-      var resultd;
-      $(".checkin").change(function() {
-         checkin = $(".checkin").val();
-      });
-
-      $(".checkout").change(function() {
-         var checkout = $(".checkout").val();
-         var datein = checkin.split('-');
-         var dateina = new Date(datein[0], datein[1], datein[2]);
-         var dateout = checkout.split('-');
-         var dateouta = new Date(dateout[0], dateout[1], dateout[2]);
-         var diff = dateouta - dateina;
-         var currDay = 24 * 60 * 60 * 1000;
-
-         console.log(checkout);
-         console.log(checkin);
-         console.log(price);
-
-         resultd = parseInt(diff / currDay);
-
-      });
-
-      $(".people").change(function() {
-
-         var people = $(".people").val();
-         var re = (price * people * resultd);
-
-         if (re <= 0) {
-            resultp.val(0);
-         }
-
-         if (re > 0) {
-            resultp.val(price * people * resultd);
-         }
-
-         if (people > 20) {
-            alert("너...친구 20명도 없잖아...");
-            $(".people").val(20);
-         }
-
-      });
-
-      $(".checkout").change(function() {
-
-         var people = $(".people").val();
-         var re = (price * people * resultd);
-
-         if (re <= 0) {
-            resultp.val(0);
+   $(function(){
+      var formObj=$('.jjimlist');
+      /* var length=${fn:length(jjimlist)};
+      for(var i=0;i<length;i++){
+         ${jjimlist}.get(i).toString();
+      } */
+      /* var length = ${fn:length(list)}; */
+      /* for(var i=1;i<=length;i++){
+         var test=$("#jjimano"+i+"").val();
+      } */
+      $('._jjim').click(function(){
+         //var homename=$("#data").data('homename');
+         //var ano=$("#data").data('ano');
+         /* var res = $('._jjim').val();   
+         alert(res); */
+         var str="";
+         if(${!empty info}){
+            
+               //$(this).find('.sv').attr("fill", "#FF5A5F");
+               //$(this).find('.sv').attr("fill-opacity", "1");
+               //$(this).find('.sv').attr("stroke", "#FF5A5F");
+            var homename = $(this).find("input[name='homename1']").val();
+            var ano = $(this).find("input[name='ano1']").val();
+            var price = $(this).find("input[name='price1']").val();
+            res=true;
+            str+="<input type='hidden' name='jjimselect' value='"+res+"'/>"
+            str+="<input type='hidden' name='bno' value='${info.bno}'/>"
+            str+="<input type='hidden' name='ano' value='"+ano+"'/>"
+            str+="<input type='hidden' name='homename' value='"+homename+"'/>"
+            str+="<input type='hidden' name='price' value='"+price+"'/>"
+            formObj.append(str);
+            formObj.submit();
+            
+         }else{
+            alert("로그인을 하고 찜 기능을 이용하십시오!!");
+            location.href="login";
          }
          
-         if (re > 0) {
-            resultp.val(price * people * resultd);
-         }
-      });
+         });
       
-      $(document).ready(function() {
-          var breakfast =  $('input:radio[name="breakfast"]').val();
-          var parkingarea = $('input:radio[name="parkingarea"]').val();
-          var wifi = $('input:radio[name="wifi"]').val();
-          
-          console.log(breakfast);
-          console.log(parkingarea);
-          if (breakfast === 'true'){
-             $('input:radio[name="breakfast"]').prop("checked",true);
-          }
-          
-          if (parkingarea === 'true'){
-             $('input:radio[name="parkingarea"]').prop("checked",true);
-          }
-          
-          if (wifi === 'true'){
-             $('input:radio[name="wifi"]').prop("checked",true);
-          }
-             
-             
-             
-             //페이지 로딩시 댓글 목록 출력 
-       });
+      $('._jjimremove').click(function(){
+         var str="";
+         formObj.attr("action","jjimremovelist")
+         var ano = $(this).find("input[name='ano1']").val();
+         str+="<input type='hidden' name='ano' value='"+ano+"'/>"
+         formObj.append(str);
+         formObj.submit();
+      })
       
+      
+         
    });
 </script>
-</html>
+<footer class="text-muted">
+  <div class="container">
+    <p class="float-right">
+      <a href="#">Back to top</a>
+    </p>
+    <p>Album example is © Bootstrap, but please download and customize it for yourself!</p>
+    <p>New to Bootstrap? <a href="https://getbootstrap.com/">Visit the homepage</a> or read our <a href="/docs/4.3/getting-started/introduction/">getting started guide</a>.</p>
+  </div>
+</footer>

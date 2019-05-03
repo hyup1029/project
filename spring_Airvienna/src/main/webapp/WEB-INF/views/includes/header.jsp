@@ -254,7 +254,7 @@ div{
 												</div>
 												<div class="_1u1cgx19">
 													<div class="_1w14zmh">
-														<input type="text" name="region" class="_1cxn5bx2" aria-autocomplete="list" aria-describedby="Koan-via-HeaderController__description" aria-expanded="false" autocomplete="off" autocorrect="off" spellcheck="false" id="Koan-via-HeaderController__input" name="query" placeholder="어디로 가시나요?" role="combobox" value="">
+														<input type="text" name="region2" class="_1cxn5bx2" aria-autocomplete="list" aria-describedby="Koan-via-HeaderController__description" aria-expanded="false" autocomplete="off" autocorrect="off" spellcheck="false" id="Koan-via-HeaderController__input" name="query" placeholder="어디로 가시나요?" role="combobox" value="">
 													</div>
 												</div>
 												</label>
@@ -330,7 +330,7 @@ div{
 												</div>
 												<div class="_1u1cgx19">
 													<div class="_1w14zmh">
-														<input type="text" name="region" class="_1cxn5bx2" aria-autocomplete="list" aria-describedby="Koan-via-HeaderController__description" aria-expanded="false" autocomplete="off" autocorrect="off" spellcheck="false" id="Koan-via-HeaderController__input" name="query" placeholder="어디로 가시나요?" role="combobox" value="">
+														<input type="text" name="region2" class="_1cxn5bx2" aria-autocomplete="list" aria-describedby="Koan-via-HeaderController__description" aria-expanded="false" autocomplete="off" autocorrect="off" spellcheck="false" id="Koan-via-HeaderController__input" name="query" placeholder="어디로 가시나요?" role="combobox" value="">
 													</div>
 												</div>
 												</label>

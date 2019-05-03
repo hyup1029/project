@@ -157,31 +157,27 @@
          /* var res = $('._jjim').val();   
          alert(res); */
          var str="";
-         if(${!empty info}){
-            
-               //$(this).find('.sv').attr("fill", "#FF5A5F");
-               //$(this).find('.sv').attr("fill-opacity", "1");
-               //$(this).find('.sv').attr("stroke", "#FF5A5F");
-            var homename = $(this).find("input[name='homename1']").val();
-            var ano = $(this).find("input[name='ano1']").val();
-            var price = $(this).find("input[name='price1']").val();
+         if(${!empty info}){ // 로그인이 되어있다면 실행
+            var homename = $(this).find("input[name='homename1']").val(); // 찜 DB에 집이름 등록
+            var ano = $(this).find("input[name='ano1']").val(); // 찜 DB 집 기본키 등록
+            var price = $(this).find("input[name='price1']").val(); // 찜 DB에 가격 등록
             res=true;
             str+="<input type='hidden' name='jjimselect' value='"+res+"'/>"
             str+="<input type='hidden' name='bno' value='${info.bno}'/>"
             str+="<input type='hidden' name='ano' value='"+ano+"'/>"
             str+="<input type='hidden' name='homename' value='"+homename+"'/>"
             str+="<input type='hidden' name='price' value='"+price+"'/>"
-            formObj.append(str);
-            formObj.submit();
+            formObj.append(str); // 추가 시킴
+            formObj.submit(); // 서브밋 시켜줌
             
-         }else{
+         }else{ // 로그인이 안되어 있으면 찜 기능을 막고 로그인 페이지로 이동 시킴
             alert("로그인을 하고 찜 기능을 이용하십시오!!");
             location.href="login";
          }
          
          });
       
-      $('._jjimremove').click(function(){
+      $('._jjimremove').click(function(){ // 찜 버튼 다시 클릭시 찜 삭제
          var str="";
          formObj.attr("action","jjimremovelist")
          var ano = $(this).find("input[name='ano1']").val();

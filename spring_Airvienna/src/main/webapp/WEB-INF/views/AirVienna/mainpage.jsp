@@ -15,7 +15,7 @@
 						</div>
 						<div class="form-group">
 					    	<label for="inputregion">지역</label>
-					   		<input type="text" name="region" class="form-control" id="inputregion" placeholder="모든 위치">
+					   		<input type="text" name="region2" class="form-control" id="inputregion" placeholder="모든 위치">
 					  	</div>
 					  <div class="form-row">
 					    <div class="form-group col-md-6">

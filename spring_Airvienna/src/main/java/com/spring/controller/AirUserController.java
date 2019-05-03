@@ -47,7 +47,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("/AirVienna/*")
 @Slf4j
-@SessionAttributes({"info","jjimlist","sns"})
+@SessionAttributes({"info","jjimlist","sns","ct"})
 public class AirUserController {
 	 
 	@Inject
@@ -56,6 +56,7 @@ public class AirUserController {
 	private AccommodationService homeservice;
 	@Inject 
 	private HomeRegisterService homeattservice;
+ 
 	
 	
 	@GetMapping("/step1")
@@ -174,17 +175,7 @@ public class AirUserController {
 		
 		return "AirVienna/home_register";
 	}
-	
-//	for(AccommodationVO vo:list) {
-	//	int ano=vo.getAno();
-//		HomeAttachVO vo2 = homeattservice.homeAttachList(ano);
-//		vo.setHomeAttach(new ArrayList<>());
-//		
-//		vo.getHomeAttach().add(vo2);
-//		log.info(vo+"");
-//	}
-//	log.info(list+"");
-//	model.addAttribute("list",list);
+
 	@GetMapping("/home_modify")
 	public String home_modify(@ModelAttribute("info")AirUserVO info ,AccommodationVO vo, Model model) {
 		log.info("집관리 페이지 호출...");
@@ -307,118 +298,186 @@ public class AirUserController {
 	public void mainpage() {
 		log.info("메인페이지 호출...");
 	}
+
 	@PostMapping("/search")
 	public String accommodationlist(Criteria ct, Model model) {
-		log.info("등록하기"+ct.getRegion());
+		log.info("등록하기"+ct.getRegion2());
 		log.info("등록하기"+ct.getCheckin());
 		log.info("등록하기"+ct.getCheckout());
 		log.info("등록하기"+ct.getMaxperson());
 		
-		if(ct.getRegion().isEmpty()&&ct.getMaxperson().isEmpty()&&ct.getCheckin().isEmpty()&&ct.getCheckout().isEmpty()) {
-			ct.setType("E");
-			List<AccommodationVO> list=homeservice.optionE(ct);
+		
+		
+		if(ct.getRegion2().isEmpty()&&ct.getMaxperson().isEmpty()&&ct.getCheckin().isEmpty()&&ct.getCheckout().isEmpty()) {
+			ct.setType("E"); // 전부 비어있는 채로 검색
 			model.addAttribute("ct",ct);
-			model.addAttribute("list",list);
 		}
-		if(!ct.getRegion().isEmpty()) {
+		if(!ct.getRegion2().isEmpty()) {
 			if(ct.getCheckin().isEmpty()&&ct.getCheckout().isEmpty()&&ct.getMaxperson().isEmpty()) {
-				ct.setType("R");
-				List<AccommodationVO> list=homeservice.optionR(ct);
+				ct.setType("R"); // 지역만 입력하고 검색
 				model.addAttribute("ct",ct);
-				model.addAttribute("list",list);
 			}
 		}
 		if(!ct.getMaxperson().isEmpty()) {
-			if(ct.getCheckin().isEmpty()&&ct.getCheckout().isEmpty()&&ct.getRegion().isEmpty()) {
-				ct.setType("M");
-				List<AccommodationVO> list=homeservice.optionM(ct);
+			if(ct.getCheckin().isEmpty()&&ct.getCheckout().isEmpty()&&ct.getRegion2().isEmpty()) {
+				ct.setType("M");  // 숙박 인원 입력하고 최대 허옹인원 과 비교해서 검색
 				model.addAttribute("ct",ct);
-				model.addAttribute("list",list);
 			}
 		}
 		if(!ct.getCheckin().isEmpty()&&!ct.getCheckin().isEmpty()) {
-			if(ct.getRegion().isEmpty()&&ct.getMaxperson().isEmpty()) {
-				ct.setType("T");
-				List<AccommodationVO> list=homeservice.optionT(ct);
+			if(ct.getRegion2().isEmpty()&&ct.getMaxperson().isEmpty()) {
+				ct.setType("T"); // 체크인 체크아웃 기간에 예약 가능 한 방 검색
 				model.addAttribute("ct",ct);
-				model.addAttribute("list",list);
 			}
 		}
-		if(!ct.getCheckin().isEmpty()&&!ct.getCheckin().isEmpty()&&!ct.getRegion().isEmpty()) {
+		if(!ct.getCheckin().isEmpty()&&!ct.getCheckin().isEmpty()&&!ct.getRegion2().isEmpty()) {
 			if(ct.getMaxperson().isEmpty()) {
-				ct.setType("RT");
-				List<AccommodationVO> list=homeservice.optionRT(ct);
+				ct.setType("RT"); // 지역과 체크인 체크아웃 예약 가능한 방 검색
 				model.addAttribute("ct",ct);
-				model.addAttribute("list",list);
 			}
 		}
 		if(!ct.getCheckin().isEmpty()&&!ct.getCheckin().isEmpty()&&!ct.getMaxperson().isEmpty()) {
-			if(ct.getRegion().isEmpty()) {
+			if(ct.getRegion2().isEmpty()) {
 				ct.setType("TM");
-				List<AccommodationVO> list=homeservice.optionTM(ct);
+				log.info("ct"+ct);
 				model.addAttribute("ct",ct);
-				model.addAttribute("list",list);
 			}
 		}
-		if(!ct.getRegion().isEmpty()&&!ct.getMaxperson().isEmpty()) {
+		if(!ct.getRegion2().isEmpty()&&!ct.getMaxperson().isEmpty()) {
 			if(ct.getCheckin().isEmpty()&&ct.getCheckout().isEmpty()) {
 				ct.setType("RM");
-				List<AccommodationVO> list=homeservice.optionRM(ct);
 				model.addAttribute("ct",ct);
-				model.addAttribute("list",list);
 			}
 		}
-		if(!ct.getRegion().isEmpty()&&!ct.getMaxperson().isEmpty()&&!ct.getCheckin().isEmpty()&&!ct.getCheckout().isEmpty()) {
+		if(!ct.getRegion2().isEmpty()&&!ct.getMaxperson().isEmpty()&&!ct.getCheckin().isEmpty()&&!ct.getCheckout().isEmpty()) {
 			ct.setType("RTM");
-			List<AccommodationVO> list=homeservice.optionRTM(ct);
 			model.addAttribute("ct",ct);
+		}
+		
+		log.info("1.type "+ct.getType());
+		
+		return "redirect:accommodationlist";
+	}
+	@GetMapping("/accommodationlist")
+	public void postaccommodationlist(@ModelAttribute("ct")Criteria ct, Model model) {
+		
+		if("E".equals(ct.getType())) {
+			List<AccommodationVO> list=homeservice.optionE(ct);
+			for(AccommodationVO vo:list) {
+				int ano=vo.getAno();
+				HomeAttachVO vo2 = homeattservice.homeAttachList(ano);
+				vo.setHomeAttach(new ArrayList<>());
+				
+				vo.getHomeAttach().add(vo2);
+				log.info(vo+"");
+			}
+			log.info(list+"");
+			model.addAttribute("list",list);
+		}
+		if("R".equals(ct.getType())) {
+			List<AccommodationVO> list=homeservice.optionR(ct);
+			for(AccommodationVO vo:list) {
+				int ano=vo.getAno();
+				HomeAttachVO vo2 = homeattservice.homeAttachList(ano);
+				vo.setHomeAttach(new ArrayList<>());
+				
+				vo.getHomeAttach().add(vo2);
+				log.info(vo+"");
+			}
+			log.info(list+"");
+			model.addAttribute("list",list);
+		}
+		if("M".equals(ct.getType())) {
+			List<AccommodationVO> list=homeservice.optionM(ct);
+			for(AccommodationVO vo:list) {
+				int ano=vo.getAno();
+				HomeAttachVO vo2 = homeattservice.homeAttachList(ano);
+				vo.setHomeAttach(new ArrayList<>());
+				
+				vo.getHomeAttach().add(vo2);
+				log.info(vo+"");
+			}
+			log.info(list+"");
+			model.addAttribute("list",list);
+		}
+		if("T".equals(ct.getType())) {
+			List<AccommodationVO> list=homeservice.optionT(ct);
+			for(AccommodationVO vo:list) {
+				int ano=vo.getAno();
+				HomeAttachVO vo2 = homeattservice.homeAttachList(ano);
+				vo.setHomeAttach(new ArrayList<>());
+				
+				vo.getHomeAttach().add(vo2);
+				log.info(vo+"");
+			}
+			log.info(list+"");
+			model.addAttribute("list",list);
+		}
+		if("RT".equals(ct.getType())) {
+			List<AccommodationVO> list=homeservice.optionRT(ct);
+			for(AccommodationVO vo:list) {
+				int ano=vo.getAno();
+				HomeAttachVO vo2 = homeattservice.homeAttachList(ano);
+				vo.setHomeAttach(new ArrayList<>());
+				
+				vo.getHomeAttach().add(vo2);
+				log.info(vo+"");
+			}
+			log.info(list+"");
+			model.addAttribute("list",list);
+		}
+		if("TM".equals(ct.getType())) {
+			List<AccommodationVO> list=homeservice.optionTM(ct);
+			for(AccommodationVO vo:list) {
+				int ano=vo.getAno();
+				HomeAttachVO vo2 = homeattservice.homeAttachList(ano);
+				vo.setHomeAttach(new ArrayList<>());
+				
+				vo.getHomeAttach().add(vo2);
+				log.info(vo+"");
+			}
+			log.info(list+"");
+			model.addAttribute("list",list);
+		}
+		if("RM".equals(ct.getType())) {
+			List<AccommodationVO> list=homeservice.optionRM(ct);
+			for(AccommodationVO vo:list) {
+				int ano=vo.getAno();
+				HomeAttachVO vo2 = homeattservice.homeAttachList(ano);
+				vo.setHomeAttach(new ArrayList<>());
+				
+				vo.getHomeAttach().add(vo2);
+				log.info(vo+"");
+			}
+			log.info(list+"");
+			model.addAttribute("list",list);
+		}
+		if("RTM".equals(ct.getType())) {
+			List<AccommodationVO> list=homeservice.optionRTM(ct);
+			for(AccommodationVO vo:list) {
+				int ano=vo.getAno();
+				HomeAttachVO vo2 = homeattservice.homeAttachList(ano);
+				vo.setHomeAttach(new ArrayList<>());
+				
+				vo.getHomeAttach().add(vo2);
+				log.info(vo+"");
+			}
+			log.info(list+"");
 			model.addAttribute("list",list);
 		}
 		
 		log.info("type "+ct.getType());
-		
-		return "AirVienna/accommodationlist";
 	}
-	@GetMapping("/search")
-	public String accommodationlist1(Criteria ct, Model model) {
-		log.info("등록하기"+ct.getRegion());
-		log.info("등록하기"+ct.getCheckin());
-		log.info("등록하기"+ct.getCheckout());
-		log.info("등록하기"+ct.getMaxperson());
-		
-			List<AccommodationVO> list=homeservice.optionE(ct);
-			model.addAttribute("ct",ct);
-			model.addAttribute("list",list);
-		
-		
-		return "AirVienna/accommodationlist";
-	}
+	
 	@PostMapping("/headsearch")
-	public String accommodationlisthead(String region, Model model) {
-		List<AccommodationVO> list=homeservice.optionR(region);
-		model.addAttribute("region",region);
-		model.addAttribute("list",list);
+	public String accommodationlisthead(Criteria ct, Model model) {
+		log.info("헤더 검색창 확인"+ct.getRegion2());
+		ct.setType("R"); // 지역만 입력하고 검색
+		model.addAttribute("ct",ct);
 		
-		return "AirVienna/accommodationlist";
+		return "redirect:accommodationlist";
 	}
-	@GetMapping("/accommodationlist")
-	public void listpage(Criteria ct, Model model) {
-		log.info("리스트페이지 호출...");
-		ct.setType("E");
-		List<AccommodationVO> list = homeservice.optionE(ct);
-		
-		//list의 ano추출
-		for(AccommodationVO vo:list) {
-			int ano=vo.getAno();
-			HomeAttachVO vo2 = homeattservice.homeAttachList(ano);
-			vo.setHomeAttach(new ArrayList<>());
-			
-			vo.getHomeAttach().add(vo2);
-			log.info(vo+"");
-		}
-		log.info(list+"");
-		model.addAttribute("list",list);
-	}
+	
 	@PostMapping("/jjimregist")
 	public String jjimregost(jjimVO vo,Model model,RedirectAttributes rttr) {
 		log.info("bno확인"+vo.getBno());
@@ -514,10 +573,10 @@ public class AirUserController {
 	}
 	
 	@PostMapping(value = "/Readpage")
-	public String toPay(Model model,ReserveVO vo, AccommodationVO product, int ano)  {
+	public String toPay(Model model,ReserveVO vo, AccommodationVO product)  {
 	
 		log.info("예약 : "+vo);
-		product = homeservice.getPage(ano);
+		product = homeservice.getPage(1);
 		model.addAttribute("vo",product);
 		model.addAttribute("resev",vo);
 		return "AirVienna/pay";
@@ -526,6 +585,14 @@ public class AirUserController {
 	@GetMapping("/completePay")
 	public void completePay() {
 		log.info("Complete buy");
+	}
+	
+	// 너무 하기 싫은 사진 가져오는 것
+	@GetMapping("/getAttachList")
+	public ResponseEntity<List<HomeAttachVO>> getAttachList(int ano) {
+		log.info("집 등록에 사용된 사진 가져오기 : ");
+		
+		return new ResponseEntity<List<HomeAttachVO>>(homeattservice.attachList(ano),HttpStatus.OK);
 	}
 	
 	
