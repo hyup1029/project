@@ -1,25 +1,26 @@
-create table jjimlist(
-   jno number(10,0)constraint pk_jjimlist primary key,
-   bno number(10)not null,
-   ano number(10,0)not null,
-   homename nvarchar2(200) not null,
-   jjimselect char(1) default '0',
-   price number(15,0)not null
-); <!-- 찜 디비 가격추가 -->
-
-
-create sequence seq_jjim;
-
-alter table jjimlist add constraint fk_jjimlist
+create table spring_reply (
+  cno number (10,0) not null primary key,
+  ano number (10,0) not null,
+  bno number (10),
+  content varchar2(500) not null,
+  regdate Date default sysdate
+ ); 
+DROP TABLE spring_reply CASCADE CONSTRAINTS;
+ 
+alter table spring_reply add constraint fk_replybno
 foreign key(bno) references airuser(bno);
 
-alter table jjimlist add constraint fk_jjimlist_home
+alter table spring_reply add constraint fk_replyano
 foreign key(ano) references project_accommodation(ano);
+ 
+ create sequence rep_seq;
+
+select * from spring_reply;
+
+drop sequence rep_seq;
+
+drop table spring_reply;
 
 
-delete from JJIMLIST;
-select * from JJIMLIST;
 
-drop table JJIMLIST;
-
-drop sequence seq_jjim;
+drop table spring_reply cascade constraints;

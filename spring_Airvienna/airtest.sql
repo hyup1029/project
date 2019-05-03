@@ -11,11 +11,14 @@ create table airuser(
 	fileName varchar2(100),
 	fileType char(1) default 'I'
 );
+DROP TABLE airuser CASCADE CONSTRAINTS;
 
 create sequence seq_bno;
+drop sequence seq_bno;
 
 
 select * from airuser;
 
-drop table airuser cascade constraints;
+drop table airuser;
 drop sequence seq_bno;
+
