@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.domain.AccommodationVO;
 import com.spring.domain.AirUserVO;
+import com.spring.domain.ChangePwd;
 import com.spring.mapper.AirUserMapper;
 
 @Service
@@ -32,6 +33,21 @@ public class AirUserServiceImpl implements AirUserService {
 	@Override
 	public AirUserVO profile(int bno) {
 		return mapper.profile(bno);
+	}
+
+	@Override
+	public int changePwd(ChangePwd vo) {
+		return mapper.changePwd(vo);
+	}
+
+	@Override
+	public AirUserVO selectByPassword(String password) {
+		return mapper.selectByPassword(password);
+	}
+	
+	@Override
+	public boolean profile_modify(AirUserVO vo) {
+		return mapper.profile_modify(vo)==1;
 	}
 
 

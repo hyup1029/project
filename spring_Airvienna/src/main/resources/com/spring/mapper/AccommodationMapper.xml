@@ -6,7 +6,7 @@
 	</select>
 	<select id="optionR" resultType="com.spring.domain.AccommodationVO">
 		select * from project_accommodation
-		where region like '%'||#{region}||'%'
+		where region2 like '%'||#{region2}||'%'
 	</select>
 	<select id="optionM" resultType="com.spring.domain.AccommodationVO">
 		<![CDATA[select * from project_accommodation
@@ -18,7 +18,7 @@
 	</select>
 	<select id="optionRT" resultType="com.spring.domain.AccommodationVO">
 		<![CDATA[select * from project_accommodation where
-		region like '%'||#{region}||'%'
+		region2 like '%'||#{region2}||'%'
 		Minus (select * from project_accommodation where(checkin<=#{checkin} and #{checkin}<checkout) or (checkin<#{checkout} and #{checkout}<=checkout))]]>
 	</select>
 	<select id="optionTM" resultType="com.spring.domain.AccommodationVO">
@@ -29,11 +29,11 @@
 	<select id="optionRM" resultType="com.spring.domain.AccommodationVO">
 		<![CDATA[select * from project_accommodation where
 		#{maxperson}<=maxperson and
-		region like '%'||#{region}||'%']]>
+		region2 like '%'||#{region2}||'%']]>
 	</select>
 	<select id="optionRTM" resultType="com.spring.domain.AccommodationVO">
 		<![CDATA[select * from project_accommodation where
-		#{maxperson}<=maxperson and region like '%'||#{region}||'%'
+		#{maxperson}<=maxperson and region2 like '%'||#{region2}||'%'
 		Minus (select * from project_accommodation where(checkin<=#{checkin} and #{checkin}<checkout) or (checkin<#{checkout} and #{checkout}<=checkout))]]>
 	</select>
 	<insert id="jjiminsert">

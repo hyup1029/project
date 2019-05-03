@@ -7,7 +7,7 @@ public class Criteria {
 	
 	//검색폼 정보 처리
 	private String type;
-	private String region;
+	private String region2;
 	private String checkin;
 	private String checkout;
 	private String maxperson;

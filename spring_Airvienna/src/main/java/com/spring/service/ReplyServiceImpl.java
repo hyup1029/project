@@ -26,4 +26,10 @@ public class ReplyServiceImpl implements ReplyService{
 		return mapper.replyInsert(vo);
 	}
 
+	@Override
+	public int replyCnt(int ano) {
+		// TODO Auto-generated method stub
+		return mapper.replyCnt(ano);
+	}
+
 }

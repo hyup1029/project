@@ -43,9 +43,19 @@ function onSignIn(googleUser) {
     	}
     })
 }
-
-
 </script>
+<%
+ String fa = (String)request.getAttribute("fa");
+if(fa == null){
+	fa = "true";
+}else{
+	%>
+	 <script>
+	  alert("아이디와 비밀번호를 잘못 입력하셨습니다.");
+ 	 </script>
+	<% 
+}
+%>
 </head>
 <style>
 #kakao-login-btn {

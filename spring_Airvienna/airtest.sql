@@ -11,14 +11,14 @@ create table airuser(
 	fileName varchar2(100),
 	fileType char(1) default 'I'
 );
+DROP TABLE airuser CASCADE CONSTRAINTS;
 
 create sequence seq_bno;
-
 drop sequence seq_bno;
+
 
 select * from airuser;
 
 drop table airuser;
+drop sequence seq_bno;
 
-ALTER TABLE airuser DROP PRIMARY KEY; 
-alter table airuser modify bno number(10) constraint user_pk primary key;
